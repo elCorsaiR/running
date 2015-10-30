@@ -1,0 +1,9 @@
+<tr>
+  <td><%= link_to user.name, user %></td>
+  <td><%= user.email %></td>
+  <td><%= user.level.try :name %></td>
+  <td><%= user.sport.try :name %></td>
+  <td><%= user.distance.try :name %></td>
+  <td><%= user.report_date %></td>
+
+</tr>

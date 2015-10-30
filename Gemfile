@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '4.0.0'
+gem 'rails', '4.0.8'
 
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.3'
@@ -13,7 +13,7 @@ group :development, :test do
 end
 
 group :test do
-  gem 'selenium-webdriver', '2.35.1'
+  gem 'selenium-webdriver', '2.48.1'
   gem 'capybara', '2.2.0'
   gem 'factory_girl_rails', '4.2.0'
   gem 'database_cleaner'
@@ -49,7 +49,7 @@ group :doc do
 end
 
 # Use ActiveModel has_secure_password
-gem 'bcrypt-ruby', '~> 3.0.0'
+gem 'bcrypt-ruby', '~> 3.1.2'
 
 # Use unicorn as the app server
 # gem 'unicorn'
@@ -65,3 +65,8 @@ gem 'will_paginate', '3.0.4'
 gem 'will_paginate-bootstrap', '1.0.1'
 
 gem 'jquery-ui-rails'
+
+gem 'roo', '~> 2.0.1'
+gem 'roo-xls'
+
+gem 'chart-js-rails'

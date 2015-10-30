@@ -1,0 +1,37 @@
+<div class="page-header">
+  <h1>CREACIÓN DE UN NUEVO INFORME</h1>
+</div>
+
+<div class="row">
+  <div class="col-md-12">
+
+
+    <nav class="navbar">
+
+      <%= link_to 'BORRAR EL INFORME', users_path , role: 'button', class: 'btn btn-success' %>
+      <%= link_to 'PUBLICAR EL INFORME', new_user_path(params), role: 'button', class: 'btn btn-success' %>
+
+
+    </nav>
+    <%= form_for(@user, class: 'form', role: 'form') do |f| %>
+        <%= render 'shared/error_messages', object: f.object %>
+        <div class="form-group">
+          <%= f.label :name, 'Nombre' %>
+          <%= f.text_field :name, class: 'form-control' %>
+        </div>
+
+        <div class="form-group">
+          <%= f.label :email %>
+          <%= f.text_field :email, class: 'form-control' %>
+        </div>
+
+        <div class="form-group">
+          <%= f.label :email %>
+          <%= f.file_field :file %>
+        </div>
+
+        <%= f.submit 'Create', class: 'btn btn-success' %>
+
+    <% end %>
+  </div>
+</div>

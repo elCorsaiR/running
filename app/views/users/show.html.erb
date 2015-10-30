@@ -1,0 +1,25 @@
+<div class="page-header">
+  <h1>RUNNING ID No <%= @user.id %></h1>
+</div>
+
+<div class="row">
+  <div class="col-md-8">
+    <dl class="dl-horizontal">
+      <dt>Nombre</dt>
+      <dd><%= @user.name %></dd>
+
+      <dt>Lesiones</dt>
+      <dd><%= @user.injury %></dd>
+
+      <dt>Nival</dt>
+      <dd><%= @user.level.try :name %></dd>
+
+      <dt>Deporte</dt>
+      <dd><%= @user.sport.try :name %></dd>
+    </dl>
+
+    <h2><%= @user.age %><small>anos</small> <%= @user.weight %><small>kg</small> <%= @user.height %><small>cm</small></h2>
+  </div>
+  <div class="col-md-4"><canvas id="index_graph" data-var="<%= @user.index_data %>"></canvas>
+    </div>
+</div>

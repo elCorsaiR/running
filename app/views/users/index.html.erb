@@ -1,0 +1,39 @@
+<div class="page-header">
+<h1><%= User.count %> INFORMES DE CLIENTE</h1>
+</div>
+<div class="row">
+  <div class="col-md-12">
+
+    <nav class="navbar">
+      <%= link_to 'Create', new_user_path(params), role: 'button', class: 'btn btn-success' %>
+      <!--<%= form_tag(users_path, :method => :get, class: 'navbar-form navbar-right', role: 'search') do %>-->
+          <!--<div class="input-group">-->
+            <!--<%= hidden_field_tag 'clients', (params['clients'] if params['clients'].present?) %>-->
+            <!--<%= text_field_tag 'term', (params['term'] if params['term'].present?), class: 'form-control' %>-->
+            <!--<span class="input-group-btn">-->
+                  <!--<button type="submit" class="btn btn-default">Find</button>-->
+              <!--</span>-->
+          <!--</div>-->
+      <!--<% end %>-->
+    </nav>
+
+    <div class="table-responsive">
+      <table class="table table-condensed  table-bordered">
+        <thead>
+        <tr>
+          <th>Nombre</th>
+          <th>Email</th>
+          <th>Nivel</th>
+          <th>Deporte</th>
+          <th>Distance habitual</th>
+          <th>Fech del informe</th>
+        </tr>
+        </thead>
+        <tbody>
+        <%= render @users %>
+        </tbody>
+      </table>
+    </div>
+    <%= will_paginate @users, :renderer => BootstrapPagination::Rails %>
+  </div>
+</div>
