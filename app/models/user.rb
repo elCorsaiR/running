@@ -9,6 +9,7 @@ class User < ActiveRecord::Base
   before_create :parse_file
   has_secure_password
 
+  scope :clients, -> { where admin: false }
   default_scope -> { order 'report_date desc' }
 
   attr_accessor :file

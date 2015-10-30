@@ -3,7 +3,7 @@ class UsersController < ApplicationController
   before_action :admin_user, only: [:index, :new, :create, :destroy]
   before_action :correct_user, only: [:show]
   def index
-    @users = User.paginate(page: params[:page])
+    @users = User.clients.paginate(page: params[:page])
   end
 
   def new
@@ -12,8 +12,8 @@ class UsersController < ApplicationController
 
   def create
     @user = User.new user_params
-    @user.password = 'foobae'
-    @user.password_confirmation = 'foobae'
+    @user.password = 'foobar'
+    @user.password_confirmation = 'foobar'
     if @user.save
       flash[:success] = 'Success'
       redirect_to users_path
