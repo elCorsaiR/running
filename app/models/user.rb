@@ -13,7 +13,7 @@ class User < ActiveRecord::Base
 
   attr_accessor :file
 
-  validates :file, presence: true, on: :create
+  validates :file, presence: true, on: :create, unless:  Proc.new { |user| user.admin? })
   validates :email, presence: true, uniqueness: {case_sensitive: false}
   validates :password, length: {minimum: 6}, :if => :should_validate_password?
 
