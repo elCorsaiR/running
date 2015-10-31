@@ -15,5 +15,12 @@ jQuery ->
     pointDot : false,
     scaleShowVerticalLines: false,
     datasetStroke : false,
-    datasetFill : false
+    datasetFill : false,
+    responsive: true
   })
+
+  bar_data = $("#bar_graph").data("var")
+  bar_chart = new Chart($("#bar_graph").get(0).getContext("2d")).Bar(bar_data, {
+    responsive: true
+  })
+#  bar_chart.resize()

@@ -68,6 +68,30 @@ class User < ActiveRecord::Base
     }.to_json
   end
 
+  def bar_data
+    json = {
+        labels: ['MÁXIMA PRONACIÓN', 'VELOCIDAD PRONACIÓN', 'MÁXIMA ROTACIÓN TIBIAL', 'VELOCIDAD ROTACIÓN TIBIAL'],
+        datasets: [
+            {
+                label: "Left",
+                fillColor: "rgba(220,220,220,0.5)",
+                strokeColor: "rgba(220,220,220,0.8)",
+                highlightFill: "rgba(220,220,220,0.75)",
+                highlightStroke: "rgba(220,220,220,1)",
+                data: [max_pronation_left, pronation_speed_left, tibia_max_rotation_left, tibia_rotation_left]
+            },
+            {
+                label: "Right",
+                fillColor: "rgba(255,150,150,0.5)",
+                strokeColor: "rgba(255,150,150,0.8)",
+                highlightFill: "rgba(255,150,150,0.75)",
+                highlightStroke: "rgba(255,150,150,1)",
+                data: [max_pronation_right, pronation_speed_right, tibia_max_rotation_right, tibia_rotation_right]
+            }
+        ]
+    }.to_json
+  end
+
   def perf_index_data
     json =
         [
@@ -155,6 +179,18 @@ class User < ActiveRecord::Base
         if row[0].to_s.start_with?('GRÁFICA ÁNGULO DEL PIE IZQUIERDO/DERECHO INSTANTE')
           self.ankles.build position: row[1].to_i, left: row[2], right: row[3]
         end
+
+        self.max_pronation_left = row[1].to_i if row[0] == 'MÁXIMA PRONACIÓN IZQUIERDO'
+        self.max_pronation_right = row[1].to_i if row[0] == 'MÁXIMA PRONACIÓN DERECHO'
+
+        self.pronation_speed_left = row[1].to_i if row[0] == 'VELOCIDAD PRONACIÓN IZQUIERDO'
+        self.pronation_speed_right = row[1].to_i if row[0] == 'VELOCIDAD PRONACIÓN DERECHO'
+
+        self.tibia_max_rotation_left = row[1].to_i if row[0] == 'MÁXIMA ROTACIÓN TIBIAL IZQUIERDO'
+        self.tibia_max_rotation_right = row[1].to_i if row[0] == 'MÁXIMA ROTACIÓN TIBIAL DERECHO'
+
+        self.tibia_rotation_left = row[1].to_i if row[0] == 'VELOCIDAD ROTACIÓN TIBIAL IZQUIERDO'
+        self.tibia_rotation_right = row[1].to_i if row[0] == 'VELOCIDAD ROTACIÓN TIBIAL DERECHO'
       end
 
       # self.name = "#{first_name} #{last_name}".squish

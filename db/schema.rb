@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151031201015) do
+ActiveRecord::Schema.define(version: 20151031210720) do
 
   create_table "ankles", force: true do |t|
     t.integer "user_id"
@@ -40,7 +40,7 @@ ActiveRecord::Schema.define(version: 20151031201015) do
     t.integer  "distance_id"
     t.string   "password_digest"
     t.string   "remember_token"
-    t.boolean  "admin",           default: false
+    t.boolean  "admin",                    default: false
     t.datetime "created_at"
     t.datetime "updated_at"
     t.date     "report_date"
@@ -55,6 +55,14 @@ ActiveRecord::Schema.define(version: 20151031201015) do
     t.integer  "hip"
     t.integer  "functionality"
     t.integer  "total"
+    t.integer  "max_pronation_left"
+    t.integer  "max_pronation_right"
+    t.integer  "pronation_speed_left"
+    t.integer  "pronation_speed_right"
+    t.integer  "tibia_max_rotation_left"
+    t.integer  "tibia_max_rotation_right"
+    t.integer  "tibia_rotation_left"
+    t.integer  "tibia_rotation_right"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true
