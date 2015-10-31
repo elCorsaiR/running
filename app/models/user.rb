@@ -4,6 +4,8 @@ class User < ActiveRecord::Base
   belongs_to :level
   belongs_to :sport
 
+  has_many :ankles, dependent: :delete_all
+
   before_save { self.email = email.downcase }
   before_create :create_remember_token
   before_create :parse_file
@@ -84,6 +86,37 @@ class User < ActiveRecord::Base
         ].to_json
   end
 
+  def ankle_data
+    left = ankles.pluck :left
+    right = ankles.pluck :right
+    labels = ankles.pluck :position
+    json = {
+        labels: labels,
+        datasets: [
+            {
+                label: "Left",
+                fillColor: "rgba(220,220,220,0.2)",
+                strokeColor: "rgba(220,220,220,1)",
+                pointColor: "rgba(220,220,220,1)",
+                pointStrokeColor: "#fff",
+                pointHighlightFill: "#fff",
+                pointHighlightStroke: "rgba(220,220,220,1)",
+                data: left
+            },
+            {
+                label: "Right",
+                fillColor: "rgba(151,187,205,0.2)",
+                strokeColor: "rgba(255,150,150,1)",
+                pointColor: "rgba(255,150,150,1)",
+                pointStrokeColor: "#fff",
+                pointHighlightFill: "#fff",
+                pointHighlightStroke: "rgba(151,187,205,1)",
+                data: right
+            }
+        ]}.to_json
+
+  end
+
   private
 
   def create_remember_token
@@ -118,6 +151,10 @@ class User < ActiveRecord::Base
         self.hip = (row[1]*100).to_i if row[0] == 'PERFORMANCE INDEX CADERA'
         self.functionality = (row[1]*100).to_i if row[0] == 'PERFORMANCE INDEX FUNCIONALIDAD'
         self.total = (row[1]*100).to_i if row[0] == 'PERFORMANCE INDEX TOTAL'
+
+        if row[0].to_s.start_with?('GRÁFICA ÁNGULO DEL PIE IZQUIERDO/DERECHO INSTANTE')
+          self.ankles.build position: row[1].to_i, left: row[2], right: row[3]
+        end
       end
 
       # self.name = "#{first_name} #{last_name}".squish

@@ -9,3 +9,11 @@ jQuery ->
 
   pie_data = $("#perf_index_graph").data("var")
   new Chart($("#perf_index_graph").get(0).getContext("2d")).Doughnut(pie_data)
+
+  ankle_data = $("#ankle_graph").data("var")
+  new Chart($("#ankle_graph").get(0).getContext("2d")).Line(ankle_data, {
+    pointDot : false,
+    scaleShowVerticalLines: false,
+    datasetStroke : false,
+    datasetFill : false
+  })

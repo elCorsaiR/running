@@ -11,7 +11,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151030144629) do
+ActiveRecord::Schema.define(version: 20151031201015) do
+
+  create_table "ankles", force: true do |t|
+    t.integer "user_id"
+    t.integer "position"
+    t.float   "left"
+    t.float   "right"
+  end
 
   create_table "levels", force: true do |t|
     t.string "name"

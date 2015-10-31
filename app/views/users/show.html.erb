@@ -18,11 +18,22 @@
       <dd><%= @user.sport.try :name %></dd>
     </dl>
 
-    <h2><%= @user.age %><small>anos</small> <%= @user.weight %><small>kg</small> <%= @user.height %><small>cm</small></h2>
+    <h2><%= @user.age %>
+      <small>anos</small> <%= @user.weight %>
+      <small>kg</small> <%= @user.height %>
+      <small>cm</small>
+    </h2>
   </div>
   <div class="col-md-4">
     <h3>PERFORMANCE INDEX TOTAL</h3>
     <canvas id="perf_index_graph" data-var="<%= @user.perf_index_data %>" height="200px"></canvas>
     <canvas id="index_graph" data-var="<%= @user.index_data %>" height="200px"></canvas>
+  </div>
+</div>
+<div class="clearfix"></div>
+<div class="row">
+  <div class="col-md-12">
+    <h2>GRÁFICA ÁNGULO DEL PIE</h2>
+      <canvas id="ankle_graph" data-var="<%= @user.ankle_data %>" height="350px" width="750px"></canvas>
   </div>
 </div>
