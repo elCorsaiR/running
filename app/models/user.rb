@@ -66,6 +66,24 @@ class User < ActiveRecord::Base
     }.to_json
   end
 
+  def perf_index_data
+    json =
+        [
+            {
+                value: total,
+                color: "#F7464A",
+                highlight: "#FF5A5E",
+                label: ""
+            },
+            {
+                value: 100 - total,
+                color: "rgba(220,220,220,0.5)",
+
+                label: ""
+            }
+        ].to_json
+  end
+
   private
 
   def create_remember_token

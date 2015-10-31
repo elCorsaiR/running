@@ -20,6 +20,9 @@
 
     <h2><%= @user.age %><small>anos</small> <%= @user.weight %><small>kg</small> <%= @user.height %><small>cm</small></h2>
   </div>
-  <div class="col-md-4"><canvas id="index_graph" data-var="<%= @user.index_data %>"></canvas>
-    </div>
+  <div class="col-md-4">
+    <h3>PERFORMANCE INDEX TOTAL</h3>
+    <canvas id="perf_index_graph" data-var="<%= @user.perf_index_data %>" height="200px"></canvas>
+    <canvas id="index_graph" data-var="<%= @user.index_data %>" height="200px"></canvas>
+  </div>
 </div>
