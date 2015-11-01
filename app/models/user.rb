@@ -113,7 +113,13 @@ class User < ActiveRecord::Base
   def ankle_data
     left = ankles.pluck :left
     right = ankles.pluck :right
-    labels = ankles.pluck :position
+    labels = ankles.map do |ankle|
+      if (ankle.position % 10) == 0
+        ankle.position
+      else
+        ''
+      end
+    end
     json = {
         labels: labels,
         datasets: [
