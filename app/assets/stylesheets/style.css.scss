@@ -443,7 +443,7 @@ header {
   background-color: #30303f;
   height: 624px;
   padding-top: 25px;
-  background-image: url("bcg-logo.png"), url("bcg-runner.png");
+  background-image: image-url("bcg-logo.png"), image-url("bcg-runner.png");
   background-repeat: no-repeat, no-repeat;
   background-position: bottom -40px left 117px, bottom -24px right 124px;
 }
@@ -737,7 +737,7 @@ header {
   padding-top: 85px;
   padding-bottom: 79px;
   border-top: 1px solid #595966;
-  background-image: url("bcg-video.png");
+  background-image: image-url("bcg-video.png");
   background-position: center right 126px;
   background-repeat: no-repeat;
 }
@@ -751,7 +751,7 @@ header {
 
 .isSlideDown {
   background-color: #ececee;
-  background-image: url("bcg-video-active.png");
+  background-image: image-url("bcg-video-active.png");
   border-color: #dedee1;
 }
 .isSlideDown:hover {
@@ -777,11 +777,11 @@ header {
 }
 
 .isSlideDown.technical-analysis:after {
-  background-image: url("bcg-technics-active.png");
+  background-image: image-url("bcg-technics-active.png");
 }
 
 .isSlideDown.conclusion:after {
-  background-image: url("bcg-runner-active.png");
+  background-image: image-url("bcg-runner-active.png");
 }
 
 .clicked {
@@ -801,11 +801,11 @@ header {
 }
 
 .technical-analysis {
-  background-image: url("bcg-technics.png");
+  background-image: image-url("bcg-technics.png");
 }
 
 .conclusion {
-  background-image: url("bcg-runner.png");
+  background-image: image-url("bcg-runner.png");
   background-size: 200px auto;
   background-position: center right 200px;
 }
@@ -975,7 +975,7 @@ iframe {
   text-align: left;
 }
 .dropdown:after {
-  background: url("dropdown-arrow.png");
+  background: image-url("dropdown-arrow.png");
   content: '';
   width: 10px;
   height: 7px;
@@ -1062,7 +1062,7 @@ iframe {
   width: 18px;
   height: 20px;
   content: '';
-  background: url("ico-search.png");
+  background: image-url("ico-search.png");
 }
 
 .add-new {
@@ -1079,14 +1079,14 @@ iframe {
   width: 12px;
   height: 12px;
   content: '';
-  background: url("ico-plus.png");
+  background: image-url("ico-plus.png");
 }
 .add-new:hover {
   background: #ff6026;
   color: white;
 }
 .add-new:hover:before {
-  background: url("ico-plus-hover.png");
+  background: image-url("ico-plus-hover.png");
 }
 
 .no-clients {
@@ -1173,7 +1173,7 @@ iframe {
   padding-right: 40px;
 }
 .headline:after {
-  background: url("dropdown-arrow.png");
+  background: image-url("dropdown-arrow.png");
   content: '';
   width: 10px;
   height: 7px;
@@ -1200,7 +1200,7 @@ iframe {
   color: #434356;
 }
 .active:after {
-  background: url("arrow-active.png");
+  background: image-url("arrow-active.png");
 }
 
 .performance-chart {
@@ -1656,12 +1656,12 @@ footer:after,
 
   header {
     overflow: hidden;
-    background-image: url("bcg-logo.png");
+    background-image: image-url("bcg-logo.png");
     position: relative;
   }
 
   header:after {
-    background-image: url("bcg-runner.png");
+    background-image: image-url("bcg-runner.png");
     position: absolute;
     bottom: -20px;
     right: 0;
@@ -1680,7 +1680,7 @@ footer:after,
     background-image: none;
   }
   .accordion:after {
-    background-image: url("bcg-video.png");
+    background-image: image-url("bcg-video.png");
     position: absolute;
     top: 50%;
     margin-top: -165px;
@@ -1692,25 +1692,25 @@ footer:after,
   }
 
   .isSlideDown:after {
-    background-image: url("bcg-video-active.png");
+    background-image: image-url("bcg-video-active.png");
   }
 
   .technical-analysis:after {
-    background-image: url("bcg-technics.png");
+    background-image: image-url("bcg-technics.png");
     width: 264px;
   }
 
   .isSlideDown.technical-analysis:after {
-    background-image: url("bcg-technics-active.png");
+    background-image: image-url("bcg-technics-active.png");
   }
 
   .conclusion:after {
-    background-image: url("bcg-technics.png");
+    background-image: image-url("bcg-technics.png");
     width: 264px;
   }
 
   .isSlideDown.conclusion:after {
-    background-image: url("bcg-technics-active.png");
+    background-image: image-url("bcg-technics-active.png");
   }
 
   .left--anatomy {
