@@ -1,9 +1,12 @@
-<tr>
-  <td><%= link_to user.name, user %></td>
-  <td><%= user.email %></td>
-  <td><%= user.level.try :name %></td>
-  <td><%= user.sport.try :name %></td>
-  <td><%= user.distance.try :name %></td>
-  <td><%= user.report_date %></td>
-
-</tr>
+<div class="client-row">
+  <div class="col col-name">
+    <input class="client-list-checkbox" type="checkbox" name="name" value="0" />
+    <input class="client-list-link" type="hidden" name="name" value="<%= user_path(user) %>" />
+    <span class="client"><%= user.name %></span>
+  </div>
+  <div class="col col-mail"><span class="client"><%= user.email %></span></div>
+  <div class="col col-nevel"><span class="client"><%= user.level ? user.level.name : '&nbsp;'.html_safe  %></span></div>
+  <div class="col col-deporte"><span class="client"><%= user.sport ? user.sport.name : '&nbsp;'.html_safe %></span></div>
+  <div class="col col-distance"><span class="client"><%= user.distance ? user.distance.name : '&nbsp;'.html_safe %></span></div>
+  <div class="col col-date"><span class="client"><%= user.report_date ? user.report_date : '&nbsp;'.html_safe %></span></div>
+</div>

@@ -5,6 +5,7 @@ class User < ActiveRecord::Base
   belongs_to :sport
 
   has_many :ankles, dependent: :delete_all
+  has_many :foot_and_knee_angels, dependent: :delete_all
 
   before_save { self.email = email.downcase }
   before_create :create_remember_token
@@ -55,14 +56,17 @@ class User < ActiveRecord::Base
 
   def index_data
     json = {
-        labels: %w(TOBILLO RODILLA CADERA FUNCIONALIDAD TOTAL),
+        labels: %w(TOBILLO RODILLA FUNCIONALIDAD CADERA),
         datasets: [
             {
-                fillColor: 'rgba(220,220,220,0.5)',
-                strokeColor: 'rgba(255,200,200,1)',
-                pointColor: 'rgba(255,150,150,1)',
-                pointStrokeColor: '#fff',
-                data: [ankle, knee, hip, functionality, total]
+                label: "My First dataset",
+                fillColor: "rgba(163,208,97,0.5)",
+                strokeColor: "rgba(163,208,97,1)",
+                pointColor: "rgba(163,208,97,1)",
+                pointStrokeColor: "#fff",
+                pointHighlightFill: "#fff",
+                pointHighlightStroke: "rgba(220,220,220,1)",
+                data: [ankle, knee, functionality, hip]
             }
         ]
     }.to_json
@@ -70,23 +74,47 @@ class User < ActiveRecord::Base
 
   def bar_data
     json = {
-        labels: ['MÁXIMA PRONACIÓN', 'VELOCIDAD PRONACIÓN', 'MÁXIMA ROTACIÓN TIBIAL', 'VELOCIDAD ROTACIÓN TIBIAL'],
+        labels: ["Max...", "Veloci...", "Max..", "Veloci..."],
         datasets: [
             {
-                label: "Left",
-                fillColor: "rgba(220,220,220,0.5)",
-                strokeColor: "rgba(220,220,220,0.8)",
-                highlightFill: "rgba(220,220,220,0.75)",
-                highlightStroke: "rgba(220,220,220,1)",
+                label: "My First dataset",
+                fillColor: "#958899",
+                strokeColor: "#958899",
+                highlightFill: "958899",
+                highlightStroke: "958899",
                 data: [max_pronation_left, pronation_speed_left, tibia_max_rotation_left, tibia_rotation_left]
             },
             {
-                label: "Right",
-                fillColor: "rgba(255,150,150,0.5)",
-                strokeColor: "rgba(255,150,150,0.8)",
-                highlightFill: "rgba(255,150,150,0.75)",
-                highlightStroke: "rgba(255,150,150,1)",
+                label: "My Second dataset",
+                fillColor: "#fe8e64",
+                strokeColor: "#fe8e64",
+                highlightFill: "#fe8e64",
+                highlightStroke: "#fe8e64",
                 data: [max_pronation_right, pronation_speed_right, tibia_max_rotation_right, tibia_rotation_right]
+            }
+        ]
+    }.to_json
+    end
+
+  def instant_of_max_pronation_data
+    json = {
+        labels: ["Instante Maxima..."],
+        datasets: [
+            {
+                label: "My First dataset",
+                fillColor: "#958899",
+                strokeColor: "#958899",
+                highlightFill: "958899",
+                highlightStroke: "958899",
+                data: [instant_of_left_max_pronation]
+            },
+            {
+                label: "My Second dataset",
+                fillColor: "#fe8e64",
+                strokeColor: "#fe8e64",
+                highlightFill: "#fe8e64",
+                highlightStroke: "#fe8e64",
+                data: [instant_of_right_max_pronation]
             }
         ]
     }.to_json
@@ -96,51 +124,227 @@ class User < ActiveRecord::Base
     json =
         [
             {
-                value: total,
-                color: "#F7464A",
-                highlight: "#FF5A5E",
-                label: ""
+                value: 100 - total,
+                color: "#ececec",
+                highlight: "#ececec"
             },
             {
-                value: 100 - total,
-                color: "rgba(220,220,220,0.5)",
-
-                label: ""
+                value: total,
+                color: "#a3d061",
+                highlight: "#a3d061",
+                label: "Performance index: "
             }
+
         ].to_json
   end
 
-  def ankle_data
-    left = ankles.pluck :left
-    right = ankles.pluck :right
+  def chart1_data
+    [
+        {
+            value: left_stride_time_swing_per,
+            color: "#b0a6b3",
+            highlight: "#b0a6b3",
+            label: "Vuelo"
+        },
+        {
+            value: left_stride_time_stance_per,
+            color: "#958899",
+            highlight: "#958899",
+            label: "Contacto"
+        }
+
+    ].to_json
+  end
+
+  def chart2_data
+    [
+        {
+            value: right_stride_time_swing_per,
+            color: "#ffab8b",
+            highlight: "#ffab8b",
+            label: "Vuelo"
+        },
+        {
+            value: right_stride_time_stance_per,
+            color: "#fe8e64",
+            highlight: "#fe8e64",
+            label: "Contacto"
+        }
+
+    ].to_json
+  end
+
+  def chart3_data
+    [
+        {
+            value: right_stride_time_per,
+            color: "#fe8e64",
+            highlight: "#fe8e64",
+            label: "DERECHA"
+        },
+        {
+            value: left_stride_time_per,
+            color: "#958899",
+            highlight: "#958899",
+            label: "IZQUIERDA"
+        }
+
+    ].to_json
+  end
+
+  def chart4_data
+    [
+        {
+            value: right_stride_length_per,
+            color: "#fe8e64",
+            highlight: "#fe8e64",
+            label: "DERECHA"
+        },
+        {
+            value: left_stride_length_per,
+            color: "#958899",
+            highlight: "#958899",
+            label: "IZQUIERDA"
+        }
+
+    ].to_json
+  end
+
+  def chart5_data
+    [
+        {
+            value: right_stride_frequency_per,
+            color: "#fe8e64",
+            highlight: "#fe8e64",
+            label: "DERECHA"
+        },
+        {
+            value: left_stride_frequency_per,
+            color: "#958899",
+            highlight: "#958899",
+            label: "IZQUIERDA"
+        }
+
+    ].to_json
+  end
+
+  def chart6_data
+
+    json = {
+        labels: ["Frecuencia de zancada", "Movimiento del talon", "Direccion punta del pie", "Anchura entre apoyo"],
+        datasets: [
+            {
+                label: "My First dataset",
+                fillColor: "#958899",
+                strokeColor: "#958899",
+                highlightFill: "958899",
+                highlightStroke: "958899",
+                data: [left_stride_frequency_evaluation, 0, tip_direction_of_left_foot_evaluation, width_between_left_stances_evaluation]
+            },
+            {
+                label: "My Second dataset",
+                fillColor: "#fe8e64",
+                strokeColor: "#fe8e64",
+                highlightFill: "#fe8e64",
+                highlightStroke: "#fe8e64",
+                data: [right_stride_frequency_evaluation, 0, tip_direction_of_right_foot_evaluation, width_between_right_stances_evaluation]
+            }
+        ]
+    }.to_json
+  end
+
+  def foot_and_knee_data
+    left_foot = foot_and_knee_angels.pluck :left_foot_angle
+    left_knee = foot_and_knee_angels.pluck :left_knee_angle
+    right_foot = foot_and_knee_angels.pluck :right_foot_angle
+    right_knee = foot_and_knee_angels.pluck :right_knee_angle
+
     labels = ankles.map do |ankle|
-      if (ankle.position % 10) == 0
+      if (ankle.position % 20) == 0
         ankle.position
       else
         ''
       end
     end
+
+    json = {
+        labels: labels,
+        datasets: [
+            {
+                label: "My First dataset",
+                fillColor: "transparent",
+                strokeColor: "#a196a4",
+                pointColor: "#a196a4",
+                pointStrokeColor: "#a196a4",
+                pointHighlightFill: "#a196a4",
+                pointHighlightStroke: "#a196a4",
+                data: left_foot
+            },
+            {
+                label: "My First dataset",
+                fillColor: "transparent",
+                strokeColor: "#a196a4",
+                pointColor: "#a196a4",
+                pointStrokeColor: "#a196a4",
+                pointHighlightFill: "#a196a4",
+                pointHighlightStroke: "#a196a4",
+                data: left_knee
+            },
+            {
+                label: "My First dataset",
+                fillColor: "transparent",
+                strokeColor: "#fe8e64",
+                pointColor: "#fe8e64",
+                pointStrokeColor: "#fe8e64",
+                pointHighlightFill: "#fe8e64",
+                pointHighlightStroke: "#fe8e64",
+                data: right_foot
+            },
+            {
+                label: "My First dataset",
+                fillColor: "transparent",
+                strokeColor: "#fe8e64",
+                pointColor: "#fe8e64",
+                pointStrokeColor: "#fe8e64",
+                pointHighlightFill: "#fe8e64",
+                pointHighlightStroke: "#fe8e64",
+                data: right_knee
+            }
+        ]}.to_json
+
+  end
+def ankle_data
+    left = ankles.pluck :left
+    right = ankles.pluck :right
+    labels = ankles.map do |ankle|
+      if (ankle.position % 20) == 0
+        ankle.position
+      else
+        ''
+      end
+    end
+
     json = {
         labels: labels,
         datasets: [
             {
                 label: "Left",
-                fillColor: "rgba(220,220,220,0.2)",
-                strokeColor: "rgba(220,220,220,1)",
-                pointColor: "rgba(220,220,220,1)",
-                pointStrokeColor: "#fff",
-                pointHighlightFill: "#fff",
-                pointHighlightStroke: "rgba(220,220,220,1)",
+                fillColor: "transparent",
+                strokeColor: "#a196a4",
+                pointColor: "#a196a4",
+                pointStrokeColor: "#a196a4",
+                pointHighlightFill: "#a196a4",
+                pointHighlightStroke: "#a196a4",
                 data: left
             },
             {
                 label: "Right",
-                fillColor: "rgba(151,187,205,0.2)",
-                strokeColor: "rgba(255,150,150,1)",
-                pointColor: "rgba(255,150,150,1)",
-                pointStrokeColor: "#fff",
-                pointHighlightFill: "#fff",
-                pointHighlightStroke: "rgba(151,187,205,1)",
+                fillColor: "transparent",
+                strokeColor: "#fe8e64",
+                pointColor: "#fe8e64",
+                pointStrokeColor: "#fe8e64",
+                pointHighlightFill: "#fe8e64",
+                pointHighlightStroke: "#fe8e64",
                 data: right
             }
         ]}.to_json
@@ -197,6 +401,44 @@ class User < ActiveRecord::Base
 
         self.tibia_rotation_left = row[1].to_i if row[0] == 'VELOCIDAD ROTACIÓN TIBIAL IZQUIERDO'
         self.tibia_rotation_right = row[1].to_i if row[0] == 'VELOCIDAD ROTACIÓN TIBIAL DERECHO'
+
+        self.left_stride_time = row[1] if row[0] == 'TIEMPO ZANCADA IZQUIERDA'
+        self.left_stride_time_stance = row[1] if row[0] == 'TIEMPO APOYO IZQUIERDO'
+        self.left_stride_time_stance_per = row[1].round if row[0] == 'TIEMPO APOYO IZQUIERDO %'
+        self.left_stride_time_swing = row[1] if row[0] == 'TIEMPO VUELO IZQUIERDO'
+        self.left_stride_time_swing_per = row[1].round if row[0] == 'TIEMPO VUELO IZQUIERDO %'
+        self.right_stride_time = row[1] if row[0] == 'TIEMPO ZANCADA DERECHA'
+        self.right_stride_time_stance = row[1] if row[0] == 'TIEMPO APOYO DERECHA'
+        self.right_stride_time_stance_per = row[1].round if row[0] == 'TIEMPO APOYO DERECHA %'
+        self.right_stride_time_swing = row[1] if row[0] == 'TIEMPO VUELO DERECHA'
+        self.right_stride_time_swing_per = row[1].round if row[0] == 'TIEMPO VUELO DERECHA %'
+        self.stride_time = row[1] if row[0] == 'TIEMPO ZANCADA'
+        self.left_stride_time_per = row[1].round if row[0] == 'TIEMPO ZANCADA IZQUIERDA %'
+        self.right_stride_time_per = row[1].round if row[0] == 'TIEMPO ZANCADA DERECHA %'
+        self.stride_length = row[1] if row[0] == 'LONGITUD ZANCADA'
+        self.left_stride_length = row[1] if row[0] == 'LONGITUD ZANCADA IZQUIERDA'
+        self.left_stride_length_per = row[1].round if row[0] == 'LONGITUD ZANCADA IZQUIERDA %'
+        self.right_stride_length = row[1] if row[0] == 'LONGITUD ZANCADA DERECHA'
+        self.right_stride_length_per = row[1].round if row[0] == 'LONGITUD ZANCADA DERECHA %'
+
+        self.stride_frequency = row[1].round if row[0] == 'FRECUENCIA ZANCADA'
+        self.left_stride_frequency = row[1].round if row[0] == 'FRECUENCIA ZANCADA IZQUIERDA'
+        self.left_stride_frequency_per = row[1].round if row[0] == 'FRECUENCIA ZANCADA IZQUIERDA %'
+        self.right_stride_frequency = row[1].round if row[0] == 'FRECUENCIA ZANCADA DERECHA'
+        self.right_stride_frequency_per = row[1].round if row[0] == 'FRECUENCIA ZANCADA DERECHA %'
+        self.left_stride_frequency_evaluation = row[1] if row[0] == 'EVALUACIÓN FRECUENCIA ZANCADA IZQUIERDA'
+        self.right_stride_frequency_evaluation = row[1] if row[0] == 'EVALUACIÓN FRECUENCIA ZANCADA DERECHA'
+        self.width_between_left_stances_evaluation = row[1] if row[0] == 'EVALUACIÓN ANCHURA ENTRE APOYO IZQUIERDA'
+        self.width_between_right_stances_evaluation = row[1] if row[0] == 'EVALUACIÓN ANCHURA ENTRE APOYO DERECHA'
+        self.tip_direction_of_left_foot_evaluation = row[1] if row[0] == 'EVALUACIÓN DIRECCIÓN PUNTA DEL PIE IZQUIERDO'
+        self.tip_direction_of_right_foot_evaluation = row[1] if row[0] == 'EVALUACIÓN DIRECCIÓN PUNTA DEL PIE DERECHO'
+
+        if row[0].to_s.start_with?('GRÁFICA ÁNGULO DEL PIE Y ÁNGULO SAGITAL DE LA RODILLA IZQUIERDO/DERECHO INSTANTE')
+          self.foot_and_knee_angels.build position: row[1].to_i, left_foot_angle: row[2], left_knee_angle: row[3], right_foot_angle: row[4], right_knee_angle: row[5]
+        end
+
+        self.instant_of_left_max_pronation = row[1] if row[0] == 'INSTANTE MÁXIMA PRONACIÓN IZQUIERDA'
+        self.instant_of_right_max_pronation = row[1] if row[0] == 'INSTANTE MÁXIMA PRONACIÓN DERECHA'
       end
 
       # self.name = "#{first_name} #{last_name}".squish

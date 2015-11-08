@@ -1,39 +1,41 @@
-<div class="page-header">
-<h1><%= User.count - 1%> INFORMES DE CLIENTE</h1>
-</div>
-<div class="row">
-  <div class="col-md-12">
+<div id="page" class="admin-page">
 
-    <nav class="navbar">
-      <%= link_to 'Create', new_user_path(params), role: 'button', class: 'btn btn-success' %>
-      <!--<%= form_tag(users_path, :method => :get, class: 'navbar-form navbar-right', role: 'search') do %>-->
-          <!--<div class="input-group">-->
-            <!--<%= hidden_field_tag 'clients', (params['clients'] if params['clients'].present?) %>-->
-            <!--<%= text_field_tag 'term', (params['term'] if params['term'].present?), class: 'form-control' %>-->
-            <!--<span class="input-group-btn">-->
-                  <!--<button type="submit" class="btn btn-default">Find</button>-->
-              <!--</span>-->
-          <!--</div>-->
-      <!--<% end %>-->
-    </nav>
-
-    <div class="table-responsive">
-      <table class="table table-condensed  table-bordered">
-        <thead>
-        <tr>
-          <th>Nombre</th>
-          <th>Email</th>
-          <th>Nivel</th>
-          <th>Deporte</th>
-          <th>Distance habitual</th>
-          <th>Fech del informe</th>
-        </tr>
-        </thead>
-        <tbody>
-        <%= render @users %>
-        </tbody>
-      </table>
+  <div class="option-panel option-panel--big ">
+    <div class="panel-left">
+      <span class="clients"><%= User.count - 1 %> INFORMES DE CLIENTE</span>
     </div>
-    <%= will_paginate @users, :renderer => BootstrapPagination::Rails %>
+    <div class="panel-right">
+      <div class="option-bar">
+        <a class="btn-admin" href="#">BORRAR INFORMES</a>
+
+        <a class="btn-admin search" href="#">
+          <%= form_tag(users_path, :method => :get, role: 'search', style: "display: inline;") do %>
+              <%= hidden_field_tag 'clients', (params['clients'] if params['clients'].present?) %>
+              <%= text_field_tag 'term', (params['term'] if params['term'].present?), placeholder: "BUSCAR..." %>
+          <% end %>
+        </a>
+
+        <%= link_to 'CREAR UN INFORME', new_user_path(params), role: 'button', class: 'btn-admin add-new' %>
+      </div>
+    </div>
+  </div>
+
+  <div class="no-clients">
+    <p>No existe ningun informe actualmente</p>
+  </div>
+
+  <div class="clients-list">
+    <div class="client-row client-header">
+      <div class="col col-name">
+        <input class="client-list-checkbox" type="checkbox" name="name" value="0"/>
+        <a class="headline" href="#">NOMBRE</a>
+      </div>
+      <div class="col col-mail"><a class="headline" href="#">EMAIL</a></div>
+      <div class="col col-nevel"><a class="headline" href="#">NEVEL</a></div>
+      <div class="col col-deporte"><a class="headline" href="#">DEPORTE</a></div>
+      <div class="col col-distance"><a class="headline" href="#">DISTANCIA HABITUAL</a></div>
+      <div class="col col-date"><a class="headline active" href="#">FECHA DEL INFORME</a></div>
+    </div>
+    <%= render @users %>
   </div>
 </div>

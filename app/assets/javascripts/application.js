@@ -16,4 +16,5 @@
 //= require jquery.turbolinks
 //= require bootstrap
 //= require Chart
+//= require slick
 //= require_tree .

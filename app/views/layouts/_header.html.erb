@@ -1,33 +1,73 @@
-<nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
-  <div class="container">
-
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-        <span class="sr-only">Toggle navigation</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-      <a class="navbar-brand" href="#">IDRunning</a>
-    </div>
-    <!-- /.navbar-header -->
-
-
-    <!-- /.navbar-top-links -->
-
-    <ul class="nav navbar-top-links navbar-right">
-
-      <li>
-        <% if signed_in? %>
-          <li><%= link_to 'Sign out', signout_path, method: 'delete' %></li>
-      <% else %>
-          <li><%= link_to 'Sign in', signin_path %></li>
-      <% end %>
-      </li>
-
-
-    </ul>
-
-
+<header>
+  <div class="sticky-nav">
+    <h4 class="sticky-headline">ANALISYS TECNICO <span>cerrar</span></h4>
+    <%= image_tag 'foots-nav.png', alt: 'foots', class: 'sticky-foots' %>
   </div>
-</nav>
+
+  <div class="popup-wrapper">
+    <div class="container container-popup">
+      <a href="#" class="close-popup js-close-popup">
+        <%= image_tag 'close-popup.png', alt: 'Close' %>
+      </a>
+
+      <div class="popup">
+        <a class="logo-popup" href="#">
+          <%= image_tag 'logo.png', alt: 'running' %>
+        </a>
+        <h6>¿Quieres compartir este informe con alguien?</h6>
+
+        <p>Sin problema, envíales esta dirección y podrán entrar a verlo sin necesitar contraseña ni nada.</p>
+        <a href="www.imasdrunning.com/informes/234rt8902qwerj" class="popup-link">www.imasdrunning.com/informes/234rt8902qwerj</a>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="container">
+    <% if signed_in? %>
+        <div class="social social-menu">
+          <a href="#" id="fb-root" class="facebook-share"><%= image_tag 'fb.png', alt: 'facebook' %></a>
+          <a href="https://twitter.com/intent/retweet?tweet_id=463440424141459456"><%= image_tag 'twitter.png', alt: 'twitter' %></a>
+          <a href="#" class="js-open-popup"><%= image_tag 'mail.png', alt: 'mail' %></a>
+        </div>
+    <% else %>
+        <li><%= link_to 'Sign in', signin_path %></li>
+    <% end %>
+    <a class="logo" href="#"><%= image_tag 'logo.png', alt: 'running' %></a>
+
+    <h2 class="id-project">RUNNING ID No. <%= @user.id %></h2>
+
+    <h4 class="home__headline">Nombre</h4>
+
+    <h3 class="home__option"><%= @user.name.to_s.upcase %></h3>
+
+    <h4 class="home__headline">Lesiones</h4>
+
+    <h3 class="home__option"><%= @user.injury %></h3>
+
+    <div>
+      <div class="inline">
+        <h4 class="home__headline">Nivel</h4>
+
+        <h3 class="home__option"><%= @user.level.try :name %></h3>
+
+        <h2 class="number"><%= @user.age %><span>ANOS</span></h2>
+      </div>
+      <div class="inline">
+        <h4 class="home__headline">Deporte</h4>
+
+        <h3 class="home__option"><%= @user.sport.try :name %></h3>
+
+        <h2 class="number"><%= @user.weight %><span>KG</span></h2>
+      </div>
+      <div class="inline">
+        <h4 class="home__headline">Distancia habitual</h4>
+
+        <h3 class="home__option">Casual runner (no compite)</h3>
+
+        <h2 class="number"><%= @user.height %><span>CM</span></h2>
+      </div>
+    </div>
+  </div>
+</header>
+
