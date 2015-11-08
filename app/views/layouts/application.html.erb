@@ -4,12 +4,15 @@
   <title>Running</title>
   <%= stylesheet_link_tag "application", media: "all", "data-turbolinks-track" => true %>
 
-  <%= custom_stylesheet_link_tag yield(:stylesheet) %>
   <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
   <link href='//fonts.googleapis.com/css?family=Roboto:400,500' rel='stylesheet' type='text/css'>
   <%= csrf_meta_tags %>
 </head>
-<body>
+<% if current_page?(signin_path)
+     class_name = 'dark'
+   end %>
+<body class="<%= class_name %>">
+
 <%= render 'layouts/admin_toolbar' %>
 <%= yield %>
 
