@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151108152402) do
+ActiveRecord::Schema.define(version: 20151114125459) do
 
   create_table "ankles", force: true do |t|
     t.integer "user_id"
@@ -27,6 +27,48 @@ ActiveRecord::Schema.define(version: 20151108152402) do
     t.float   "right_foot_angle"
     t.float   "left_knee_angle"
     t.float   "right_knee_angle"
+  end
+
+  create_table "hip_frontal_angles", force: true do |t|
+    t.integer "user_id"
+    t.integer "position"
+    t.float   "left"
+    t.float   "right"
+  end
+
+  create_table "hip_rotations", force: true do |t|
+    t.integer "user_id"
+    t.integer "position"
+    t.float   "left"
+    t.float   "right"
+  end
+
+  create_table "hip_sagital_angles", force: true do |t|
+    t.integer "user_id"
+    t.integer "position"
+    t.float   "left"
+    t.float   "right"
+  end
+
+  create_table "knee_frontal_angles", force: true do |t|
+    t.integer "user_id"
+    t.integer "position"
+    t.float   "left"
+    t.float   "right"
+  end
+
+  create_table "knee_rotations", force: true do |t|
+    t.integer "user_id"
+    t.integer "position"
+    t.float   "left"
+    t.float   "right"
+  end
+
+  create_table "knee_sagital_angles", force: true do |t|
+    t.integer "user_id"
+    t.integer "position"
+    t.float   "left"
+    t.float   "right"
   end
 
   create_table "levels", force: true do |t|
@@ -103,6 +145,52 @@ ActiveRecord::Schema.define(version: 20151108152402) do
     t.integer  "tip_direction_of_right_foot_evaluation"
     t.integer  "instant_of_left_max_pronation"
     t.integer  "instant_of_right_max_pronation"
+    t.integer  "left_knee_abduction"
+    t.integer  "right_knee_abduction"
+    t.integer  "left_knee_abduction_speed"
+    t.integer  "right_knee_abduction_speed"
+    t.integer  "left_knee_rotation"
+    t.integer  "right_knee_rotation"
+    t.integer  "left_knee_flexion"
+    t.integer  "right_knee_flexion"
+    t.integer  "left_hip_abduction"
+    t.integer  "right_hip_abduction"
+    t.integer  "left_hip_basculation"
+    t.integer  "right_hip_basculation"
+    t.integer  "left_hip_rotation"
+    t.integer  "right_hip_rotation"
+    t.integer  "left_hip_max_extension"
+    t.integer  "right_hip_max_extension"
+    t.integer  "q_angle_left"
+    t.integer  "q_angle_right"
+    t.integer  "legs_length_discrepancy_left"
+    t.integer  "back_foot_angle_left"
+    t.integer  "back_tibial_strength_left"
+    t.integer  "mid_gluteus_strength_left"
+    t.integer  "isquiotibial_strength_left"
+    t.integer  "vasto_intermedio_left"
+    t.integer  "vasto_medial_left"
+    t.integer  "vasto_lateral_left"
+    t.integer  "psoas_iliaco_left"
+    t.integer  "recto_femoral_left"
+    t.integer  "isquiotibiales_left"
+    t.integer  "iliotibial_band_left"
+    t.integer  "hip_rotatoes_left"
+    t.integer  "gastrocnemius_y_soleo_left"
+    t.integer  "legs_length_discrepancy_right"
+    t.integer  "back_foot_angle_right"
+    t.integer  "back_tibial_strength_right"
+    t.integer  "mid_gluteus_strength_right"
+    t.integer  "isquiotibial_strength_right"
+    t.integer  "vasto_intermedio_right"
+    t.integer  "vasto_medial_right"
+    t.integer  "vasto_lateral_right"
+    t.integer  "psoas_iliaco_right"
+    t.integer  "recto_femoral_right"
+    t.integer  "isquiotibiales_right"
+    t.integer  "iliotibial_band_right"
+    t.integer  "hip_rotatoes_right"
+    t.integer  "gastrocnemius_y_soleo_right"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true

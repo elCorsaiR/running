@@ -137,181 +137,37 @@ function AddLinearCharts() {
 		pointDot : false
 	});
 
-	var datal3 = {
-	    labels: ["0", "20", "40", "60", "80", "100"],
-	    datasets: [
-	        {
-	            label: "My First dataset",
-	            fillColor: "transparent",
-	            strokeColor: "#a196a4",
-	            pointColor: "#a196a4",
-	            pointStrokeColor: "#a196a4",
-	            pointHighlightFill: "#a196a4",
-	            pointHighlightStroke: "#a196a4",
-	            data: [1.5, 11, 9, 4, -1, -1.5]
-	        },
-	        {
-	            label: "My First dataset",
-	            fillColor: "transparent",
-	            strokeColor: "#fe8e64",
-	            pointColor: "#fe8e64",
-	            pointStrokeColor: "#fe8e64",
-	            pointHighlightFill: "#fe8e64",
-	            pointHighlightStroke: "#fe8e64",
-	            data: [-2.5, 6, 4, 0, -2, -1.8]
-	        }
-	    ]
-	};
+	var datal3 = $(".chart5").data("var");
 	var chartL3 = $(".chart5").get(0).getContext("2d");
 	var myLineChart = new Chart(chartL3).Line(datal3, {
 		pointDot : false
 	});
 
-	var datal4 = {
-	    labels: ["0", "20", "40", "60", "80", "100"],
-	    datasets: [
-	        {
-	            label: "My First dataset",
-	            fillColor: "transparent",
-	            strokeColor: "#a196a4",
-	            pointColor: "#a196a4",
-	            pointStrokeColor: "#a196a4",
-	            pointHighlightFill: "#a196a4",
-	            pointHighlightStroke: "#a196a4",
-	            data: [1.5, 11, 9, 4, -1, -1.5]
-	        },
-	        {
-	            label: "My First dataset",
-	            fillColor: "transparent",
-	            strokeColor: "#fe8e64",
-	            pointColor: "#fe8e64",
-	            pointStrokeColor: "#fe8e64",
-	            pointHighlightFill: "#fe8e64",
-	            pointHighlightStroke: "#fe8e64",
-	            data: [-2.5, 6, 4, 0, -2, -1.8]
-	        }
-	    ]
-	};
+	var datal4 = $(".chart7").data("var");
 	var chartL4 = $(".chart7").get(0).getContext("2d");
 	var myLineChart = new Chart(chartL4).Line(datal4, {
 		pointDot : false
 	});
 
-	var datal5 = {
-	    labels: ["0", "20", "40", "60", "80", "100"],
-	    datasets: [
-	        {
-	            label: "My First dataset",
-	            fillColor: "transparent",
-	            strokeColor: "#a196a4",
-	            pointColor: "#a196a4",
-	            pointStrokeColor: "#a196a4",
-	            pointHighlightFill: "#a196a4",
-	            pointHighlightStroke: "#a196a4",
-	            data: [1.5, 11, 9, 4, -1, -1.5]
-	        },
-	        {
-	            label: "My First dataset",
-	            fillColor: "transparent",
-	            strokeColor: "#fe8e64",
-	            pointColor: "#fe8e64",
-	            pointStrokeColor: "#fe8e64",
-	            pointHighlightFill: "#fe8e64",
-	            pointHighlightStroke: "#fe8e64",
-	            data: [-2.5, 6, 4, 0, -2, -1.8]
-	        }
-	    ]
-	};
+	var datal5 = $(".chart9").data("var");
 	var chartL5 = $(".chart9").get(0).getContext("2d");
 	var myLineChart = new Chart(chartL5).Line(datal5, {
 		pointDot : false
 	});
 
-	var datal6 = {
-	    labels: ["0", "20", "40", "60", "80", "100"],
-	    datasets: [
-	        {
-	            label: "My First dataset",
-	            fillColor: "transparent",
-	            strokeColor: "#a196a4",
-	            pointColor: "#a196a4",
-	            pointStrokeColor: "#a196a4",
-	            pointHighlightFill: "#a196a4",
-	            pointHighlightStroke: "#a196a4",
-	            data: [1.5, 11, 9, 4, -1, -1.5]
-	        },
-	        {
-	            label: "My First dataset",
-	            fillColor: "transparent",
-	            strokeColor: "#fe8e64",
-	            pointColor: "#fe8e64",
-	            pointStrokeColor: "#fe8e64",
-	            pointHighlightFill: "#fe8e64",
-	            pointHighlightStroke: "#fe8e64",
-	            data: [-2.5, 6, 4, 0, -2, -1.8]
-	        }
-	    ]
-	};
+	var datal6 = $(".chart11").data("var");
 	var chartL6 = $(".chart11").get(0).getContext("2d");
 	var myLineChart = new Chart(chartL6).Line(datal6, {
 		pointDot : false
 	});
 
-	var datal7 = {
-	    labels: ["0", "20", "40", "60", "80", "100"],
-	    datasets: [
-	        {
-	            label: "My First dataset",
-	            fillColor: "transparent",
-	            strokeColor: "#a196a4",
-	            pointColor: "#a196a4",
-	            pointStrokeColor: "#a196a4",
-	            pointHighlightFill: "#a196a4",
-	            pointHighlightStroke: "#a196a4",
-	            data: [1.5, 11, 9, 4, -1, -1.5]
-	        },
-	        {
-	            label: "My First dataset",
-	            fillColor: "transparent",
-	            strokeColor: "#fe8e64",
-	            pointColor: "#fe8e64",
-	            pointStrokeColor: "#fe8e64",
-	            pointHighlightFill: "#fe8e64",
-	            pointHighlightStroke: "#fe8e64",
-	            data: [-2.5, 6, 4, 0, -2, -1.8]
-	        }
-	    ]
-	};
+	var datal7 = $(".chart13").data("var");
 	var chartL7 = $(".chart13").get(0).getContext("2d");
 	var myLineChart = new Chart(chartL7).Line(datal7, {
 		pointDot : false
 	});
 
-	var datal8 = {
-	    labels: ["0", "20", "40", "60", "80", "100"],
-	    datasets: [
-	        {
-	            label: "My First dataset",
-	            fillColor: "transparent",
-	            strokeColor: "#a196a4",
-	            pointColor: "#a196a4",
-	            pointStrokeColor: "#a196a4",
-	            pointHighlightFill: "#a196a4",
-	            pointHighlightStroke: "#a196a4",
-	            data: [1.5, 11, 9, 4, -1, -1.5]
-	        },
-	        {
-	            label: "My First dataset",
-	            fillColor: "transparent",
-	            strokeColor: "#fe8e64",
-	            pointColor: "#fe8e64",
-	            pointStrokeColor: "#fe8e64",
-	            pointHighlightFill: "#fe8e64",
-	            pointHighlightStroke: "#fe8e64",
-	            data: [-2.5, 6, 4, 0, -2, -1.8]
-	        }
-	    ]
-	};
+	var datal8 = $(".chart15").data("var");
 	var chartL8 = $(".chart15").get(0).getContext("2d");
 	var myLineChart = new Chart(chartL8).Line(datal8, {
 		pointDot : false
@@ -558,155 +414,35 @@ function AddBarCharts() {
 	var chartB3 = $(".chart4").get(0).getContext("2d");
 	var chartBar3 = new Chart(chartB3).Bar(dataB3, {});
 
-	var dataB4 = {
-	    labels: ["Abduccion", "Velocidad abduccion"],
-	    datasets: [
-	        {
-	            label: "My First dataset",
-	            fillColor: "#958899",
-	            strokeColor: "#958899",
-	            highlightFill: "958899",
-	            highlightStroke: "958899",
-	            data: [65, 59]
-	        },
-	        {
-	            label: "My Second dataset",
-	            fillColor: "#fe8e64",
-	            strokeColor: "#fe8e64",
-	            highlightFill: "#fe8e64",
-	            highlightStroke: "#fe8e64",
-	            data: [28, 48]
-	        }
-	    ]
-	};
+	var dataB4 = $(".chart6").data("var");
 	var chartB4 = $(".chart6").get(0).getContext("2d");
 	var chartBar4 = new Chart(chartB4).Bar(dataB4, {});
 
 
-	var dataB5 = {
-	    labels: ["Rotacion rodilla"],
-	    datasets: [
-	        {
-	            label: "My First dataset",
-	            fillColor: "#958899",
-	            strokeColor: "#958899",
-	            highlightFill: "958899",
-	            highlightStroke: "958899",
-	            data: [65]
-	        },
-	        {
-	            label: "My Second dataset",
-	            fillColor: "#fe8e64",
-	            strokeColor: "#fe8e64",
-	            highlightFill: "#fe8e64",
-	            highlightStroke: "#fe8e64",
-	            data: [28]
-	        }
-	    ]
-	};
+	var dataB5 = $(".chart8").data("var");
 	var chartB5 = $(".chart8").get(0).getContext("2d");
 	var chartBar5 = new Chart(chartB5).Bar(dataB5, {});
 
 
-	var dataB6 = {
-	    labels: ["Flexion rodilla"],
-	    datasets: [
-	        {
-	            label: "My First dataset",
-	            fillColor: "#958899",
-	            strokeColor: "#958899",
-	            highlightFill: "958899",
-	            highlightStroke: "958899",
-	            data: [65]
-	        },
-	        {
-	            label: "My Second dataset",
-	            fillColor: "#fe8e64",
-	            strokeColor: "#fe8e64",
-	            highlightFill: "#fe8e64",
-	            highlightStroke: "#fe8e64",
-	            data: [28]
-	        }
-	    ]
-	};
+	var dataB6 = $(".chart10").data("var");
 	var chartB6 = $(".chart10").get(0).getContext("2d");
 	var chartBar6 = new Chart(chartB6).Bar(dataB6, {});
 
 
 
-	var dataB7 = {
-	    labels: ["Angulo frontal de la cadera", "Aduccion"],
-	    datasets: [
-	        {
-	            label: "My First dataset",
-	            fillColor: "#958899",
-	            strokeColor: "#958899",
-	            highlightFill: "958899",
-	            highlightStroke: "958899",
-	            data: [65, 59]
-	        },
-	        {
-	            label: "My Second dataset",
-	            fillColor: "#fe8e64",
-	            strokeColor: "#fe8e64",
-	            highlightFill: "#fe8e64",
-	            highlightStroke: "#fe8e64",
-	            data: [28, 48]
-	        }
-	    ]
-	};
+	var dataB7 = $(".chart12").data("var");
 	var chartB7 = $(".chart12").get(0).getContext("2d");
 	var chartBar7 = new Chart(chartB7).Bar(dataB7, {});
 
 
 
-	var dataB8 = {
-	    labels: ["Rotacion interna de la cadera"],
-	    datasets: [
-	        {
-	            label: "My First dataset",
-	            fillColor: "#958899",
-	            strokeColor: "#958899",
-	            highlightFill: "958899",
-	            highlightStroke: "958899",
-	            data: [65]
-	        },
-	        {
-	            label: "My Second dataset",
-	            fillColor: "#fe8e64",
-	            strokeColor: "#fe8e64",
-	            highlightFill: "#fe8e64",
-	            highlightStroke: "#fe8e64",
-	            data: [28]
-	        }
-	    ]
-	};
+	var dataB8 = $(".chart14").data("var");
 	var chartB8 = $(".chart14").get(0).getContext("2d");
 	var chartBar8 = new Chart(chartB8).Bar(dataB8, {});
 
 
 
-	var dataB9 = {
-	    labels: ["Maxima extension cadera"],
-	    datasets: [
-	        {
-	            label: "My First dataset",
-	            fillColor: "#958899",
-	            strokeColor: "#958899",
-	            highlightFill: "958899",
-	            highlightStroke: "958899",
-	            data: [65]
-	        },
-	        {
-	            label: "My Second dataset",
-	            fillColor: "#fe8e64",
-	            strokeColor: "#fe8e64",
-	            highlightFill: "#fe8e64",
-	            highlightStroke: "#fe8e64",
-	            data: [28]
-	        }
-	    ]
-	};
+	var dataB9 = $(".chart16").data("var");
 	var chartB9 = $(".chart16").get(0).getContext("2d");
 	var chartBar9 = new Chart(chartB9).Bar(dataB9, {});
 
