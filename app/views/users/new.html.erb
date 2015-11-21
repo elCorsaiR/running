@@ -1,37 +1,39 @@
-<div class="page-header">
-  <h1>CREACIÓN DE UN NUEVO INFORME</h1>
-</div>
-
-<div class="row">
-  <div class="col-md-12">
-
-
-    <nav class="navbar">
-
-      <%= link_to 'BORRAR EL INFORME', users_path , role: 'button', class: 'btn btn-success' %>
-      <%= link_to 'PUBLICAR EL INFORME', new_user_path(params), role: 'button', class: 'btn btn-success' %>
-
-
-    </nav>
-    <%= form_for(@user, class: 'form', role: 'form') do |f| %>
-        <%= render 'shared/error_messages', object: f.object %>
-        <div class="form-group">
-          <%= f.label :name, 'Nombre' %>
-          <%= f.text_field :name, class: 'form-control' %>
-        </div>
-
-        <div class="form-group">
-          <%= f.label :email %>
-          <%= f.text_field :email, class: 'form-control' %>
-        </div>
-
-        <div class="form-group">
-          <%= f.label :email %>
-          <%= f.file_field :file %>
-        </div>
-
-        <%= f.submit 'Create', class: 'btn btn-success' %>
-
-    <% end %>
+<div id="page">
+  <div class="option-panel option-panel--big ">
+    <div class="panel-left">
+      <span class="clients">CREACIÓN DE UN NUEVO INFORMEE</span>
+    </div>
+    <div class="panel-right">
+      <div class="option-bar">
+        <%= link_to 'BORRAR INFORMES', users_path, role: 'button', class: 'btn-admin' %>
+        <%= link_to 'PUBLICAR EL INFORME', '#', id: 'publish', role: 'button', class: 'btn-admin red' %>
+      </div>
+    </div>
   </div>
+
+  <header>
+    <div class="container">
+      <h2 class="id-project">RUNNING ID No. <%= @user.id %></h2>
+      <%= form_for(@user, class: 'form', role: 'form') do |f| %>
+          <%= render 'shared/error_messages', object: f.object %>
+          <%= f.hidden_field :id %>
+          <%= f.hidden_field :published %>
+          <h4 class="home__headline">Nombre</h4>
+          <%= f.text_field :name, class: 'simple_edit', size: 50 %>
+
+
+          <h4 class="home__headline">Email</h4>
+          <%= f.text_field :email, class: 'simple_edit', size: 50 %>
+
+          <div>
+            <%= f.label :file, 'SUBIR HOJA EXCEl', class: 'btn-admin red' %>
+            <%= f.file_field :file, style: 'display: none;' %>
+          </div>
+          <div>
+            <p>
+          <%= f.submit 'CREATE', class: 'btn-admin' %></p>
+          </div>
+      <% end %>
+    </div>
+  </header>
 </div>

@@ -15,7 +15,9 @@ class User < ActiveRecord::Base
 
   before_save { self.email = email.downcase }
   before_create :create_remember_token
+  before_create :create_salt
   before_create :parse_file
+  before_update :parse_file
   has_secure_password
 
   scope :clients, -> { where admin: false }
@@ -29,6 +31,10 @@ class User < ActiveRecord::Base
 
   scope :search, -> (term) { where('email like ?', "%#{term}%") }
   # scope :clients, -> (is_clients) { where('client = ?', is_clients)  }
+
+  def to_param
+    "#{id}#{solt}"
+  end
 
   def updating_password?
     @updating_pwd || false
@@ -80,18 +86,18 @@ class User < ActiveRecord::Base
 
   def bar_data
     json = {
-        labels: ['Max...', 'Veloci...', 'Max..', 'Veloci...'],
+        labels: ['Max. pronación', 'Veloc. pronación', 'Max. rotación tibial', 'Veloc. rotación tibial'],
         datasets: [
             {
-                label: 'My First dataset',
+                label: 'izquierdo',
                 fillColor: '#958899',
                 strokeColor: '#958899',
-                highlightFill: '958899',
-                highlightStroke: '958899',
+                highlightFill: '#958899',
+                highlightStroke: '#958899',
                 data: [max_pronation_left, pronation_speed_left, tibia_max_rotation_left, tibia_rotation_left]
             },
             {
-                label: 'My Second dataset',
+                label: 'derecho',
                 fillColor: '#fe8e64',
                 strokeColor: '#fe8e64',
                 highlightFill: '#fe8e64',
@@ -104,18 +110,18 @@ class User < ActiveRecord::Base
 
   def instant_of_max_pronation_data
     json = {
-        labels: ['Instante Maxima...'],
+        labels: ['Instante Max. pronación'],
         datasets: [
             {
-                label: 'My First dataset',
+                label: 'izquierdo',
                 fillColor: '#958899',
                 strokeColor: '#958899',
-                highlightFill: '958899',
-                highlightStroke: '958899',
+                highlightFill: '#958899',
+                highlightStroke: '#958899',
                 data: [instant_of_left_max_pronation]
             },
             {
-                label: 'My Second dataset',
+                label: 'derecho',
                 fillColor: '#fe8e64',
                 strokeColor: '#fe8e64',
                 highlightFill: '#fe8e64',
@@ -150,13 +156,13 @@ class User < ActiveRecord::Base
             value: left_stride_time_swing_per,
             color: '#b0a6b3',
             highlight: '#b0a6b3',
-            label: 'Vuelo'
+            label: 'Vuelo pie izq.'
         },
         {
             value: left_stride_time_stance_per,
             color: '#958899',
             highlight: '#958899',
-            label: 'Contacto'
+            label: 'Contacto pie izq.'
         }
 
     ].to_json
@@ -168,13 +174,13 @@ class User < ActiveRecord::Base
             value: right_stride_time_swing_per,
             color: '#ffab8b',
             highlight: '#ffab8b',
-            label: 'Vuelo'
+            label: 'Vuelo pie dcho.'
         },
         {
             value: right_stride_time_stance_per,
             color: '#fe8e64',
             highlight: '#fe8e64',
-            label: 'Contacto'
+            label: 'Contacto pie dcho.'
         }
 
     ].to_json
@@ -186,13 +192,13 @@ class User < ActiveRecord::Base
             value: right_stride_time_per,
             color: '#fe8e64',
             highlight: '#fe8e64',
-            label: 'DERECHA'
+            label: 'Zancada dcha.'
         },
         {
             value: left_stride_time_per,
             color: '#958899',
             highlight: '#958899',
-            label: 'IZQUIERDA'
+            label: 'Zancada izq.'
         }
 
     ].to_json
@@ -204,13 +210,13 @@ class User < ActiveRecord::Base
             value: right_stride_length_per,
             color: '#fe8e64',
             highlight: '#fe8e64',
-            label: 'DERECHA'
+            label: 'Zancada dcha.'
         },
         {
             value: left_stride_length_per,
             color: '#958899',
             highlight: '#958899',
-            label: 'IZQUIERDA'
+            label: 'Zancada izq.'
         }
 
     ].to_json
@@ -222,13 +228,13 @@ class User < ActiveRecord::Base
             value: right_stride_frequency_per,
             color: '#fe8e64',
             highlight: '#fe8e64',
-            label: 'DERECHA'
+            label: 'Pie dcho.'
         },
         {
             value: left_stride_frequency_per,
             color: '#958899',
             highlight: '#958899',
-            label: 'IZQUIERDA'
+            label: 'Pie izq.'
         }
 
     ].to_json
@@ -240,15 +246,15 @@ class User < ActiveRecord::Base
         labels: ['Frecuencia de zancada', 'Movimiento del talon', 'Direccion punta del pie', 'Anchura entre apoyo'],
         datasets: [
             {
-                label: 'My First dataset',
+                label: 'izquierdo',
                 fillColor: '#958899',
                 strokeColor: '#958899',
-                highlightFill: '958899',
-                highlightStroke: '958899',
+                highlightFill: '#958899',
+                highlightStroke: '#958899',
                 data: [left_stride_frequency_evaluation, 0, tip_direction_of_left_foot_evaluation, width_between_left_stances_evaluation]
             },
             {
-                label: 'My Second dataset',
+                label: 'derecho',
                 fillColor: '#fe8e64',
                 strokeColor: '#fe8e64',
                 highlightFill: '#fe8e64',
@@ -277,7 +283,7 @@ class User < ActiveRecord::Base
         labels: labels,
         datasets: [
             {
-                label: 'My First dataset',
+                label: 'Izquierdo',
                 fillColor: 'transparent',
                 strokeColor: '#a196a4',
                 pointColor: '#a196a4',
@@ -287,7 +293,7 @@ class User < ActiveRecord::Base
                 data: left_foot
             },
             {
-                label: 'My First dataset',
+                label: 'Izquierdo',
                 fillColor: 'transparent',
                 strokeColor: '#a196a4',
                 pointColor: '#a196a4',
@@ -297,7 +303,7 @@ class User < ActiveRecord::Base
                 data: left_knee
             },
             {
-                label: 'My First dataset',
+                label: 'Derecho',
                 fillColor: 'transparent',
                 strokeColor: '#fe8e64',
                 pointColor: '#fe8e64',
@@ -307,7 +313,7 @@ class User < ActiveRecord::Base
                 data: right_foot
             },
             {
-                label: 'My First dataset',
+                label: 'Derecho',
                 fillColor: 'transparent',
                 strokeColor: '#fe8e64',
                 pointColor: '#fe8e64',
@@ -335,7 +341,7 @@ class User < ActiveRecord::Base
         labels: labels,
         datasets: [
             {
-                label: 'Left',
+                label: 'Izquierdo',
                 fillColor: 'transparent',
                 strokeColor: '#a196a4',
                 pointColor: '#a196a4',
@@ -345,7 +351,7 @@ class User < ActiveRecord::Base
                 data: left
             },
             {
-                label: 'Right',
+                label: 'Derecho',
                 fillColor: 'transparent',
                 strokeColor: '#fe8e64',
                 pointColor: '#fe8e64',
@@ -361,18 +367,18 @@ class User < ActiveRecord::Base
   def abduction_data
 
     {
-        labels: ['Abduccion', 'Velocidad abduccion'],
+        labels: ['Abducción', 'Velocidad abducción'],
         datasets: [
             {
-                label: 'My First dataset',
+                label: 'izquierdo',
                 fillColor: '#958899',
                 strokeColor: '#958899',
-                highlightFill: '958899',
-                highlightStroke: '958899',
+                highlightFill: '#958899',
+                highlightStroke: '#958899',
                 data: [left_knee_abduction, right_knee_abduction]
             },
             {
-                label: 'My Second dataset',
+                label: 'derecho',
                 fillColor: '#fe8e64',
                 strokeColor: '#fe8e64',
                 highlightFill: '#fe8e64',
@@ -390,18 +396,18 @@ class User < ActiveRecord::Base
   def knee_rotation_bar_data
 
     {
-        labels: ['Rotacion rodilla'],
+        labels: ['Rotación rodilla'],
         datasets: [
             {
-                label: 'My First dataset',
+                label: 'izquierdo',
                 fillColor: '#958899',
                 strokeColor: '#958899',
-                highlightFill: '958899',
-                highlightStroke: '958899',
+                highlightFill: '#958899',
+                highlightStroke: '#958899',
                 data: [left_knee_rotation]
             },
             {
-                label: 'My Second dataset',
+                label: 'derecho',
                 fillColor: '#fe8e64',
                 strokeColor: '#fe8e64',
                 highlightFill: '#fe8e64',
@@ -418,18 +424,18 @@ class User < ActiveRecord::Base
 
   def flexion_data
     {
-        labels: ['Flexion rodilla'],
+        labels: ['Flexión rodilla'],
         datasets: [
             {
-                label: 'My First dataset',
+                label: 'izquierdo',
                 fillColor: '#958899',
                 strokeColor: '#958899',
-                highlightFill: '958899',
-                highlightStroke: '958899',
+                highlightFill: '#958899',
+                highlightStroke: '#958899',
                 data: [left_knee_flexion]
             },
             {
-                label: 'My Second dataset',
+                label: 'derecho',
                 fillColor: '#fe8e64',
                 strokeColor: '#fe8e64',
                 highlightFill: '#fe8e64',
@@ -443,20 +449,21 @@ class User < ActiveRecord::Base
   def hip_frontal_data
     left_right_data :hip_frontal_angles
   end
+
   def hip_abduction_data
     {
-        labels: ["Angulo frontal de la cadera", "Aduccion"],
+        labels: ["Ángulo frontal de la cadera", "Aducción"],
         datasets: [
             {
-                label: 'My First dataset',
+                label: 'izquierdo',
                 fillColor: '#958899',
                 strokeColor: '#958899',
-                highlightFill: '958899',
-                highlightStroke: '958899',
+                highlightFill: '#958899',
+                highlightStroke: '#958899',
                 data: [left_hip_basculation, right_hip_basculation]
             },
             {
-                label: 'My Second dataset',
+                label: 'derecho',
                 fillColor: '#fe8e64',
                 strokeColor: '#fe8e64',
                 highlightFill: '#fe8e64',
@@ -470,21 +477,22 @@ class User < ActiveRecord::Base
   def hip_rotations_data
     left_right_data :hip_rotations
   end
+
   def hip_rotation_bar_data
 
     {
-        labels: ['Rotacion interna de la cadera'],
+        labels: ['Rotación interna de la cadera'],
         datasets: [
             {
-                label: 'My First dataset',
+                label: 'izquierdo',
                 fillColor: '#958899',
                 strokeColor: '#958899',
-                highlightFill: '958899',
-                highlightStroke: '958899',
+                highlightFill: '#958899',
+                highlightStroke: '#958899',
                 data: [left_hip_rotation]
             },
             {
-                label: 'My Second dataset',
+                label: 'derecho',
                 fillColor: '#fe8e64',
                 strokeColor: '#fe8e64',
                 highlightFill: '#fe8e64',
@@ -498,21 +506,22 @@ class User < ActiveRecord::Base
   def hip_sagital_data
     left_right_data :hip_sagital_angles
   end
+
   def hip_extension_data
 
     {
-        labels: ['Maxima extension cadera'],
+        labels: ['Máxima extensión cadera'],
         datasets: [
             {
-                label: 'My First dataset',
+                label: 'izquierdo',
                 fillColor: '#958899',
                 strokeColor: '#958899',
-                highlightFill: '958899',
-                highlightStroke: '958899',
+                highlightFill: '#958899',
+                highlightStroke: '#958899',
                 data: [left_hip_max_extension]
             },
             {
-                label: 'My Second dataset',
+                label: 'derecho',
                 fillColor: '#fe8e64',
                 strokeColor: '#fe8e64',
                 highlightFill: '#fe8e64',
@@ -527,7 +536,7 @@ class User < ActiveRecord::Base
     [
         {
             value: q_angle_left,
-            color:'#fa874e',
+            color: '#fa874e',
             highlight: '#fa874e',
             label: 'Angulo Q'
         },
@@ -574,7 +583,7 @@ class User < ActiveRecord::Base
         labels: labels,
         datasets: [
             {
-                label: 'Left',
+                label: 'Izquierdo',
                 fillColor: 'transparent',
                 strokeColor: '#a196a4',
                 pointColor: '#a196a4',
@@ -584,7 +593,7 @@ class User < ActiveRecord::Base
                 data: left
             },
             {
-                label: 'Right',
+                label: 'Derecho',
                 fillColor: 'transparent',
                 strokeColor: '#fe8e64',
                 pointColor: '#fe8e64',
@@ -597,18 +606,240 @@ class User < ActiveRecord::Base
 
   end
 
+  def anatomica_data(field)
+    #val = args[:left] ? q_angle_left : q_angle_right
+    val = send(field).to_i
+    color = color_by_field field
+    [
+        {
+            value: 3 - val,
+            color: '#ececec',
+            highlight: '#ececec'
+        },
+        {
+            value: val,
+            color: color,
+            highlight: color,
+            label: mark(val)
+        }
+    ].to_json
+  end
+
+  def legs_length_discrepancy_data
+    [{
+         value: 3 - legs_length_discrepancy_left.to_i,
+         color: '#ececec',
+         highlight: '#ececec'
+     },
+     {
+         value: legs_length_discrepancy_left.to_i,
+         color: '#febc46',
+         highlight: '#febc46',
+         label: mark(legs_length_discrepancy_left.to_i)
+     }].to_json
+  end
+
+  def back_foot_angle_data
+    [
+        {
+            value: 3 - back_foot_angle_left.to_i,
+            color: '#ececec',
+            highlight: '#ececec'
+        },
+        {
+            value: back_foot_angle_left.to_i,
+            color: '#88768b',
+            highlight: '#88768b',
+            label: mark(back_foot_angle_left.to_i)
+        }
+    ].to_json
+  end
+
+  def hip_rotatoes_data
+    [
+        {
+            value: 3 - hip_rotatoes_left.to_i,
+            color: '#ececec',
+            highlight: '#ececec'
+        },
+        {
+            value: hip_rotatoes_left.to_i,
+            color: '#fa874e',
+            highlight: '#fa874e',
+            label: mark(hip_rotatoes_left.to_i)
+        }
+    ].to_json
+  end
+
+  def a1_data
+    [
+            {
+                value: ((q_angle_left.to_i + q_angle_right.to_i) / 2).to_i,
+                color:"#fa874e",
+                highlight: "#fa874e",
+                label: "Angulo Q"
+            },
+            {
+                value: (legs_length_discrepancy_left.to_i + legs_length_discrepancy_right.to_i) / 2,
+                color: "#febc46",
+                highlight: "#febc46",
+                label: "Discrepancia"
+            },
+            {
+                value: (back_foot_angle_left.to_i + back_foot_angle_right.to_i) / 2,
+                color: "#ffcb8c",
+                highlight: "#ffcb8c",
+                label: "Angulo del retro-pie"
+            }
+
+        ].to_json
+  end
+
+  def a2_data
+    [
+        {
+            value: ((hip_rotatoes_left.to_i + hip_rotatoes_right.to_i) / 2).to_i,
+            color:"#fa874e",
+            highlight: "#fa874e",
+            label: "Rotadores de cadero"
+        },
+        {
+            value: (isquiotibiales_left.to_i + isquiotibiales_right.to_i) / 2,
+            color: "#febc46",
+            highlight: "#febc46",
+            label: "Isquitibiles"
+        },
+        {
+            value: (iliotibial_band_left.to_i + iliotibial_band_right.to_i) / 2,
+            color: "#ffcb8c",
+            highlight: "#ffcb8c",
+            label: "Recto femoral"
+        },
+        {
+            value: (psoas_iliaco_left.to_i + psoas_iliaco_right.to_i) / 2,
+            color: "#cbcad4",
+            highlight: "#cbcad4",
+            label: "Psoas iliaco"
+        },
+        {
+            value: (recto_femoral_left.to_i + recto_femoral_right.to_i) / 2,
+            color: "#88768b",
+            highlight: "#88768b",
+            label: "Recto femoral"
+        },
+        {
+            value: (gastrocnemius_y_soleo_left.to_i + gastrocnemius_y_soleo_right.to_i) / 2,
+            color: "#6483c3",
+            highlight: "#6483c3",
+            label: "Gastrocnemius y soleo"
+        }
+
+    ].to_json
+  end
+
+  def a3_data
+    [
+        {
+            value: ((mid_gluteus_strength_left.to_i + mid_gluteus_strength_right.to_i) / 2).to_i,
+            color:"#fa874e",
+            highlight: "#fa874e",
+            label: "Gluteo medio"
+        },
+        {
+            value: (isquiotibial_strength_left.to_i + isquiotibial_strength_right.to_i) / 2,
+            color: "#febc46",
+            highlight: "#febc46",
+            label: "Isquiotibiles"
+        },
+        {
+            value: (vasto_lateral_left.to_i + vasto_lateral_right.to_i) / 2,
+            color: "#ffcb8c",
+            highlight: "#ffcb8c",
+            label: "Vasto lateral"
+        },
+        {
+            value: (vasto_intermedio_left.to_i + vasto_intermedio_right.to_i) / 2,
+            color: "#cbcad4",
+            highlight: "#cbcad4",
+            label: "Vasto intermedio"
+        },
+        {
+            value: (vasto_medial_left.to_i + vasto_medial_right.to_i) / 2,
+            color: "#88768b",
+            highlight: "#88768b",
+            label: "Vasto medial"
+        },
+        {
+            value: (back_tibial_strength_left.to_i + back_tibial_strength_right.to_i) / 2,
+            color: "#6483c3",
+            highlight: "#6483c3",
+            label: "Tibial posterior"
+        }
+
+    ].to_json
+  end
+
+
+  def self.find_by_idsolt(idsolt)
+    length = idsolt.length
+    id = idsolt[0..length - 6]
+    solt = idsolt[length - 5..length-1]
+
+    User.find_by(id: id, solt: solt) or raise ActiveRecord::RecordNotFound
+  end
+
   private
+
+  def mark(num)
+    case num
+      when 3 then
+        'Óptimo'
+      when 2 then
+        'Aceptable'
+      when 1 then
+        'Bajo'
+      else
+        'Muy Bajo'
+    end
+  end
+
+  def color_by_field(field)
+    if field.to_s.include? 'left'
+      '#958899'
+    else
+      '#fe8e64'
+    end
+  end
+
+  # def color_by_mark(num)
+  #   case num
+  #     when 3 then
+  #       'Óptimo'
+  #     when 2 then
+  #       'Aceptable'
+  #     when 1 then
+  #       'Bajo'
+  #     else
+  #       'Muy Bajo'
+  #   end
+  # end
 
   def create_remember_token
     self.remember_token = User.digest(User.new_remember_token)
   end
 
+  def create_salt
+    self.solt = rand.to_s[2..6]
+  end
+
   def parse_file
     if file.present?
+      clear_data
+
       spreadsheet = User::open_spreadsheet(file)
       puts "============== Last row:#{spreadsheet.last_row}"
 
-      (2..spreadsheet.last_row-1).each do |i|
+      (2..spreadsheet.last_row).each do |i|
         row = spreadsheet.row(i)
 
 
@@ -785,7 +1016,7 @@ class User < ActiveRecord::Base
           self.hip_rotatoes_right = row[1]
           self.hip_rotatoes_left = row[2]
         end
-        if row[0] == 'FLEXIBILIDAD GASTROCNEMIUS Y SOLEO'
+        if row[0].to_s.include? 'FLEXIBILIDAD GASTROCNEMIUS Y SOLEO'
           self.gastrocnemius_y_soleo_right = row[1]
           self.gastrocnemius_y_soleo_left = row[2]
         end
@@ -794,6 +1025,140 @@ class User < ActiveRecord::Base
       # self.name = "#{first_name} #{last_name}".squish
     end
 
+  end
+
+  def clear_data
+    self.report_date = nil
+    first_name = nil
+    last_name = nil
+    self.birthday = nil
+
+    # self.birthday = nil
+    self.weight = nil
+    self.height = nil
+    self.level_id = nil
+    self.sport_id = nil
+
+
+    self.injury = nil
+
+    self.ankle = nil
+    self.knee = nil
+    self.hip = nil
+    self.functionality = nil
+    self.total = nil
+
+    self.ankles.delete_all
+
+    self.max_pronation_left = nil
+    self.max_pronation_right = nil
+
+    self.pronation_speed_left = nil
+    self.pronation_speed_right = nil
+
+    self.tibia_max_rotation_left = nil
+    self.tibia_max_rotation_right = nil
+
+    self.tibia_rotation_left = nil
+    self.tibia_rotation_right = nil
+
+    self.left_stride_time = nil
+    self.left_stride_time_stance = nil
+    self.left_stride_time_stance_per = nil
+    self.left_stride_time_swing = nil
+    self.left_stride_time_swing_per = nil
+    self.right_stride_time = nil
+    self.right_stride_time_stance = nil
+    self.right_stride_time_stance_per = nil
+    self.right_stride_time_swing = nil
+    self.right_stride_time_swing_per = nil
+    self.stride_time = nil
+    self.left_stride_time_per = nil
+    self.right_stride_time_per = nil
+    self.stride_length = nil
+    self.left_stride_length = nil
+    self.left_stride_length_per = nil
+    self.right_stride_length = nil
+    self.right_stride_length_per = nil
+
+    self.stride_frequency = nil
+    self.left_stride_frequency = nil
+    self.left_stride_frequency_per = nil
+    self.right_stride_frequency = nil
+    self.right_stride_frequency_per = nil
+    self.left_stride_frequency_evaluation = nil
+    self.right_stride_frequency_evaluation = nil
+    self.width_between_left_stances_evaluation = nil
+    self.width_between_right_stances_evaluation = nil
+    self.tip_direction_of_left_foot_evaluation = nil
+    self.tip_direction_of_right_foot_evaluation = nil
+
+    self.foot_and_knee_angels.delete_all
+
+    self.instant_of_left_max_pronation = nil
+    self.instant_of_right_max_pronation = nil
+
+    self.knee_frontal_angles.delete_all
+
+    self.left_knee_abduction = nil
+    self.right_knee_abduction = nil
+    self.left_knee_abduction_speed = nil
+    self.right_knee_abduction_speed = nil
+
+    self.knee_rotations.delete_all
+
+    self.left_knee_rotation = nil
+    self.right_knee_rotation = nil
+
+    self.knee_sagital_angles.delete_all
+    self.left_knee_flexion = nil
+    self.right_knee_flexion = nil
+
+    self.hip_frontal_angles.delete_all
+    self.left_hip_abduction = nil
+    self.right_hip_abduction = nil
+    self.left_hip_basculation = nil
+    self.right_hip_basculation = nil
+
+    self.hip_rotations.delete_all
+    self.left_hip_rotation = nil
+    self.right_hip_rotation = nil
+
+    self.hip_sagital_angles.delete_all
+    self.left_hip_max_extension = nil
+    self.right_hip_max_extension = nil
+
+    self.q_angle_right = nil
+    self.q_angle_left = nil
+
+    self.legs_length_discrepancy_right = nil
+    self.legs_length_discrepancy_left = nil
+    self.back_foot_angle_right = nil
+    self.back_foot_angle_left = nil
+    self.back_tibial_strength_right = nil
+    self.back_tibial_strength_left = nil
+    self.mid_gluteus_strength_right = nil
+    self.mid_gluteus_strength_left = nil
+    self.isquiotibial_strength_right = nil
+    self.isquiotibial_strength_left = nil
+    self.vasto_intermedio_right = nil
+    self.vasto_intermedio_left = nil
+    self.vasto_medial_right = nil
+    self.vasto_medial_left = nil
+    self.vasto_lateral_right = nil
+    self.vasto_lateral_left = nil
+    self.psoas_iliaco_right = nil
+    self.psoas_iliaco_left = nil
+    self.recto_femoral_right = nil
+    self.recto_femoral_left = nil
+    self.isquiotibiales_right = nil
+    self.isquiotibiales_left = nil
+    self.iliotibial_band_right = nil
+    self.iliotibial_band_left = nil
+    self.hip_rotatoes_right = nil
+    self.hip_rotatoes_left = nil
+    self.gastrocnemius_y_soleo_right = nil
+    self.gastrocnemius_y_soleo_left = nil
   end
 
   def self.open_spreadsheet(file)
@@ -821,7 +1186,7 @@ class User < ActiveRecord::Base
         labels: labels,
         datasets: [
             {
-                label: 'Left',
+                label: 'Izquierdo',
                 fillColor: 'transparent',
                 strokeColor: '#a196a4',
                 pointColor: '#a196a4',
@@ -831,7 +1196,7 @@ class User < ActiveRecord::Base
                 data: left
             },
             {
-                label: 'Right',
+                label: 'Derecho',
                 fillColor: 'transparent',
                 strokeColor: '#fe8e64',
                 pointColor: '#fe8e64',

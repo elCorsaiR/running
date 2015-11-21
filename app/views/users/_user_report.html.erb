@@ -1,0 +1,807 @@
+<!-- Page content -->
+<section class="accordion video">
+  <div class="container">
+    <h2 class="section-headline">VÍDEOS DE LA <br>SESIÓN</h2>
+
+    <p class="section-text">¿Te has visto alguna vez correr? Todos tenemos una idea de los gestos que hacemos al correr,
+      pero ¿verdaderamente has identificado esos movimientos en un video en el que corres? La mayoría de los runners no
+      se han visto correr nunca y te sorprenderá descubrir si la idea que tienes de como corres es correcta o al
+      contrario haces movimientos de los que no eras consciente.</p>
+    <a class="btn"><span class="closed-section">Ver</span><span class="opened-section">Cerrar</span> los videos de la
+      sesion</a>
+  </div>
+</section>
+<section class="video-open accordion-open">
+  <div class="container container--video">
+    <div class="slider">
+      <div class="slide">
+        <iframe src="//player.vimeo.com/video/101594443" width="967px" height="483px" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+      </div>
+      <div class="slide">
+        <iframe src="//player.vimeo.com/video/101594443" width="967px" height="483px" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+      </div>
+      <div class="slide">
+        <iframe src="//player.vimeo.com/video/101594443" width="967px" height="483px" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<section class="accordion performance">
+  <div class="container">
+    <h2 class="section-headline">ÍNDICE DE <br>RENDIMIENTO</h2>
+
+    <p class="section-text">¿Aumenta tu técnica de carrera la posibilidad de caer en lesiones? ¿Qué partes de tu patrón
+      de movimiento están especialmente sobrecargadas? El Índice de Rendimiento representa la calidad de tu técnica de
+      carrera y resume los resultados de todas las pruebas que te hemos hecho, ayudando así a responder esas
+      preguntas.</p>
+    <a class="btn"><span class="closed-section">Ver</span><span class="opened-section">Cerrar</span> el Índice de
+      Rendimiento</a>
+  </div>
+</section>
+<section class="performance-open accordion-open">
+  <div class="container container--inside">
+    <div class="left left--anatomy">
+      <h3 class="performance-headline">¿QUÉ SIGNIFICA EL ÍNDICE DE RENDIMIENTO?</h3>
+
+      <p class="performance-text">Un valor elevado indica que tu patrón de movimiento no sobrecarga en exceso las
+        articulaciones alejándolas de la posibilidad de lesionarlas. El índice está fraccionado en articulaciones
+        pudiendo identificar cuál de ellas tiene una peor performance y mayor posibilidad de lesión. Un corredor medio
+        lesionado esta entorno al 42% mientras que uno no lesionado se sitúa en un 65%. Un corredor de elite se situaría
+        en torno al 90%.</p>
+
+      <div class="performance-chart">
+        <div class="performance-chart__text">
+          <h4><%= @user.total %>%</h4>
+          <span>Performance Index</span>
+        </div>
+        <canvas id="performanceChart" width="260" height="260" data-var="<%= @user.perf_index_data %>"></canvas>
+      </div>
+    </div>
+    <div class="right right-anatomy">
+      <div class="performance-radar-chart">
+        <canvas id="performanceRadarChart" width="400" height="400" data-var="<%= @user.index_data %>"></canvas>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="accordion technical-analysis">
+  <div class="container">
+    <h2 class="section-headline">ANÁLISIS <br>TÉCNICO</h2>
+
+    <p class="section-text">A continuación se muestran una serie de variables biomecánicas que describen tu patrón de
+      movimiento. Para cada variable se eligen una serie de parámetros biomecánicos relacionados con el riesgo de lesión
+      que son evaluados en función de su valor en “escaso”, “óptimos” o “exceso”. Esta valoración se basa en la
+      comparación de tus valores con una base de datos de más de 2.000 corredores divididos en sexo, edad y nivel de
+      rendimiento.</p>
+    <a class="btn"><span class="closed-section">Ver</span><span class="opened-section">Cerrar</span> el analisis tecnico</a>
+  </div>
+</section>
+<section class="technical-analysis-open accordion-open">
+  <div class="technical-section desktop-visible">
+    <div class="container container-analysis">
+      <h3 class="anatomy-headline">CICLO DE ZANCADA</h3>
+
+      <p class="technical-text">La velocidad de carrera depende de la frecuencia y longitud de la zancada. A una misma
+        velocidad múltiples combinaciones de frecuencia y longitud de zancada son posibles. Podemos correr dando pocas
+        zancadas pero largas o correr con zancadas más cortas pero dando muchos pasos. Según demuestran múltiples
+        estudios, correr con una alta frecuencia y una corta longitud de zancada estresa menos nuestras articulaciones
+        alejándonos de las temidas lesiones.</p>
+
+      <div class="table-wrapper">
+        <%= image_tag 'running_cycle-man.png', alt: 'Runners' %>
+        <table class="running-table">
+          <tr>
+            <th class="table-header1">CONTACTO IZQUIERDO</th>
+            <th class="table-header2">VUELO IZQUIERDO</th>
+            <th class="table-header3">CONTACTO DERECHO</th>
+            <th class="table-header4">VUELO DERECHO</th>
+          </tr>
+          <tr>
+            <td>
+              <span class="table-left">Tiempo</span><%= number_with_precision(@user.left_stride_time_stance, precision: 2) %>
+              s
+            </td>
+            <td><%= number_with_precision(@user.left_stride_time_swing, precision: 2) %> s</td>
+            <td><%= number_with_precision(@user.right_stride_time_stance, precision: 2) %> s</td>
+            <td><%= number_with_precision(@user.right_stride_time_swing, precision: 2) %> s</td>
+          </tr>
+          <tr>
+            <td colspan="2">
+              <span class="table-left">Tiempo</span><%= number_with_precision(@user.left_stride_time, precision: 2) %> s
+            </td>
+            <td colspan="2"><%= number_with_precision(@user.right_stride_time, precision: 2) %> s</td>
+          </tr>
+          <tr>
+            <td colspan="2">
+              <span class="table-left">Distancia</span><%= number_with_precision(@user.left_stride_length, precision: 2) %>
+              m
+            </td>
+            <td colspan="2"><%= number_with_precision(@user.right_stride_length, precision: 2) %> m</td>
+          </tr>
+          <tr>
+            <td colspan="2"><span class="table-left">Frecuencia zancada</span><%= @user.left_stride_frequency %>
+              pasos/min
+            </td>
+            <td colspan="2"><%= @user.right_stride_frequency %> pasos/min</td>
+          </tr>
+        </table>
+      </div>
+      <div class="charts-wrapper">
+        <div class="chart-donut-wrapper">
+          <span class="text-inside">Contacto/vuelo <br> pie izquierdo</span>
+          <canvas id="chart1" width="165" height="165" data-var="<%= @user.chart1_data %>"></canvas>
+        </div>
+        <div class="chart-donut-wrapper">
+          <span class="text-inside">Contacto/vuelo <br> pie derecho</span>
+          <canvas id="chart2" width="165" height="165" data-var="<%= @user.chart2_data %>"></canvas>
+        </div>
+        <div class="chart-donut-wrapper">
+          <span class="text-inside">Reparto de <br> tiempo zancada</span>
+          <canvas id="chart3" width="165" height="165" data-var="<%= @user.chart3_data %>"></canvas>
+        </div>
+        <div class="chart-donut-wrapper">
+          <span class="text-inside">Longitud de <br> zancada</span>
+          <canvas id="chart4" width="165" height="165" data-var="<%= @user.chart4_data %>"></canvas>
+        </div>
+        <div class="chart-donut-wrapper">
+          <span class="text-inside">Pasos por <br> minuto</span>
+          <canvas id="chart5" width="165" height="165" data-var="<%= @user.chart5_data %>"></canvas>
+        </div>
+      </div>
+
+      <div class="chart-bar-wrapper chart-custom">
+        <span class="interval1">Exceso</span>
+        <span class="interval2">Óptimo</span>
+        <span class="interval3">Escaso</span>
+        <canvas id="chart6" width="1100" height="226" data-var="<%= @user.chart6_data %>"></canvas>
+      </div>
+    </div>
+  </div>
+  <div class="technical-section">
+    <div class="container container-technical">
+      <div class="wrapper-top">
+        <h3 class="anatomy-headline">TOBILLO I: Ángulo del pie</h3>
+
+        <p class="technical-text">¿Cuánto prona o supina tu pie cuando lo apoyas durante la carrera? La pronación es
+          sinónimo de pie "desbloqueado", y es necesaria para acomodarse a las superficies irregulares y permitir que el
+          dedo gordo del pie llegue a tocas el suelo.</p>
+
+        <div class="foots-img">
+          <%= image_tag '4-3.png', alt: 'foot', width: '472px', height: '122px' %>
+        </div>
+      </div>
+      <div class="wrapper-charts">
+        <div class="chart-linear-wrapper">
+          <span class="chart-title-x">Tiempo de contacto [%]</span>
+          <span class="chart-title-y">Angulo de pronación del tobillo[&#176;]</span>
+          <canvas class="chart1" width="560" height="310" data-var="<%= @user.ankle_data %>"></canvas>
+        </div>
+
+        <div class="chart-custom chart-custom--small chart-custom--I">
+          <span class="interval1">Exceso</span>
+          <span class="interval2">Óptimo</span>
+          <span class="interval3">Escaso</span>
+          <canvas class="chart2" width="530" height="310" data-var="<%= @user.bar_data %>"></canvas>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="technical-section">
+    <div class="container container-technical">
+      <div class="wrapper-top">
+        <h3 class="anatomy-headline">TOBILLO II: Ángulo del pie y ángulo sagital de la rodilla</h3>
+
+        <p class="technical-text">La máxima pronación del pie debería producirse cercana a la máxima flexión de
+          rodilla.</p>
+
+        <div class="foots-img">
+          <%= image_tag '4-4.png', alt: 'foot', width: '472px', height: '122px' %>
+        </div>
+      </div>
+      <div class="wrapper-charts">
+        <div class="chart-linear-wrapper">
+          <span class="chart-title-x">Tiempo de contacto [%]</span>
+          <span class="chart-title-y">Angulo de pronación del tobillo[&#176;]</span>
+          <canvas class="chart3" width="560" height="310" data-var="<%= @user.foot_and_knee_data %>"></canvas>
+        </div>
+
+        <div class="chart-custom chart-custom--small chart-custom--II">
+          <span class="interval1">Exceso</span>
+          <span class="interval2">Óptimo</span>
+          <span class="interval3">Escaso</span>
+          <canvas class="chart4" width="530" height="310" data-var="<%= @user.instant_of_max_pronation_data %>"></canvas>
+        </div>
+
+      </div>
+    </div>
+  </div>
+  <div class="technical-section desktop-visible">
+    <div class="container container-technical">
+      <div class="wrapper-top">
+        <h3 class="anatomy-headline">RODILLA I: Ángulo frontal de la rodilla</h3>
+
+        <p class="technical-text">Movimiento de separación (abducción) y acercamiento (aducción) de la pierna hacia el
+          plano medio del cuerpo. Una abducción elevada, aumenta la carga soportada por la rodilla, rótula y pierna.
+        </p>
+
+        <div class="foots-img">
+          <%= image_tag '4-5.png', alt: 'foot', width: '472px', height: '122px' %>
+        </div>
+      </div>
+      <div class="wrapper-charts">
+        <div class="chart-linear-wrapper">
+          <span class="chart-title-x">Tiempo de contacto [%]</span>
+          <span class="chart-title-y">Angulo de pronacion del tobillo[&#176;]</span>
+          <canvas class="chart5" width="560" height="310" data-var="<%= @user.knee_frontal_data %>"></canvas>
+        </div>
+
+        <div class="chart-custom chart-custom--small">
+          <span class="interval1">Exceso</span>
+          <span class="interval2">Óptimo</span>
+          <span class="interval3">Escaso</span>
+          <canvas class="chart6" width="530" height="310" data-var="<%= @user.abduction_data %>"></canvas>
+        </div>
+
+      </div>
+    </div>
+  </div>
+  <div class="technical-section desktop-visible">
+    <div class="container container-technical">
+      <div class="wrapper-top">
+        <h3 class="anatomy-headline">RODILLA II: Rotación de la rodilla</h3>
+
+        <p class="technical-text">La cantidad de rotación interna y externa de la rodilla. Demasiada rotación interna de
+          la rodilla, aumenta la carga soportada por la rodilla, rótula y pierna.</p>
+
+        <div class="foots-img">
+          <%= image_tag '4-6.png', alt: 'foot', width: '472px', height: '122px' %>
+        </div>
+      </div>
+      <div class="wrapper-charts">
+        <div class="chart-linear-wrapper">
+          <span class="chart-title-x">Tiempo de contacto [%]</span>
+          <span class="chart-title-y">Angulo de pronacion del tobillo[&#176;]</span>
+          <canvas class="chart7" width="560" height="310" data-var="<%= @user.knee_rotation_data %>"></canvas>
+        </div>
+
+        <div class="chart-custom chart-custom--small">
+          <span class="interval1">Exceso</span>
+          <span class="interval2">Óptimo</span>
+          <span class="interval3">Escaso</span>
+          <canvas class="chart8" width="530" height="310" data-var="<%= @user.knee_rotation_bar_data %>"></canvas>
+        </div>
+
+      </div>
+    </div>
+  </div>
+  <div class="technical-section desktop-visible">
+    <div class="container container-technical">
+      <div class="wrapper-top">
+        <h3 class="anatomy-headline">RODILLA III: Ángulo sagital de la rodilla</h3>
+
+        <p class="technical-text">Cantidad de flexión y extensión de la rodilla durante la carrera. Se necesita una
+          cierta cantidad de la flexión de rodilla para ayudar a amortiguar las fuerzas de impacto producidas por el
+          contacto con el suelo.</p>
+
+        <div class="foots-img">
+          <%= image_tag '4-7.png', alt: 'foot', width: '472px', height: '122px' %>
+        </div>
+      </div>
+      <div class="wrapper-charts">
+        <div class="chart-linear-wrapper">
+          <span class="chart-title-x">Tiempo de contacto [%]</span>
+          <span class="chart-title-y">Angulo de pronacion del tobillo[&#176;]</span>
+          <canvas class="chart9" width="560" height="310" data-var="<%= @user.knee_sagital_data %>"></canvas>
+        </div>
+
+        <div class="chart-custom chart-custom--small">
+          <span class="interval1">Exceso</span>
+          <span class="interval2">Óptimo</span>
+          <span class="interval3">Escaso</span>
+          <canvas class="chart10" width="530" height="310" data-var="<%= @user.flexion_data %>"></canvas>
+        </div>
+
+      </div>
+    </div>
+  </div>
+  <div class="technical-section desktop-visible">
+    <div class="container container-technical">
+      <div class="wrapper-top">
+        <h3 class="anatomy-headline">CADERA I: Ángulo frontal de la cadera</h3>
+
+        <p class="technical-text">Movimiento de separación (abducción) y acercamiento (aducción) del muslo al plano
+          medio del cuerpo. Una mayor cantidad de aducción de cadera puede contribuir a aumentar la carga soportada por
+          la cadera y rodilla.</p>
+
+        <div class="foots-img">
+          <%= image_tag '4-8.png', alt: 'foot', width: '472px', height: '122px' %>
+        </div>
+      </div>
+      <div class="wrapper-charts">
+        <div class="chart-linear-wrapper">
+          <span class="chart-title-x">Tiempo de contacto [%]</span>
+          <span class="chart-title-y">Angulo de pronacion del tobillo[&#176;]</span>
+          <canvas class="chart11" width="560" height="310" data-var="<%= @user.hip_frontal_data %>"></canvas>
+        </div>
+
+        <div class="chart-custom chart-custom--small">
+          <span class="interval1">Exceso</span>
+          <span class="interval2">Óptimo</span>
+          <span class="interval3">Escaso</span>
+          <canvas class="chart12" width="530" height="310" data-var="<%= @user.hip_abduction_data %>"></canvas>
+        </div>
+
+      </div>
+    </div>
+  </div>
+  <div class="technical-section desktop-visible">
+    <div class="container container-technical">
+      <div class="wrapper-top">
+        <h3 class="anatomy-headline">CADERA II: Rotación de la cadera</h3>
+
+        <p class="technical-text">La cantidad de rotación interna y externa de la rodilla. Una mayor rotación interna de
+          cadera puede contribuir a aumentar las fuerzas de torsión de la pelvis, cadera y rodilla.</p>
+
+        <div class="foots-img">
+          <%= image_tag '4-9.png', alt: 'foot', width: '472px', height: '122px' %>
+        </div>
+      </div>
+      <div class="wrapper-charts">
+        <div class="chart-linear-wrapper">
+          <span class="chart-title-x">Tiempo de contacto [%]</span>
+          <span class="chart-title-y">Angulo de pronacion del tobillo[&#176;]</span>
+          <canvas class="chart13" width="560" height="310" data-var="<%= @user.hip_rotations_data %>"></canvas>
+        </div>
+
+        <div class="chart-custom chart-custom--small">
+          <span class="interval1">Exceso</span>
+          <span class="interval2">Óptimo</span>
+          <span class="interval3">Escaso</span>
+          <canvas class="chart14" width="530" height="310" data-var="<%= @user.hip_rotation_bar_data %>"></canvas>
+        </div>
+
+      </div>
+    </div>
+  </div>
+  <div class="technical-section desktop-visible">
+    <div class="container container-technical">
+      <div class="wrapper-top">
+        <h3 class="anatomy-headline">CADERA III: Ángulo sagital de la cadera</h3>
+
+        <p class="technical-text">Cantidad de flexión y extensión de la cadera durante la carrera. Es necesario una
+          cierta cantidad de extensión para ayudar a para mantener la velocidad de carrera.</p>
+
+        <div class="foots-img">
+          <%= image_tag '4-10.png', alt: 'foot', width: '472px', height: '122px' %>
+        </div>
+      </div>
+      <div class="wrapper-charts">
+        <div class="chart-linear-wrapper">
+          <span class="chart-title-x">Tiempo de contacto [%]</span>
+          <span class="chart-title-y">Angulo de pronacion del tobillo[&#176;]</span>
+          <canvas class="chart15" width="560" height="310" data-var="<%= @user.hip_sagital_data %>"></canvas>
+        </div>
+
+        <div class="chart-custom chart-custom--small">
+          <span class="interval1">Exceso</span>
+          <span class="interval2">Óptimo</span>
+          <span class="interval3">Escaso</span>
+          <canvas class="chart16" width="530" height="310" data-var="<%= @user.hip_extension_data %>"></canvas>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+</section>
+
+<section class="accordion anatomy">
+  <div class="container">
+    <h2 class="section-headline">EVALUACIÓN <br>ANATÓMICA</h2>
+
+    <p class="section-text">Tu forma de correr se ve afectada por factores biomecánicos, tu fortaleza muscular, tu
+      flexibilidad y tu alineamiento anatómico. El análisis biomecánico se complementa con mediciones científicas de
+      estos factores para confirmar las debilidades identificadas y así tener un análisis de 360º de tu técnica de
+      carrera.</p>
+    <a class="btn"><span class="closed-section">Ver</span><span class="opened-section">Cerrar</span> la evaluacion
+      anatomica</a>
+  </div>
+</section>
+<section class="anatomy-open accordion-open">
+  <div class="content-wrapper content-wrapper--anatomy">
+    <div class="container container--inside">
+      <div class="left left--anatomy">
+        <h3 class="anatomy-headline">ANATOMÍA</h3>
+
+        <p>El <strong>ángulo del retro-pie</strong> corresponde al ángulo que forma el tobillo. El
+          <strong>ángulo Q</strong> hace referencia a la discrepancia de alineación entre el muslo y la pantorrilla. La
+          <strong>discrepancia en la longitud de las piernas</strong> es la diferencia de longitud de una pierna sobre
+          la otra (si tienes una pierna más corta que la otra).</p>
+
+        <div class="annatomy-chart-wrapper">
+          <canvas class="chart-a1" width="360" height="360" data-var="<%= @user.a1_data %>"></canvas>
+        </div>
+
+      </div>
+      <div class="right right-anatomy">
+        <div class="charts-and-image-wrapper">
+          <%= image_tag 'anatomy-placeholder.jpg' %>
+
+            <div class="small-chart-wrapper chart-optimo">
+              <span>Izq.</span>
+              <canvas id="q_angle_left" class="anatomy1" width="60" height="60" data-var="<%= @user.anatomica_data(:q_angle_left) %>"></canvas>
+              <span class="down">Óptimo</span>
+              <h6>Angulo Q</h6>
+            </div>
+            <div class="small-chart-wrapper chart-optimo-right">
+              <span>Dcho.</span>
+              <canvas id="q_angle_right" class="anatomy1" width="60" height="60" data-var="<%= @user.anatomica_data(:q_angle_right) %>"></canvas>
+              <span class="down">Óptimo</span>
+            </div>
+
+
+          <div class="small-chart-wrapper chart-bajo">
+            <span>Izq.</span>
+            <canvas id="q_angle_left" class="anatomy1" width="60" height="60" data-var="<%= @user.anatomica_data(:legs_length_discrepancy_left) %>"></canvas>
+            <span class="down">Óptimo</span>
+            <h6>Discrepancia longitud de las piernas</h6>
+          </div>
+          <div class="small-chart-wrapper chart-bajo-right">
+            <span>Dcho.</span>
+            <canvas id="q_angle_right" class="anatomy1" width="60" height="60" data-var="<%= @user.anatomica_data(:legs_length_discrepancy_right) %>"></canvas>
+            <span class="down">Óptimo</span>
+          </div>
+
+
+          <div class="small-chart-wrapper chart-aceptable">
+            <span>Izq.</span>
+            <canvas id="q_angle_left" class="anatomy1" width="60" height="60" data-var="<%= @user.anatomica_data(:back_foot_angle_left) %>"></canvas>
+            <span class="down">Óptimo</span>
+            <h6>Angulo del retro-pie</h6>
+          </div>
+          <div class="small-chart-wrapper chart-aceptable-right">
+            <span>Dcho.</span>
+            <canvas id="q_angle_right" class="anatomy1" width="60" height="60" data-var="<%= @user.anatomica_data(:back_foot_angle_right) %>"></canvas>
+            <span class="down">Óptimo</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="content-wrapper content-wrapper--anatomy">
+    <div class="container container--inside">
+      <div class="left left--anatomy">
+        <h3 class="anatomy-headline">FLEXIBILIDAD</h3>
+
+        <p>El <strong>psoas ilíaco</strong> es un músculo profundo que se sitúa a la altura de la cadera, más o menos en
+          la ingle. El <strong>recto femoral</strong> es un músculo que recorre toda la parte anterior del muslo justo
+          por el centro. <strong>Gastrocnemius</strong> y <strong>sóleo</strong> son los famosos gemelos. Los
+          <strong>rotadores de cadera</strong> son un grupo de músculos que se sitúan en la parte lateral de la cadera.
+          Los <strong>isquitibiales</strong> son varios músculos que recorren la parte posterior del muslo. La
+          <strong>banda isquitibial</strong> es un músculo que recorre la parte lateral (externa) del muslo. </p>
+
+        <div class="annatomy-chart-wrapper">
+          <canvas class="chart-a2" width="360" height="360" data-var="<%= @user.a2_data %>"></canvas>
+        </div>
+      </div>
+      <div class="right right-anatomy">
+        <div class="charts-and-image-wrapper">
+          <%= image_tag 'anatomy-placeholder.jpg' %>
+
+          <div class="small-chart-wrapper chart-left-1">
+            <span>Izq.</span>
+            <canvas class="anatomy1" width="60" height="60" data-var="<%= @user.anatomica_data(:hip_rotatoes_left) %>"></canvas>
+            <span class="down">Óptimo</span>
+            <h6>Rotadores de cadero</h6>
+          </div>
+          <div class="small-chart-wrapper chart-left-1-right">
+            <span>Dcho.</span>
+            <canvas class="anatomy1" width="60" height="60" data-var="<%= @user.anatomica_data(:hip_rotatoes_right) %>"></canvas>
+            <span class="down">Óptimo</span>
+          </div>
+
+          <div class="small-chart-wrapper chart-left-2">
+            <span>Izq.</span>
+            <canvas class="anatomy1" width="60" height="60" data-var="<%= @user.anatomica_data(:isquiotibiales_left) %>"></canvas>
+            <span class="down">Óptimo</span>
+            <h6>Isquitibiles</h6>
+          </div>
+          <div class="small-chart-wrapper chart-left-2-right">
+            <span>Dcho.</span>
+            <canvas class="anatomy1" width="60" height="60" data-var="<%= @user.anatomica_data(:isquiotibiales_right) %>"></canvas>
+            <span class="down">Óptimo</span>
+          </div>
+
+          <div class="small-chart-wrapper chart-bajo">
+            <span>Izq.</span>
+            <canvas class="anatomy1" width="60" height="60" data-var="<%= @user.anatomica_data(:iliotibial_band_left) %>"></canvas>
+            <span class="down">Óptimo</span>
+            <h6>Recto femoral</h6>
+          </div>
+          <div class="small-chart-wrapper chart-bajo-right">
+            <span>Dcho.</span>
+            <canvas class="anatomy1" width="60" height="60" data-var="<%= @user.anatomica_data(:iliotibial_band_right) %>"></canvas>
+            <span class="down">Óptimo</span>
+          </div>
+
+
+
+
+
+
+          <div class="small-chart-wrapper chart-right-1">
+            <span>Izq.</span>
+            <canvas class="anatomy1" width="60" height="60" data-var="<%= @user.anatomica_data(:psoas_iliaco_left) %>"></canvas>
+            <span class="down">Óptimo</span>
+            <h6>Psoas iliaco</h6>
+          </div>
+          <div class="small-chart-wrapper chart-right-1-right">
+            <span>Dcho.</span>
+            <canvas class="anatomy1" width="60" height="60" data-var="<%= @user.anatomica_data(:psoas_iliaco_right) %>"></canvas>
+            <span class="down">Óptimo</span>
+          </div>
+
+          <div class="small-chart-wrapper chart-right-2">
+            <span>Izq.</span>
+            <canvas class="anatomy1" width="60" height="60" data-var="<%= @user.anatomica_data(:recto_femoral_left) %>"></canvas>
+            <span class="down">Óptimo</span>
+            <h6>Recto femoral</h6>
+          </div>
+          <div class="small-chart-wrapper chart-right-2-right">
+            <span>Dcho.</span>
+            <canvas class="anatomy1" width="60" height="60" data-var="<%= @user.anatomica_data(:recto_femoral_right) %>"></canvas>
+            <span class="down">Óptimo</span>
+          </div>
+
+          <div class="small-chart-wrapper chart-right-3">
+            <span>Izq.</span>
+            <canvas class="anatomy1" width="60" height="60" data-var="<%= @user.anatomica_data(:gastrocnemius_y_soleo_left) %>"></canvas>
+            <span class="down">Óptimo</span>
+            <h6>Gastrocnemius y soleo</h6>
+          </div>
+          <div class="small-chart-wrapper chart-right-3-right">
+            <span>Dcho.</span>
+            <canvas class="anatomy1" width="60" height="60" data-var="<%= @user.anatomica_data(:gastrocnemius_y_soleo_right) %>"></canvas>
+            <span class="down">Óptimo</span>
+          </div>
+
+
+
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="content-wrapper content-wrapper--anatomy">
+    <div class="container container--inside">
+      <div class="left left--anatomy">
+        <h3 class="anatomy-headline">FUERZA</h3>
+
+        <p>El <strong>vasto intermedio</strong> es la parte central del cuádriceps. <strong>Vasto medial</strong> son
+          las fibras internas del cuádriceps. El <strong>tibial posterior</strong> es el músculo que recorre la parte
+          interna de la pantorrilla hasta insertarse en el pie. El <strong>glúteo medio</strong> es el músculo de la
+          cadera. Los <strong>isquiotibiales</strong> son varios músculos que recorren la parte posterior del muslo.
+          Finalmente, el <strong>vasto lateral</strong> se refiere a las fibras externas del cuádriceps.</p>
+
+        <div class="annatomy-chart-wrapper">
+          <canvas class="chart-a3" width="360" height="360" data-var="<%= @user.a3_data %>"></canvas>
+        </div>
+      </div>
+      <div class="right right-anatomy">
+        <div class="charts-and-image-wrapper">
+          <%= image_tag 'anatomy-placeholder.jpg' %>
+          <div class="small-chart-wrapper chart-left-1">
+            <span>Izq.</span>
+            <canvas class="anatomy1" width="60" height="60" data-var="<%= @user.anatomica_data(:mid_gluteus_strength_left) %>"></canvas>
+            <span class="down">Óptimo</span>
+            <h6>Gluteo medio</h6>
+          </div>
+          <div class="small-chart-wrapper chart-left-1-right">
+            <span>Dcho.</span>
+            <canvas class="anatomy1" width="60" height="60" data-var="<%= @user.anatomica_data(:mid_gluteus_strength_right) %>"></canvas>
+            <span class="down">Óptimo</span>
+          </div>
+
+          <div class="small-chart-wrapper chart-left-2">
+            <span>Izq.</span>
+            <canvas class="anatomy1" width="60" height="60" data-var="<%= @user.anatomica_data(:isquiotibial_strength_left) %>"></canvas>
+            <span class="down">Óptimo</span>
+            <h6>Isquiotibiles</h6>
+          </div>
+          <div class="small-chart-wrapper chart-left-2-right">
+            <span>Dcho.</span>
+            <canvas class="anatomy1" width="60" height="60" data-var="<%= @user.anatomica_data(:isquiotibial_strength_right) %>"></canvas>
+            <span class="down">Óptimo</span>
+          </div>
+
+          <div class="small-chart-wrapper chart-bajo">
+            <span>Izq.</span>
+            <canvas class="anatomy1" width="60" height="60" data-var="<%= @user.anatomica_data(:vasto_lateral_left) %>"></canvas>
+            <span class="down">Óptimo</span>
+            <h6>Vasto lateral</h6>
+          </div>
+          <div class="small-chart-wrapper chart-bajo-right">
+            <span>Dcho.</span>
+            <canvas class="anatomy1" width="60" height="60" data-var="<%= @user.anatomica_data(:vasto_lateral_right) %>"></canvas>
+            <span class="down">Óptimo</span>
+          </div>
+
+
+
+
+
+
+          <div class="small-chart-wrapper chart-right-1">
+            <span>Izq.</span>
+            <canvas class="anatomy1" width="60" height="60" data-var="<%= @user.anatomica_data(:vasto_intermedio_left) %>"></canvas>
+            <span class="down">Óptimo</span>
+            <h6>Vasto intermedio</h6>
+          </div>
+          <div class="small-chart-wrapper chart-right-1-right">
+            <span>Dcho.</span>
+            <canvas class="anatomy1" width="60" height="60" data-var="<%= @user.anatomica_data(:vasto_intermedio_right) %>"></canvas>
+            <span class="down">Óptimo</span>
+          </div>
+
+          <div class="small-chart-wrapper chart-right-2">
+            <span>Izq.</span>
+            <canvas class="anatomy1" width="60" height="60" data-var="<%= @user.anatomica_data(:vasto_medial_left) %>"></canvas>
+            <span class="down">Óptimo</span>
+            <h6>Vasto medial</h6>
+          </div>
+          <div class="small-chart-wrapper chart-right-2-right">
+            <span>Dcho.</span>
+            <canvas class="anatomy1" width="60" height="60" data-var="<%= @user.anatomica_data(:vasto_medial_right) %>"></canvas>
+            <span class="down">Óptimo</span>
+          </div>
+
+          <div class="small-chart-wrapper chart-right-3">
+            <span>Izq.</span>
+            <canvas class="anatomy1" width="60" height="60" data-var="<%= @user.anatomica_data(:back_tibial_strength_left) %>"></canvas>
+            <span class="down">Óptimo</span>
+            <h6>Tibial posterior</h6>
+          </div>
+          <div class="small-chart-wrapper chart-right-3-right">
+            <span>Dcho.</span>
+            <canvas class="anatomy1" width="60" height="60" data-var="<%= @user.anatomica_data(:back_tibial_strength_right) %>"></canvas>
+            <span class="down">Óptimo</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="accordion conclusion">
+  <div class="container">
+    <h2 class="section-headline">NUESTRAS <br>CONCLUSIONES</h2>
+
+    <p class="section-text">Identificación, por parte de nuestro equipo de expertos en biomecánica de carrera con más de
+      15 años de experiencia, de los movimientos más relevantes de tu carrera que se desvían de lo ideal, que pueden
+      llevarte a una lesión (o te han llevado ya a lesionarte) y que están impiendo que liberes todo tu potencial, junto
+      con recomendaciones de como corregirlos.</p>
+    <a class="btn"><span class="closed-section">Ver</span><span class="opened-section">Cerrar</span> las conclusiones
+      del informe</a>
+  </div>
+</section>
+<section class="conclusion-open accordion-open">
+  <div class="container container--inside container--inside--conclusion">
+    <h3 class="conclusion-headline">CARLOS,</h3>
+
+    <p>En el informe podemos observar algunas variables que se desvían ligeramiente de lo ideal. Algunas de ellas son
+      críticas para evitar posibles lesiones y otras son menos importantes. Entre las críticas destacamos la caída de la
+      cadera (basculación
+      cadera) izquierda. Esta variable está relacionada con otras variables como una elevada aducción de la cadera
+      (aducción cadera) izquierda y un apoyo cruzado (distancia entre apoyos). Estas desviaciones pueden entre otras
+      lesiones sobrecargar
+      el tensor de la fascia lata que es un músculo que recorre todo el lateral del muslo, llegando incluso a provocar
+      la inflamación de su inserción en la rodilla. Lo que popularmente conocemos como inflamación de la
+      “cintilla”. </p>
+    <h4 class="conclusion-small-headline">Desde I+DRunning te recomendamos dos intervenciones:</h4>
+    <ol class="conclusion-list">
+      <li>Mejorar la fortaleza del glúteo medio, principal abductor de la cadera (separa lateralmente tu muslo de tu
+        cuerpo) que contrarrestará la caída de la cadera.
+      </li>
+      <li>Mejorar la fortaleza del glúteo medio, principal abductor de la cadera (separa lateralmente tu muslo de tu
+        cuerpo) que contrarrestará la caída de la cadera.
+      </li>
+    </ol>
+    <small>Pablo Floria, experto en biomecanica de I+DRunning</small>
+  </div>
+</section>
+
+<section class="accordion programme">
+  <div class="container">
+    <h2 class="section-headline">PROGRAMA DE <br>EJERCICIOS</h2>
+
+    <p class="section-text">Un plan personalizado de ejercicios adaptados para mejorar tu especifica forma de correr.
+      Una combinación de ejercicios de fortalecimiento y flexibilidad muscular con el objetivo de ayudar a tu cuerpo a
+      soportar mejor tu individual técnica de carrera y de ejercicios de retraining para progresivamente corregir los
+      gestos lesivos e ineficientes de tu carrera. </p>
+    <a class="btn"><span class="closed-section">Ver</span><span class="opened-section">Cerrar</span> el programa de
+      ejercicios</a>
+
+  </div>
+</section>
+<section class="programme-open accordion-open">
+  <div class="content-wrapper">
+    <div class="container container--inside">
+      <div class="left">
+        <h3 class="programme-headline">1. SENTADILLAS</h3>
+
+        <p>De pie, con los pies separados a la anchura de los hombros y las manos en las caderas, realizar una flexión
+          de rodilla hasta alcanzar los 90º llevando nuestro culo hacia abajo y atrás. Cuando bajemos tenemos que evitar
+          que las
+          rodillas sobrepasen la punta de los pies y que estas se desplacen lateralmente, siempre en línea con nuestros
+          pies. Podemos incrementar la intensidad del ejercicio cruzando los brazos delante del pecho o llevándolos
+          encima
+          de la cabeza.</p>
+
+        <p>Principales músculos que intervienen: Cuádriceps (recto anterior, vasto interno y externo), glúteo mayor y
+          glúteo medio (estabilizador).</p>
+      </div>
+      <div class="right">
+        <iframe src="//player.vimeo.com/video/101594443" width="540px" height="270px" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+      </div>
+    </div>
+  </div>
+  <div class="content-wrapper">
+    <div class="container container--inside">
+      <div class="left">
+        <h3 class="programme-headline">2. SENTADILLAS A UNA PIERNA</h3>
+
+        <p>Apoyando un solo pie y con las manos en las caderas, realizar una flexión de rodilla hasta alcanzar los 90º
+          llevando nuestro culo hacia abajo y atrás. Cuando bajemos tenemos que evitar que las rodillas sobrepasen la
+          punta de los
+          pies y que estas se desplacen lateralmente, siempre en línea con nuestros pies. Haz el mismo número de
+          repeticiones con cada pierna. Podemos incrementar la intensidad del ejercicio cruzando los brazos delante del
+          pecho o llevándoos
+          encima de la cabeza. </p>
+
+        <p>Principales músculos que intervienen: Cuádriceps (recto anterior, vasto interno y externo), glúteo mayor y
+          glúteo medio (estabilizador, mayor participación puesto que es un ejercicio en equilibrio).</p>
+      </div>
+      <div class="right">
+        <iframe src="//player.vimeo.com/video/101594443" width="540px" height="270px" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+      </div>
+    </div>
+  </div>
+  <div class="content-wrapper">
+    <div class="container container--inside">
+      <div class="left">
+        <h3 class="programme-headline">3. BAJAR A TOCAR EL SUELO</h3>
+
+        <p>Apoyando un solo pie y con los brazos a lo largo del cuerpo, realizar una flexión de tronco, cadera y rodilla
+          hasta tocar un objeto que se encuentra delante de nosotros en el suelo (una botella por ejemplo). Cuando
+          bajemos tenemos
+          que evitar que las rodillas se desplacen lateralmente, siempre en línea con nuestros pies. Podemos incrementar
+          la intensidad del ejercicio llevando la pierna que está en suspensión en posición tándem (rodilla en alto a la
+          altura
+          de nuestras caderas). </p>
+
+        <p>Principales músculos que intervienen: Cuádriceps (recto anterior, vasto interno y externos), glúteo mayor y
+          glúteo medio (estabilizador, mayor participación puesto que es un ejercicio en equilibrio). </p>
+      </div>
+      <div class="right">
+        <iframe src="//player.vimeo.com/video/101594443" width="540px" height="270px" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Page footer -->
+<footer>
+  <div class="container">
+    <a class="logo logo--footer" href="#">
+      <%= image_tag 'logo.png', alt: 'running' %>  </a>
+
+    <div class="social">
+      <%= image_tag 'fb.png', alt: 'facebook' %>
+      <%= image_tag 'twitter.png', alt: 'twitter' %>
+      <%= image_tag 'mail.png', alt: 'mail' %>
+    </div>
+  </div>
+</footer>
+</div>

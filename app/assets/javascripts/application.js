@@ -17,4 +17,5 @@
 //= require bootstrap
 //= require Chart
 //= require slick
-//= require_tree .
+//= require users
+//= require scripts

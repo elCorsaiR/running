@@ -3,7 +3,11 @@
 # You can use CoffeeScript in this file: http://coffeescript.org/
 
 
-#jQuery ->
+jQuery ->
+  $("#publish").click (event) ->
+    event.preventDefault()
+    $("#user_published").val("t")
+    $("form:first").submit()
 #  data = $("#index_graph").data("var")
 #  new Chart($("#index_graph").get(0).getContext("2d")).Radar(data)
 #

@@ -443,7 +443,7 @@ header {
   background-color: #30303f;
   height: 624px;
   padding-top: 25px;
-  background-image: image-url("bcg-logo.png"), image-url("bcg-runner.png");
+  background-image: image-url("bcg-logo.png"), image-url("runner-man.png");
   background-repeat: no-repeat, no-repeat;
   background-position: bottom -40px left 117px, bottom -24px right 124px;
 }
@@ -451,13 +451,28 @@ header {
 .accordion-open {
   max-height: 0;
   overflow: hidden;
-  -webkit-transition: max-height 1s;
-  -moz-transition: max-height 1s;
-  transition: max-height 1s;
+  -webkit-transition: max-height 0.2s;
+  -moz-transition: max-height 0.2s;
+  transition: max-height 0.2s;
 }
 
 .accordion-opened {
   max-height: 10000px;
+}
+
+.opened-section {
+  display: none;
+}
+
+.sticky-headline .name-of-current-section {
+  font-weight: 200;
+  color: #585864;
+  font-size: 16px;
+}
+
+.close-current-section {
+  color: #f69463;
+  text-decoration: none;
 }
 
 .id-project {
@@ -670,6 +685,7 @@ header {
   padding-left: 85px;
   z-index: 99;
   display: none;
+  -webkit-transform: translateZ(0);
 }
 
 .social-sticky {
@@ -737,7 +753,7 @@ header {
   padding-top: 85px;
   padding-bottom: 79px;
   border-top: 1px solid #595966;
-  background-image: image-url("bcg-video.png");
+  background-image: image-url("videos-man.png");
   background-position: center right 126px;
   background-repeat: no-repeat;
 }
@@ -751,11 +767,11 @@ header {
 
 .isSlideDown {
   background-color: #ececee;
-  background-image: image-url("bcg-video-active.png");
+  background-image: image-url("videos-man-active.png");
   border-color: #dedee1;
 }
 .isSlideDown:hover {
-  background-color: #e1e1e3;
+  background-color: #ececee;
 }
 .isSlideDown:hover .btn {
   background: #b7b7b7;
@@ -776,14 +792,6 @@ header {
   color: white;
 }
 
-.isSlideDown.technical-analysis:after {
-  background-image: image-url("bcg-technics-active.png");
-}
-
-.isSlideDown.conclusion:after {
-  background-image: image-url("bcg-runner-active.png");
-}
-
 .clicked {
   background: #ececee;
 }
@@ -800,15 +808,66 @@ header {
   font-size: 14px;
 }
 
-.technical-analysis {
+.technical-analysis:after {
   background-image: image-url("bcg-technics.png");
 }
 
 .conclusion {
-  background-image: image-url("bcg-runner.png");
+  background-image: image-url("runner-man");
   background-size: 200px auto;
   background-position: center right 200px;
 }
+
+.isSlideDown.technical-analysis:after {
+  background-image: image-url("bcg-runner-active.png");
+}
+
+.isSlideDown.conclusion:after {
+  background-image: image-url("bcg-runner-active.png");
+}
+
+
+
+
+.accordion.performance {
+  background-image: image-url("performance_index.png");
+}
+.isSlideDown.performance {
+  background-image: image-url("performance_index-active.png");
+}
+
+
+.accordion.technical-analysis {
+  background-image: image-url("technical_analysis.png");
+}
+.isSlideDown.technical-analysis {
+  background-image: image-url("technical_analysis-active.png");
+}
+
+
+.accordion.anatomy {
+  background-image: image-url("anatomical_evaluation-man.png");
+}
+.isSlideDown.anatomy {
+  background-image: image-url("anatomical_evaluation-man-active.png");
+}
+
+
+.accordion.conclusion {
+  background-image: image-url("conclusions.png");
+}
+.isSlideDown.conclusion {
+  background-image: image-url("conclusions-active.png");
+}
+
+
+.accordion.programme {
+  background-image: image-url("exercises-man.png");
+}
+.isSlideDown.programme {
+  background-image: image-url("exercises-man-active.png");
+}
+
 
 .conclusion-open .container {
   padding-top: 124px;
@@ -900,10 +959,6 @@ footer {
   position: relative;
 }
 
-.slider {
-  padding-left: 120px;
-}
-
 .slide {
   padding-right: 45px;
 }
@@ -928,6 +983,17 @@ iframe {
   -moz-box-shadow: #c3c3c3 0 0 15px;
   -webkit-box-shadow: #c3c3c3 0 0 15px;
   box-shadow: #c3c3c3 0 0 15px;
+}
+
+.slider iframe {
+  -moz-box-shadow: #4F4F4F 2px 1px 20px;
+  -webkit-box-shadow: #4F4F4F 2px 1px 20px;
+  box-shadow: #4F4F4F 2px 1px 20px;
+}
+.slider .slide {
+  padding-top: 10px;
+  padding-bottom: 10px;
+  padding-left: 10px;
 }
 
 /* admin page */
@@ -1336,7 +1402,13 @@ iframe {
 .chart-optimo {
   position: absolute;
   top: 160px;
-  left: 130px;
+  left: 110px;
+}
+
+.chart-optimo-right {
+  position: absolute;
+  top: 160px;
+  left: 180px;
 }
 
 .small-chart-wrapper span {
@@ -1352,14 +1424,20 @@ iframe {
   margin-left: -35px;
   text-align: center;
 }
+
+.small-chart-wrapper .down {
+  top: 100%;
+  margin-top: -10px;
+}
 .small-chart-wrapper h6 {
   margin: 0;
   color: #545454;
   font-weight: 600;
   font-size: 13px;
   position: absolute;
-  left: 50%;
-  margin-left: -48px;
+  left: 25%;
+//  margin-left: -48px;
+  margin-top: 12px;
   top: 100%;
   line-height: 13px;
   text-align: center;
@@ -1369,13 +1447,87 @@ iframe {
 .chart-bajo {
   position: absolute;
   top: 410px;
-  left: 110px;
+  left: 80px;
+}
+
+.chart-bajo-right {
+  position: absolute;
+  top: 410px;
+  left: 150px;
+}
+
+.chart-left-1 {
+  position: absolute;
+  top: 80px;
+  left: 80px;
+}
+
+.chart-left-1-right {
+  position: absolute;
+  top: 80px;
+  left: 150px;
+}
+
+.chart-left-2 {
+  position: absolute;
+  top: 250px;
+  left: 80px;
+}
+
+.chart-left-2-right {
+  position: absolute;
+  top: 250px;
+  left: 150px;
+}
+
+
+
+.chart-right-1 {
+  position: absolute;
+  top: 80px;
+  right: 0;
+}
+
+.chart-right-1-right {
+  position: absolute;
+  top: 80px;
+  right: -70px;
+}
+
+.chart-right-2 {
+  position: absolute;
+  top: 250px;
+  right: 0;
+}
+
+.chart-right-2-right {
+  position: absolute;
+  top: 250px;
+  right: -70px;
+}
+
+.chart-right-3 {
+  position: absolute;
+  top: 410px;
+  right: 0px;
+}
+
+.chart-right-3-right {
+  position: absolute;
+  top: 410px;
+  right: -70px;
 }
 
 .chart-aceptable {
   position: absolute;
-  top: 290px;
-  right: -70px;
+  top: 270px;
+  right: 20px;
+}
+
+.chart-aceptable-right {
+  position: absolute;
+  top: 270px;
+  right: -50px;
 }
 
 .charts-and-image-wrapper {
@@ -1484,6 +1636,37 @@ iframe {
   left: -116px;
 }
 
+/* Slider buttons */
+.video-open {
+  position: relative;
+}
+
+.slick-next {
+  position: absolute;
+  right: 0;
+  height: 100%;
+  top: 0;
+  width: 200px;
+  color: transparent;
+  border: none;
+  background-color: transparent;
+}
+
+.slick-prev {
+  position: absolute;
+  left: 0;
+  height: 70%;
+  top: 0;
+  width: 150px;
+  color: transparent;
+  border: none;
+  background-color: transparent;
+}
+
+*:focus {
+  outline: none;
+}
+
 /* Clearfix*/
 .cf:before, .container--inside:before, footer:before, .option-panel:before, .client-row:before, .charts-wrapper:before,
 .cf:after,
@@ -1502,10 +1685,14 @@ footer:after,
   clear: both;
 }
 
-@media (max-width: 1310px) {
+@media (max-width: 1200px) {
   .container {
     width: 100%;
     padding: 0 40px;
+  }
+
+  .container--video {
+    padding-right: 0;
   }
 
   header {
@@ -1548,8 +1735,13 @@ footer:after,
   }
 }
 @media (max-width: 1024px) {
+  .container--video {
+    padding-right: 40px;
+  }
+
   .slider iframe {
     width: 100%;
+    box-shadow: #444444 -4px 1px 10px;
   }
 
   .right iframe {
@@ -1557,8 +1749,8 @@ footer:after,
   }
 
   .slider {
-    padding-left: 20px;
-    padding-right: 20px;
+    padding-left: 0;
+    padding-right: 0;
   }
 
   .slide {
@@ -1570,6 +1762,10 @@ footer:after,
     padding-bottom: 40px;
   }
 
+  .slider .slide {
+    padding-left: 0;
+  }
+
   .slick-prev {
     color: transparent;
     position: relative;
@@ -1577,6 +1773,8 @@ footer:after,
     height: 25px;
     padding: 0;
     float: left;
+    border: 2px outset buttonface;
+    background-color: buttonface;
   }
   .slick-prev:after {
     position: absolute;
@@ -1596,6 +1794,8 @@ footer:after,
     height: 25px;
     padding: 0;
     float: right;
+    border: 2px outset buttonface;
+    background-color: buttonface;
   }
   .slick-next:after {
     position: absolute;
@@ -1661,7 +1861,7 @@ footer:after,
   }
 
   header:after {
-    background-image: image-url("bcg-runner.png");
+    background-image: image-url("runner-man");
     position: absolute;
     bottom: -20px;
     right: 0;
@@ -1680,7 +1880,7 @@ footer:after,
     background-image: none;
   }
   .accordion:after {
-    background-image: image-url("bcg-video.png");
+    background-image: image-url("videos-man.png");
     position: absolute;
     top: 50%;
     margin-top: -165px;
@@ -1692,7 +1892,7 @@ footer:after,
   }
 
   .isSlideDown:after {
-    background-image: image-url("bcg-video-active.png");
+    background-image: image-url("videos-man-active.png");
   }
 
   .technical-analysis:after {
@@ -1906,6 +2106,11 @@ footer:after,
   }
 }
 @media (max-width: 420px) {
+  .container--video {
+    padding-right: 20px;
+    padding-left: 20px;
+  }
+
   .slider iframe {
     height: 180px;
   }
@@ -2019,4 +2224,56 @@ footer:after,
   .chart-custom--II {
     margin-left: -20px;
   }
+}
+
+//my
+
+.simple_edit {
+  color: white;
+  margin: 0;
+  font-size: 16px;
+  line-height: 16px;
+  margin-bottom: 21px;
+  margin-top: 3px;
+  font-family: 'Roboto';
+  font-weight: 400;
+  background: transparent;
+  border: none;
+  border-bottom: solid 1px white;
+}
+
+input[type="submit"] {
+  background-color: transparent;
+  border: 1px solid #ececee;
+}
+
+.red {
+  color: #ff6026;
+}
+
+.red:hover {
+  background: #ff6026;
+  color: white;
+}
+
+.gray{
+  background-color: transparent;
+}
+.gray:hover {
+  background-color: #ededef;
+}
+
+.eq-panel-left {
+  width: 50%;
+  float: left;
+  padding-left: 35px;
+  height: 100%;
+}
+
+.eq-panel-right {
+  width: 50%;
+  float: left;
+  text-align: right;
+  padding-right: 30px;
+  height: 100%;
 }

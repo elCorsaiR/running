@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151114125459) do
+ActiveRecord::Schema.define(version: 20151120202925) do
 
   create_table "ankles", force: true do |t|
     t.integer "user_id"
@@ -191,9 +191,12 @@ ActiveRecord::Schema.define(version: 20151114125459) do
     t.integer  "iliotibial_band_right"
     t.integer  "hip_rotatoes_right"
     t.integer  "gastrocnemius_y_soleo_right"
+    t.boolean  "published",                              default: false
+    t.string   "solt"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true
+  add_index "users", ["id", "solt"], name: "index_users_on_id_and_solt"
   add_index "users", ["remember_token"], name: "index_users_on_remember_token"
 
 end

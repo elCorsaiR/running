@@ -1,0 +1,97 @@
+<%= form_for(@user, class: 'form', role: 'form') do |f| %>
+    <div class="option-panel option-panel--big ">
+      <div class="eq-panel-left">
+        <span class="clients">INFORME DE <%= @user.name.upcase %>
+          [<%= @user.published ? "publicado: #{user_url(@user)}" : 'no publicado aun' %>]</span>
+      </div>
+      <div class="eq-panel-right">
+        <div class="option-bar">
+          <%= f.submit 'SAVE', {class: 'btn-admin gray'} %>
+          <%= link_to 'BORRAR INFORMES', users_path, role: 'button', class: 'btn-admin gray' %>
+          <%= f.label :file, 'SUBIR HOJA EXCEl', class: 'btn-admin gray' %>
+          <%= f.file_field :file, style: 'display: none;' %>
+          <% unless @user.published? %>
+              <%= link_to 'PUBLICAR EL INFORME', '#', id: 'publish', role: 'button', class: 'btn-admin red' %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+
+    <header>
+      <div class="sticky-nav">
+        <h4 class="sticky-headline"><span class="name-of-current-section">VÍDEOS DE LA SESIÓN</span>
+          <a href="#" class="close-current-section">cerrar</a></h4>
+        <%= image_tag 'foots-nav.png', alt: 'foots', class: 'sticky-foots' %>
+      </div>
+
+      <div class="popup-wrapper">
+        <div class="container container-popup">
+          <a href="#" class="close-popup js-close-popup">
+            <%= image_tag 'close-popup.png', alt: 'Close' %>
+          </a>
+
+          <div class="popup">
+            <a class="logo-popup" href="#">
+              <%= image_tag 'logo.png', alt: 'running' %>
+            </a>
+            <h6>¿Quieres compartir este informe con alguien?</h6>
+
+            <p>Sin problema, envíales esta dirección y podrán entrar a verlo sin necesitar contraseña ni nada.</p>
+            <a href="www.imasdrunning.com/informes/234rt8902qwerj" class="popup-link">www.imasdrunning.com/informes/234rt8902qwerj</a>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="container">
+
+        <a class="logo" href="#"><%= image_tag 'logo.png', alt: 'running' %></a>
+
+        <h2 class="id-project">RUNNING ID No. <%= @user.to_param %></h2>
+
+
+
+        <%= render 'shared/error_messages', object: f.object %>
+        <%= f.hidden_field :id %>
+        <%= f.hidden_field :published %>
+
+        <h4 class="home__headline">Nombre</h4>
+        <%= f.text_field :name, class: 'simple_edit', size: 50 %>
+
+        <h4 class="home__headline">Email</h4>
+        <%= f.text_field :email, class: 'simple_edit', size: 50 %>
+
+
+
+        <h4 class="home__headline">Lesiones</h4>
+
+        <h3 class="home__option"><%= @user.injury %></h3>
+
+        <div>
+          <div class="inline">
+            <h4 class="home__headline">Nivel</h4>
+
+            <h3 class="home__option"><%= @user.level.try :name %></h3>
+
+            <h2 class="number"><%= @user.age %><span>ANOS</span></h2>
+          </div>
+          <div class="inline">
+            <h4 class="home__headline">Deporte</h4>
+
+            <h3 class="home__option"><%= @user.sport.try :name %></h3>
+
+            <h2 class="number"><%= @user.weight %><span>KG</span></h2>
+          </div>
+          <div class="inline">
+            <h4 class="home__headline">Distancia habitual</h4>
+
+            <h3 class="home__option">Casual runner (no compite)</h3>
+
+            <h2 class="number"><%= @user.height %><span>CM</span></h2>
+          </div>
+        </div>
+      </div>
+    </header>
+<% end %>
+
+<%= render 'user_report' %>

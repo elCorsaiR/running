@@ -15,11 +15,11 @@ $(document).ready(function(){
     }
 
 	var linkToShare = 'https://developers.facebook.com/docs/';
-
+    var currentSectionName = null;
 
 
 	$('.slider').slick({
-		arrows: false,
+		arrows: true,
 		variableWidth: true,
 		responsive: [
 	    {
@@ -64,9 +64,8 @@ $(document).ready(function(){
 	showPopup();
 	accordion();
 	AddCharts();
-
-
-
+    changeHeaderName();
+    closeCurrentSection();
 
 
 
@@ -78,12 +77,17 @@ function accordion() {
 		if( $(this).hasClass('isSlideDown') ) {
 			$(this).next('.accordion-open').removeClass('accordion-opened');
 			$(this).removeClass('isSlideDown');
+            $(this).find('.closed-section').show();
+            $(this).find('.opened-section').hide();
 		} else {
 			$(this).next('.accordion-open').addClass('accordion-opened');
 			$(this).addClass('isSlideDown');
+            $(this).find('.closed-section').hide();
+            $(this).find('.opened-section').show();
 		}
+        setTimeout(function(){ changeHeaderName(); }, 100);
 	})
-};
+}
 
 
 function showPopup() {
@@ -110,6 +114,57 @@ function stickyNav() {
 	});
 }
 
+function closeCurrentSection() {
+    $('.close-current-section').on('click', function(e){
+        e.preventDefault();
+        $(currentSectionName).next('.accordion-open').removeClass('accordion-opened');
+        $(currentSectionName).removeClass('isSlideDown');
+        $(currentSectionName).find('.closed-section').show();
+        $(currentSectionName).find('.opened-section').hide();
+
+        setTimeout(function(){ changeHeaderName(); }, 100);
+    });
+}
+function changeHeaderName() {
+    // $(window).off('scroll');
+
+    var videoPosition = $('.video').offset();
+    var prformancePosition = $('.performance').offset();
+    var technicalPosition = $('.technical-analysis').offset();
+    var anatomyPosition = $('.anatomy').offset();
+    var conclusionPosition = $('.conclusion').offset();
+    var programmePosition = $('.programme').offset();
+
+    $(window).on('scroll', function(){
+        if($(window).scrollTop() > videoPosition.top){
+            $('.name-of-current-section').text('VÍDEOS DE LA SESIÓN');
+            currentSectionName = '.video';
+        }
+        if ($(window).scrollTop() > prformancePosition.top) {
+            $('.name-of-current-section').text('ÍNDICE DE RENDIMIENTO');
+            currentSectionName = '.performance';
+        }
+        if ($(window).scrollTop() > technicalPosition.top) {
+            $('.name-of-current-section').text('ANÁLISIS TÉCNICO');
+            currentSectionName = '.technical-analysis';
+        }
+        if ($(window).scrollTop() > anatomyPosition.top) {
+            $('.name-of-current-section').text('EVALUACIÓN ANATÓMICA');
+            currentSectionName = '.anatomy';
+        }
+        if ($(window).scrollTop() > conclusionPosition.top) {
+            $('.name-of-current-section').text('NUESTRAS CONCLUSIONES');
+            currentSectionName = '.conclusion';
+        }
+        if ($(window).scrollTop() > programmePosition.top) {
+            $('.name-of-current-section').text('PROGRAMA DE EJERCICIOS');
+            currentSectionName = '.programme';
+        }
+
+    });
+
+}
+
 function AddCharts() {
 	/* Charts */
 
@@ -127,53 +182,69 @@ function AddLinearCharts() {
 	var datal1 = $(".chart1").data("var");
 	var chartL1 = $(".chart1").get(0).getContext("2d");
 	var myLineChart = new Chart(chartL1).Line(datal1, {
-		pointDot : false
+		pointDot : false,
+        tooltipFillColor: "rgba(0,0,0,0.8)",
+        multiTooltipTemplate: "<%= datasetLabel %>: <%= value %>"
 	});
 
 
 	var datal2 = $(".chart3").data("var");
 	var chartL2 = $(".chart3").get(0).getContext("2d");
 	var myLineChart = new Chart(chartL2).Line(datal2, {
-		pointDot : false
+		pointDot : false,
+        tooltipFillColor: "rgba(0,0,0,0.8)",
+        multiTooltipTemplate: "<%= datasetLabel %>: <%= value %>"
 	});
 
 	var datal3 = $(".chart5").data("var");
 	var chartL3 = $(".chart5").get(0).getContext("2d");
 	var myLineChart = new Chart(chartL3).Line(datal3, {
-		pointDot : false
+		pointDot : false,
+        tooltipFillColor: "rgba(0,0,0,0.8)",
+        multiTooltipTemplate: "<%= datasetLabel %>: <%= value %>"
 	});
 
 	var datal4 = $(".chart7").data("var");
 	var chartL4 = $(".chart7").get(0).getContext("2d");
 	var myLineChart = new Chart(chartL4).Line(datal4, {
-		pointDot : false
+		pointDot : false,
+        tooltipFillColor: "rgba(0,0,0,0.8)",
+        multiTooltipTemplate: "<%= datasetLabel %>: <%= value %>"
 	});
 
 	var datal5 = $(".chart9").data("var");
 	var chartL5 = $(".chart9").get(0).getContext("2d");
 	var myLineChart = new Chart(chartL5).Line(datal5, {
-		pointDot : false
+		pointDot : false,
+        tooltipFillColor: "rgba(0,0,0,0.8)",
+        multiTooltipTemplate: "<%= datasetLabel %>: <%= value %>"
 	});
 
 	var datal6 = $(".chart11").data("var");
 	var chartL6 = $(".chart11").get(0).getContext("2d");
 	var myLineChart = new Chart(chartL6).Line(datal6, {
-		pointDot : false
+		pointDot : false,
+        tooltipFillColor: "rgba(0,0,0,0.8)",
+        multiTooltipTemplate: "<%= datasetLabel %>: <%= value %>"
 	});
 
 	var datal7 = $(".chart13").data("var");
 	var chartL7 = $(".chart13").get(0).getContext("2d");
 	var myLineChart = new Chart(chartL7).Line(datal7, {
-		pointDot : false
+		pointDot : false,
+        tooltipFillColor: "rgba(0,0,0,0.8)",
+        multiTooltipTemplate: "<%= datasetLabel %>: <%= value %>"
 	});
 
 	var datal8 = $(".chart15").data("var");
 	var chartL8 = $(".chart15").get(0).getContext("2d");
 	var myLineChart = new Chart(chartL8).Line(datal8, {
-		pointDot : false
+		pointDot : false,
+        tooltipFillColor: "rgba(0,0,0,0.8)",
+        multiTooltipTemplate: "<%= datasetLabel %>: <%= value %>"
 	});
 
-};
+}
 
 
 function AddDonutCharts(){
@@ -228,165 +299,50 @@ function AddDonutCharts(){
 		percentageInnerCutout : 70
 	});
 
+    $(".anatomy1").each(function() {
+        var dataOptimo = $( this ).data("var");
+        var chartOptimo = $( this ).get(0).getContext("2d");
+        var myDoughnutChart = new Chart(chartOptimo).Doughnut(dataOptimo,{
+            segmentShowStroke : false,
+            animateRotate : false,
+            percentageInnerCutout : 80
+        });
+        $(this).nextAll('.down:first').text(dataOptimo[1].label);
+    });
 
-	var dataOptimo = [
-	    {
-	        value: 1,
-	        color:"#ececec",
-	        highlight: "#ececec"
-	    },
-	    {
-	        value: 3,
-	        color: "#fa874e",
-	        highlight: "#fa874e",
-	        label: "Angulo Q"
-	    }
-	]
-	var chartOptimo = $(".anatomy1").get(0).getContext("2d");
-	var myDoughnutChart = new Chart(chartOptimo).Doughnut(dataOptimo,{
-		segmentShowStroke : false,
-		animateRotate : false,
-		percentageInnerCutout : 80
-	});
-
-	var chartOptimo = $(".anatomy4").get(0).getContext("2d");
-	var myDoughnutChart = new Chart(chartOptimo).Doughnut(dataOptimo,{
-		segmentShowStroke : false,
-		animateRotate : false,
-		percentageInnerCutout : 80
-	});
-
-	var chartOptimo = $(".anatomy7").get(0).getContext("2d");
-	var myDoughnutChart = new Chart(chartOptimo).Doughnut(dataOptimo,{
-		segmentShowStroke : false,
-		animateRotate : false,
-		percentageInnerCutout : 80
-	});
-
-	var dataBajo = [
-	    {
-	        value: 1,
-	        color:"#ececec",
-	        highlight: "#ececec"
-	    },
-	    {
-	        value: 3,
-	        color: "#febc46",
-	        highlight: "#febc46",
-	        label: "Discrepancia"
-	    }
-	]
-	var chartOptimo = $(".anatomy2").get(0).getContext("2d");
-	var myDoughnutChart = new Chart(chartOptimo).Doughnut(dataBajo,{
-		segmentShowStroke : false,
-		animateRotate : false,
-		percentageInnerCutout : 80
-	});
-
-	var chartOptimo = $(".anatomy5").get(0).getContext("2d");
-	var myDoughnutChart = new Chart(chartOptimo).Doughnut(dataBajo,{
-		segmentShowStroke : false,
-		animateRotate : false,
-		percentageInnerCutout : 80
-	});
-
-	var chartOptimo = $(".anatomy8").get(0).getContext("2d");
-	var myDoughnutChart = new Chart(chartOptimo).Doughnut(dataBajo,{
-		segmentShowStroke : false,
-		animateRotate : false,
-		percentageInnerCutout : 80
-	});
-
-	var dataAcept = [
-	    {
-	        value: 1,
-	        color:"#ececec",
-	        highlight: "#ececec"
-	    },
-	    {
-	        value: 3,
-	        color: "#88768b",
-	        highlight: "#88768b",
-	        label: "Aceptable"
-	    }
-	]
-	var chartOptimo = $(".anatomy3").get(0).getContext("2d");
-	var myDoughnutChart = new Chart(chartOptimo).Doughnut(dataAcept,{
-		segmentShowStroke : false,
-		animateRotate : false,
-		percentageInnerCutout : 80
-	});
-
-	var chartOptimo = $(".anatomy6").get(0).getContext("2d");
-	var myDoughnutChart = new Chart(chartOptimo).Doughnut(dataAcept,{
-		segmentShowStroke : false,
-		animateRotate : false,
-		percentageInnerCutout : 80
-	});
-
-	var chartOptimo = $(".anatomy9").get(0).getContext("2d");
-	var myDoughnutChart = new Chart(chartOptimo).Doughnut(dataAcept,{
-		segmentShowStroke : false,
-		animateRotate : false,
-		percentageInnerCutout : 80
-	});
-
-};
+}
 
 function AddRadarAndPolarCharts() {
+    var performanceRadarChart = $("#performanceRadarChart");
+    if (performanceRadarChart.length) {
+        var dataR1 = performanceRadarChart.data("var");
+        var chartR1 = performanceRadarChart.get(0).getContext("2d");
+        var myRadarChart = new Chart(chartR1).Radar(dataR1, {
+            scaleShowLine: false,
+            tooltipTemplate: "<%= value %>%"
+        });
+    }
 
-    var dataR1 = $("#performanceRadarChart").data("var");
-    var chartR1 = document.getElementById("performanceRadarChart").getContext("2d");
-	var myRadarChart = new Chart(chartR1).Radar(dataR1, {
-		scaleShowLine : false
-	});
+	var dataP1 = $(".chart-a1").data("var");
 
-	var dataP1 = [
-	    {
-	        value: 300,
-	        color:"#fa874e",
-	        highlight: "#fa874e",
-	        label: "Angulo Q"
-	    },
-	    {
-	        value: 200,
-	        color: "#febc46",
-	        highlight: "#febc46",
-	        label: "Discrepancia"
-	    },
-	    {
-	        value: 100,
-	        color: "#ffcb8c",
-	        highlight: "#ffcb8c",
-	        label: ""
-	    },
-	    {
-	        value: 300,
-	        color: "#cbcad4",
-	        highlight: "#cbcad4",
-	        label: ""
-	    },
-	    {
-	        value: 200,
-	        color: "#88768b",
-	        highlight: "#88768b",
-	        label: ""
-	    }
+    var chart_a1 = $(".chart-a1");
+    if (chart_a1.length) {
+        var chartP1 = chart_a1.get(0).getContext("2d");
+        var chartPolar1 = new Chart(chartP1).PolarArea(dataP1, {
+            segmentStrokeWidth: 4
+        });
+    }
 
-	];
+    dataP1 = $(".chart-a2").data("var");
+    var chart_a2 = $(".chart-a2");
+    if (chart_a2.length) {
+        var chartP2 = chart_a2.get(0).getContext("2d");
 
-	var chartP1 = $(".chart-a1").get(0).getContext("2d");
-
-	var chartPolar1 = new Chart(chartP1).PolarArea(dataP1, {
-		segmentStrokeWidth : 4
-	});
-
-	var chartP2 = $(".chart-a2").get(0).getContext("2d");
-
-	var chartPolar2 = new Chart(chartP2).PolarArea(dataP1, {
-		segmentStrokeWidth : 4
-	});
-
+        var chartPolar2 = new Chart(chartP2).PolarArea(dataP1, {
+            segmentStrokeWidth: 4
+        });
+    }
+    dataP1 = $(".chart-a3").data("var");
 	var chartP3 = $(".chart-a3").get(0).getContext("2d");
 
 	var chartPolar3 = new Chart(chartP3).PolarArea(dataP1, {
@@ -399,56 +355,108 @@ function AddBarCharts() {
 
 	var dataB1 = $("#chart6").data("var");
 
-	// BarChartsWidth();
+	BarWidth();
 
 
 	var chartB1 = document.getElementById("chart6").getContext("2d");
-	var chartBar1 = new Chart(chartB1).Bar(dataB1, {});
+	var chartBar1 = new Chart(chartB1).Bar(dataB1, {
+        showTooltips: true,
+        tooltipFillColor: "rgba(0,0,0,0.8)",
+        multiTooltipTemplate: "<%= datasetLabel %>: <%= value %>"
+    });
 
 
 	var dataB2 = $(".chart2").data("var");
 	var chartB2 = $(".chart2").get(0).getContext("2d");
-	var chartBar2 = new Chart(chartB2).Bar(dataB2, {});
+	var chartBar2 = new Chart(chartB2).Bar(dataB2, {
+        tooltipFillColor: "rgba(0,0,0,0.8)",
+        multiTooltipTemplate: "<%= datasetLabel %>: <%= value %>"
+    });
 
 	var dataB3 =$(".chart4").data("var");
 	var chartB3 = $(".chart4").get(0).getContext("2d");
-	var chartBar3 = new Chart(chartB3).Bar(dataB3, {});
+	var chartBar3 = new Chart(chartB3).BarAlt(dataB3, {
+        tooltipFillColor: "rgba(0,0,0,0.8)",
+        multiTooltipTemplate: "<%= datasetLabel %>: <%= value %>"
+    });
 
 	var dataB4 = $(".chart6").data("var");
 	var chartB4 = $(".chart6").get(0).getContext("2d");
-	var chartBar4 = new Chart(chartB4).Bar(dataB4, {});
+	var chartBar4 = new Chart(chartB4).BarAlt(dataB4, {
+        tooltipFillColor: "rgba(0,0,0,0.8)",
+        multiTooltipTemplate: "<%= datasetLabel %>: <%= value %>"
+    });
 
 
 	var dataB5 = $(".chart8").data("var");
 	var chartB5 = $(".chart8").get(0).getContext("2d");
-	var chartBar5 = new Chart(chartB5).Bar(dataB5, {});
+	var chartBar5 = new Chart(chartB5).BarAlt(dataB5, {
+        tooltipFillColor: "rgba(0,0,0,0.8)",
+        multiTooltipTemplate: "<%= datasetLabel %>: <%= value %>"
+    });
 
 
 	var dataB6 = $(".chart10").data("var");
 	var chartB6 = $(".chart10").get(0).getContext("2d");
-	var chartBar6 = new Chart(chartB6).Bar(dataB6, {});
+	var chartBar6 = new Chart(chartB6).BarAlt(dataB6, {
+        tooltipFillColor: "rgba(0,0,0,0.8)",
+        multiTooltipTemplate: "<%= datasetLabel %>: <%= value %>"
+    });
 
 
 
 	var dataB7 = $(".chart12").data("var");
 	var chartB7 = $(".chart12").get(0).getContext("2d");
-	var chartBar7 = new Chart(chartB7).Bar(dataB7, {});
+	var chartBar7 = new Chart(chartB7).BarAlt(dataB7, {
+        tooltipFillColor: "rgba(0,0,0,0.8)",
+        multiTooltipTemplate: "<%= datasetLabel %>: <%= value %>"
+    });
 
 
 
 	var dataB8 = $(".chart14").data("var");
 	var chartB8 = $(".chart14").get(0).getContext("2d");
-	var chartBar8 = new Chart(chartB8).Bar(dataB8, {});
+	var chartBar8 = new Chart(chartB8).BarAlt(dataB8, {
+        tooltipFillColor: "rgba(0,0,0,0.8)",
+        multiTooltipTemplate: "<%= datasetLabel %>: <%= value %>"
+    });
 
 
 
 	var dataB9 = $(".chart16").data("var");
 	var chartB9 = $(".chart16").get(0).getContext("2d");
-	var chartBar9 = new Chart(chartB9).Bar(dataB9, {});
+	var chartBar9 = new Chart(chartB9).BarAlt(dataB9, {
+        tooltipFillColor: "rgba(0,0,0,0.8)",
+        multiTooltipTemplate: "<%= datasetLabel %>: <%= value %>"
+    });
 
 
 };
 
+function BarWidth() {
+    Chart.types.Bar.extend({
+        name: "BarAlt",
+        draw: function(){
+            this.options.barValueSpacing = this.chart.width / 7;
+            Chart.types.Bar.prototype.draw.apply(this, arguments);
+        }
+    });
+
+    Chart.types.Bar.extend({
+        name: "BarAlt2",
+        draw: function(){
+            this.options.barValueSpacing = this.chart.width / 6;
+            Chart.types.Bar.prototype.draw.apply(this, arguments);
+        }
+    });
+    Chart.types.Bar.extend({
+        name: "BarAlt3",
+        draw: function(){
+            this.options.barValueSpacing = this.chart.width / 2;
+            Chart.types.Bar.prototype.draw.apply(this, arguments);
+        }
+    });
+}
 
 
 function BarChartsWidth() {

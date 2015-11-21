@@ -1,6 +1,6 @@
 <header>
   <div class="sticky-nav">
-    <h4 class="sticky-headline">ANALISYS TECNICO <span>cerrar</span></h4>
+    <h4 class="sticky-headline"><span class="name-of-current-section">VÍDEOS DE LA SESIÓN</span> <a href="#" class="close-current-section">cerrar</a></h4>
     <%= image_tag 'foots-nav.png', alt: 'foots', class: 'sticky-foots' %>
   </div>
 
@@ -35,7 +35,7 @@
     <% end %>
     <a class="logo" href="#"><%= image_tag 'logo.png', alt: 'running' %></a>
 
-    <h2 class="id-project">RUNNING ID No. <%= @user.id %></h2>
+    <h2 class="id-project">RUNNING ID No. <%= @user.to_param %></h2>
 
     <h4 class="home__headline">Nombre</h4>
 
