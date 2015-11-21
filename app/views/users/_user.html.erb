@@ -1,7 +1,7 @@
 <div class="client-row">
   <div class="col col-name">
     <input class="client-list-checkbox" type="checkbox" name="name" value="0" />
-    <input class="client-list-link" type="hidden" name="name" value="<%= user_path(user) %>" />
+    <input class="client-list-link" type="hidden" name="name" value="<%= edit_user_path(user) %>" />
     <span class="client"><%= user.name %></span>
   </div>
   <div class="col col-mail"><span class="client"><%= user.email %></span></div>
