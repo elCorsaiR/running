@@ -804,10 +804,21 @@ class User < ActiveRecord::Base
   end
 
   def color_by_field(field)
-    if field.to_s.include? 'left'
-      '#958899'
-    else
-      '#fe8e64'
+    case  field
+      when :q_angle_left, :q_angle_right, :hip_rotatoes_left, :hip_rotatoes_right, :mid_gluteus_strength_left, :mid_gluteus_strength_right
+        '#fa874e'
+      when :legs_length_discrepancy_left, :legs_length_discrepancy_right, :isquiotibiales_left, :isquiotibiales_right, :isquiotibial_strength_left, :isquiotibial_strength_right
+          '#febc46'
+      when :back_foot_angle_left, :back_foot_angle_right, :iliotibial_band_left, :iliotibial_band_right, :vasto_lateral_left, :vasto_lateral_right        
+          '#ffcb8c'
+      when :psoas_iliaco_left, :psoas_iliaco_right, :vasto_intermedio_left, :vasto_intermedio_right        
+          '#cbcad4'
+      when :recto_femoral_left, :recto_femoral_right, :vasto_medial_left, :vasto_medial_right 
+          '#88768b'
+      when :gastrocnemius_y_soleo_left, :gastrocnemius_y_soleo_right, :back_tibial_strength_left, :back_tibial_strength_right
+          '#6483c3'        
+      else
+        '#ffffff'
     end
   end
 
