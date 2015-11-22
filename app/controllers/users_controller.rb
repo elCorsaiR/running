@@ -12,8 +12,9 @@ class UsersController < ApplicationController
 
   def create
     @user = User.new user_params
-    @user.password = 'foobar'
-    @user.password_confirmation = 'foobar'
+    @user.raw_password = generate_password
+    @user.password = @user.raw_password
+    @user.password_confirmation = @user.raw_password
     if @user.save
       flash[:success] = 'Success'
       redirect_to edit_user_path(@user)
@@ -53,6 +54,10 @@ class UsersController < ApplicationController
     if !current_user?(@user) and !current_user.admin?
       redirect_to(current_user)
     end
+  end
+
+  def generate_password
+    (('0'..'9').to_a + ('a'..'z').to_a + ('A'..'Z').to_a).shuffle.first(8).join
   end
 
 end

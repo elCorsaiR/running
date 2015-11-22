@@ -2,7 +2,7 @@
     <div class="option-panel option-panel--big ">
       <div class="eq-panel-left">
         <span class="clients">INFORME DE <%= @user.name.upcase %>
-          [<%= @user.published ? "publicado: #{user_url(@user)}" : 'no publicado aun' %>]</span>
+          [<%= @user.published ? "publicado: #{user_url(@user)} - #{@user.raw_password}" : 'no publicado aun' %>]</span>
       </div>
       <div class="eq-panel-right">
         <div class="option-bar">
