@@ -10,8 +10,8 @@
               Opciones de administracion
             </div>
             <div class="dropdown-content">
-              <a href="#">Editar contrasena admin</a>
-                  <%= link_to 'Logout', signout_path, method: 'delete', class: "logout" %>
+              <%= link_to 'Editar contrasena admin', change_password_user_path(current_user) %>
+              <%= link_to 'Logout', signout_path, method: 'delete', class: "logout" %>
             </div>
           </div>
         </div>

@@ -4,7 +4,11 @@ Running::Application.routes.draw do
   match '/signout', to: 'sessions#destroy', via: 'delete'
 
 
-  resources :users
+  resources :users do
+    member do
+      get 'change_password'
+    end
+  end
   root 'users#index'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

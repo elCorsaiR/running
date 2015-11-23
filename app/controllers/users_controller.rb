@@ -32,11 +32,19 @@ class UsersController < ApplicationController
     @user = User.find_by_idsolt params[:id]
   end
 
+  def change_password
+    @user = User.find_by_idsolt params[:id]
+  end
+
   def update
     @user = User.find_by_idsolt params[:id]
     if @user.update_attributes(user_params)
       flash[:success] = 'Success'
-      redirect_to edit_user_path(@user)
+      if @user.admin?
+        redirect_to users_path
+      else
+        redirect_to edit_user_path(@user)
+      end
     else
       render 'edit'
     end
