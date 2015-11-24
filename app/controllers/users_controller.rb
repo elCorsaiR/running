@@ -50,6 +50,17 @@ class UsersController < ApplicationController
     end
   end
 
+  def bulk_delete
+    User.delete_all(:id => params[:user_ids])
+    redirect_to users_path
+  end
+
+  def destroy
+    User.find(params[:id]).destroy
+    flash[:success] = 'User destroyed.'
+    redirect_to users_path
+  end
+
   private
 
   def user_params

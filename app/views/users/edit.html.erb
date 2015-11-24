@@ -7,7 +7,7 @@
       <div class="eq-panel-right">
         <div class="option-bar">
           <%= f.submit 'SAVE', {class: 'btn-admin gray'} %>
-          <%= link_to 'BORRAR INFORMES', users_path, role: 'button', class: 'btn-admin gray' %>
+          <%= link_to "BORRAR INFORMES", user_path(@user.id), method: :delete, confirm: 'Are you sure?', role: 'button', class: 'btn-admin gray' %>
           <%= f.label :file, 'SUBIR HOJA EXCEl', class: 'btn-admin gray' %>
           <%= f.file_field :file, style: 'display: none;' %>
           <% unless @user.published? %>

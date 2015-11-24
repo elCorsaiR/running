@@ -6,10 +6,12 @@
     </div>
     <div class="panel-right">
       <div class="option-bar">
-        <a class="btn-admin" href="#">BORRAR INFORMES</a>
+        <%= form_tag bulk_delete_users_path, id:'bulk_delete_form', role: 'form', style: 'display: inline;' do -%>
+            <%= link_to "BORRAR INFORMES", '#', id: 'delete_selected', class: 'btn-admin' %>
+        <% end %>
 
         <a class="btn-admin search" href="#">
-          <%= form_tag(users_path, :method => :get, role: 'search', style: "display: inline;") do %>
+          <%= form_tag(users_path, :method => :get, role: 'search', style: 'display: inline;') do %>
               <%= hidden_field_tag 'clients', (params['clients'] if params['clients'].present?) %>
               <%= text_field_tag 'term', (params['term'] if params['term'].present?), placeholder: "BUSCAR..." %>
           <% end %>
@@ -24,7 +26,7 @@
     <p>No existe ningun informe actualmente</p>
   </div>
 
-  <div class="clients-list">
+  <div id="clients_table" class="clients-list">
     <div class="client-row client-header">
       <div class="col col-name">
         <input class="client-list-checkbox" type="checkbox" name="name" value="0"/>

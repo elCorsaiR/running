@@ -8,6 +8,9 @@ Running::Application.routes.draw do
     member do
       get 'change_password'
     end
+    collection do
+      post 'bulk_delete'
+    end
   end
   root 'users#index'
   # The priority is based upon order of creation: first created -> highest priority.

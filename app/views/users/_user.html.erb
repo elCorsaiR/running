@@ -1,6 +1,6 @@
 <div class="client-row">
   <div class="col col-name">
-    <input class="client-list-checkbox" type="checkbox" name="name" value="0" />
+    <%= check_box_tag "user_ids[]", user.id, false, {class: 'client-list-checkbox'} %>
     <input class="client-list-link" type="hidden" name="name" value="<%= edit_user_path(user) %>" />
     <span class="client"><%= user.name %></span>
   </div>
