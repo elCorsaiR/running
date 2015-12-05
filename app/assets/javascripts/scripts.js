@@ -17,6 +17,22 @@ $(document).ready(function(){
 	var linkToShare = 'https://developers.facebook.com/docs/';
     var currentSectionName = null;
 
+    $('.twitter-popup').click(function(event) {
+        var width  = 575,
+            height = 500,
+            left   = ($(window).width()  - width)  / 2,
+            top    = ($(window).height() - height) / 2,
+            url    = this.href,
+            opts   = 'status=1' +
+                ',width='  + width  +
+                ',height=' + height +
+                ',top='    + top    +
+                ',left='   + left;
+
+        window.open(url, 'twitter', opts);
+
+        return false;
+    });
 
 	$('.slider').slick({
 		arrows: true,

@@ -1,0 +1,15 @@
+<% if signed_in? and current_user?(@user) %>
+    <a href="#" id="fb-root" class="facebook-share"><%= image_tag 'fb.png', alt: 'facebook' %></a>
+
+    <a href="https://twitter.com/share" class="twitter-popup">
+      <%= image_tag 'twitter.png', alt: 'twitter' %>
+    </a>
+
+    <a href="#" class="js-open-popup"><%= image_tag 'mail.png', alt: 'mail' %></a>
+
+<% else %>
+    <% unless signed_in? %>
+        <%= link_to 'SIGN IN', signin_path, role: 'button', class: 'btn-admin' %>
+    <% end %>
+    <%= link_to 'HUZ TU PROPIO INFORME', 'http://imasdrunning.com/', role: 'button', class: 'btn-admin red-static' %>
+<% end %>
