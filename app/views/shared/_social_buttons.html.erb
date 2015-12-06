@@ -1,7 +1,9 @@
 <% if signed_in? and current_user?(@user) %>
-    <a href="#" id="fb-root" class="facebook-share"><%= image_tag 'fb.png', alt: 'facebook' %></a>
+    <a id="fb-root" href="https://www.facebook.com/sharer/sharer.php?u=<%= h user_url(@user) %>&display=popup" class="share-popup">
+      <%= image_tag 'fb.png', alt: 'facebook' %>
+    </a>
 
-    <a href="https://twitter.com/share" class="twitter-popup">
+    <a href="https://twitter.com/share" class="share-popup">
       <%= image_tag 'twitter.png', alt: 'twitter' %>
     </a>
 

@@ -17,7 +17,7 @@ $(document).ready(function(){
 	var linkToShare = 'https://developers.facebook.com/docs/';
     var currentSectionName = null;
 
-    $('.twitter-popup').click(function(event) {
+    $('.share-popup').click(function(event) {
         var width  = 575,
             height = 500,
             left   = ($(window).width()  - width)  / 2,
@@ -29,7 +29,7 @@ $(document).ready(function(){
                 ',top='    + top    +
                 ',left='   + left;
 
-        window.open(url, 'twitter', opts);
+        window.open(url, 'share', opts);
 
         return false;
     });
