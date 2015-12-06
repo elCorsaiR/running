@@ -1,4 +1,4 @@
-<div class="client-row">
+<div class="client-row<%= ' bold' unless user.published? %>">
   <div class="col col-name">
     <%= check_box_tag "user_ids[]", user.id, false, {class: 'client-list-checkbox'} %>
     <input class="client-list-link" type="hidden" name="name" value="<%= edit_user_path(user) %>" />
