@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151206152541) do
+ActiveRecord::Schema.define(version: 20151206172223) do
 
   create_table "ankles", force: true do |t|
     t.integer "user_id"
@@ -87,6 +87,12 @@ ActiveRecord::Schema.define(version: 20151206152541) do
     t.string  "video_url"
     t.integer "order_num"
     t.text    "text",      limit: 255
+  end
+
+  create_table "recommendations", force: true do |t|
+    t.integer "user_id"
+    t.text    "recommendation"
+    t.integer "order_no"
   end
 
   create_table "session_videos", force: true do |t|
@@ -211,6 +217,7 @@ ActiveRecord::Schema.define(version: 20151206152541) do
     t.boolean  "published",                              default: false
     t.string   "solt"
     t.string   "raw_password"
+    t.text     "conclusions"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true

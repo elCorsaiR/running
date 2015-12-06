@@ -581,6 +581,7 @@ header {
 }
 
 .conclusion-list {
+  counter-reset:li;
   font-size: 20px;
   margin-top: 36px;
   line-height: 26px;
@@ -593,14 +594,12 @@ header {
 }
 .conclusion-list li:before {
   position: absolute;
-  content: '1.';
+  content:counter(li);
+  counter-increment:li;
   color: #cbcbcf;
   font-size: 40px;
   top: 8px;
   left: -43px;
-}
-.conclusion-list li:nth-child(2):before {
-  content: '2.';
 }
 
 .container-popup {

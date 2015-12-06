@@ -15,6 +15,7 @@ class User < ActiveRecord::Base
   has_many :session_videos, dependent: :delete_all
   has_many :program_videos, dependent: :delete_all
   has_many :programs, dependent: :delete_all
+  has_many :recommendations, dependent: :delete_all
 
   before_save { self.email = email.downcase }
   before_create :create_remember_token
@@ -1051,6 +1052,14 @@ class User < ActiveRecord::Base
         if row[0].to_s.start_with?('URL VIDEO EJERCICIO') and row[1].present?
           self.program_videos.build video_url: row[1]
         end
+
+        if (row[0].to_s.start_with?('RECOMENDACION') or row[0].to_s.start_with?('RECOMENDACIÓN')) and row[1].present?
+          m = row[0].to_s.match(/\d+$/)
+          num = row[0].to_s.match(/\d+$/)[0].to_i unless m.nil?
+          self.recommendations.build recommendation: row[1], order_no: num
+        end
+
+        self.conclusions = row[1] if row[0] == 'CONCLUSIONES'
       end
 
       # self.name = "#{first_name} #{last_name}".squish
@@ -1190,6 +1199,13 @@ class User < ActiveRecord::Base
     self.hip_rotatoes_left = nil
     self.gastrocnemius_y_soleo_right = nil
     self.gastrocnemius_y_soleo_left = nil
+
+    self.session_videos.delete_all
+    self.programs.delete_all
+    self.program_videos.delete_all
+
+    self.recommendations.delete_all
+    self.conclusions = nil
   end
 
   def self.open_spreadsheet(file)

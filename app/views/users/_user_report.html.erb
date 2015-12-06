@@ -677,23 +677,13 @@
   <div class="container container--inside container--inside--conclusion">
     <h3 class="conclusion-headline"><%= @user.name.upcase %>,</h3>
 
-    <p>En el informe podemos observar algunas variables que se desvían ligeramiente de lo ideal. Algunas de ellas son
-      críticas para evitar posibles lesiones y otras son menos importantes. Entre las críticas destacamos la caída de la
-      cadera (basculación
-      cadera) izquierda. Esta variable está relacionada con otras variables como una elevada aducción de la cadera
-      (aducción cadera) izquierda y un apoyo cruzado (distancia entre apoyos). Estas desviaciones pueden entre otras
-      lesiones sobrecargar
-      el tensor de la fascia lata que es un músculo que recorre todo el lateral del muslo, llegando incluso a provocar
-      la inflamación de su inserción en la rodilla. Lo que popularmente conocemos como inflamación de la
-      “cintilla”. </p>
+    <p><%= @user.conclusions %></p>
     <h4 class="conclusion-small-headline">Desde I+DRunning te recomendamos dos intervenciones:</h4>
     <ol class="conclusion-list">
-      <li>Mejorar la fortaleza del glúteo medio, principal abductor de la cadera (separa lateralmente tu muslo de tu
-        cuerpo) que contrarrestará la caída de la cadera.
-      </li>
-      <li>Mejorar la fortaleza del glúteo medio, principal abductor de la cadera (separa lateralmente tu muslo de tu
-        cuerpo) que contrarrestará la caída de la cadera.
-      </li>
+      <% @user.recommendations.each do |recommendation| %>
+          <li><%= recommendation.recommendation %>
+          </li>
+      <% end %>
     </ol>
     <small>Pablo Floria, experto en biomecanica de I+DRunning</small>
   </div>
@@ -713,7 +703,7 @@
   </div>
 </section>
 <section class="programme-open accordion-open">
-  <% @user.programs.each.with_index do |program, index|%>
+  <% @user.programs.each.with_index do |program, index| %>
       <div class="content-wrapper">
         <div class="container container--inside">
           <div class="left">
@@ -723,10 +713,10 @@
 
           </div>
           <% if @user.program_videos.to_a[index].present? %>
-          <div class="right">
-            <iframe src="<%= @user.program_videos.all.to_a[index].video_url.sub('vimeo.com', 'player.vimeo.com/video') %>" width="540px" height="270px" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
-          </div>
-              <% end %>
+              <div class="right">
+                <iframe src="<%= @user.program_videos.all.to_a[index].video_url.sub('vimeo.com', 'player.vimeo.com/video') %>" width="540px" height="270px" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+              </div>
+          <% end %>
         </div>
       </div>
   <% end %>
