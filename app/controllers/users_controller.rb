@@ -25,6 +25,7 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find_by_idsolt params[:id]
+    @user.published? or raise ActiveRecord::RecordNotFound
     render layout: 'report'
   end
 
