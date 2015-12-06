@@ -2250,6 +2250,10 @@ input[type="submit"] {
   color: #ff6026;
 }
 
+.orange {
+  color: #FB7A52;
+}
+
 .red:hover, .red-static {
   background: #ff6026;
   color: white;
@@ -2276,3 +2280,19 @@ input[type="submit"] {
   padding-right: 30px;
   height: 100%;
 }
+
+.logo {
+  text-decoration: none;
+}
+
+.footer-link {
+  text-decoration: none;
+  display: inline-block;
+  vertical-align: middle;
+  height: 50px;
+}
+
+.white {
+  color: #ffffff;
+}
+

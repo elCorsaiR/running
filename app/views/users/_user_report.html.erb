@@ -726,9 +726,12 @@
 <footer>
   <div class="container">
     <a class="logo logo--footer" href="<%= root_path %>">
-      <%= image_tag 'logo.png', alt: 'running' %>  </a>
+      <%= image_tag 'logo.png', alt: 'running' %> <span class="orange">Estudio biomecánico en 3D de tu técnica de carrera</span></a>
 
     <div class="social">
+      <%= link_to 'SOBRE NOSOTROS', 'http://imasdrunning.com', class: 'footer-link white' %>
+      <%= link_to 'FAQ', 'http://imasdrunning.com/estudio-biomecanico-3d/preguntas-frecuentes/', class: 'footer-link white' %>
+      <%= link_to 'CONTACTO', 'http://imasdrunning.com/#contacto', class: 'footer-link white' %>
       <%= render 'shared/social_buttons' %>
     </div>
   </div>

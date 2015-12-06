@@ -1,4 +1,5 @@
 <% if signed_in? and current_user?(@user) %>
+    <%= link_to 'salir', signout_path, method: :delete, class: 'orange footer-link' %>
     <a id="fb-root" href="https://www.facebook.com/sharer/sharer.php?u=<%= h user_url(@user) %>&display=popup" class="share-popup">
       <%= image_tag 'fb.png', alt: 'facebook' %>
     </a>
@@ -16,6 +17,7 @@
         <% end %>
     <% else %>
         <%= link_to 'SIGN IN', signin_path, role: 'button', class: 'btn-admin' %>
+        <%= link_to 'HUZ TU PROPIO INFORME', 'http://imasdrunning.com/', role: 'button', class: 'btn-admin red-static' %>
     <% end %>
 
 <% end %>
