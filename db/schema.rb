@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151122204545) do
+ActiveRecord::Schema.define(version: 20151206142541) do
 
   create_table "ankles", force: true do |t|
     t.integer "user_id"
@@ -76,6 +76,23 @@ ActiveRecord::Schema.define(version: 20151122204545) do
   end
 
   add_index "levels", ["name"], name: "index_levels_on_name", unique: true
+
+  create_table "program_videos", force: true do |t|
+    t.integer "user_id"
+    t.string  "video_url"
+  end
+
+  create_table "programs", force: true do |t|
+    t.integer "user_id"
+    t.string  "video_url"
+    t.integer "order_num"
+    t.string  "text"
+  end
+
+  create_table "session_videos", force: true do |t|
+    t.integer "user_id"
+    t.string  "video_url"
+  end
 
   create_table "sports", force: true do |t|
     t.string "name"

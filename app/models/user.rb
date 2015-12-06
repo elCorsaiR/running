@@ -12,6 +12,9 @@ class User < ActiveRecord::Base
   has_many :hip_frontal_angles, dependent: :delete_all
   has_many :hip_rotations, dependent: :delete_all
   has_many :hip_sagital_angles, dependent: :delete_all
+  has_many :session_videos, dependent: :delete_all
+  has_many :program_videos, dependent: :delete_all
+  has_many :programs, dependent: :delete_all
 
   before_save { self.email = email.downcase }
   before_create :create_remember_token
@@ -1030,6 +1033,23 @@ class User < ActiveRecord::Base
         if row[0].to_s.include? 'FLEXIBILIDAD GASTROCNEMIUS Y SOLEO'
           self.gastrocnemius_y_soleo_right = row[1]
           self.gastrocnemius_y_soleo_left = row[2]
+        end
+
+        if (row[0].to_s.start_with?('URL VÍDEO REPRESENTACIÓN ESQUELÉTICA') or
+           row[0].to_s.start_with?('URL VÍDEO VISIÓN LATERAL') or
+           row[0].to_s.start_with?('URL VÍDEO VISION TRASERA') or
+           row[0].to_s.start_with?('URL VIDEO PISTA DE ATLETISM')) and row[1].present?
+          self.session_videos.build video_url: row[1]
+        end
+
+        if row[0].to_s.start_with?('EJERCICIO') and row[1].present?
+          m = row[0].to_s.match(/\d+$/)
+          num = row[0].to_s.match(/\d+$/)[0].to_i unless m.nil?
+          self.programs.build text: row[1], order_num: num
+        end
+
+        if row[0].to_s.start_with?('URL VIDEO EJERCICIO') and row[1].present?
+          self.program_videos.build video_url: row[1]
         end
       end
 

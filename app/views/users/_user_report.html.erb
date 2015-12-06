@@ -14,15 +14,11 @@
 <section class="video-open accordion-open">
   <div class="container container--video">
     <div class="slider">
-      <div class="slide">
-        <iframe src="//player.vimeo.com/video/101594443" width="967px" height="483px" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
-      </div>
-      <div class="slide">
-        <iframe src="//player.vimeo.com/video/101594443" width="967px" height="483px" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
-      </div>
-      <div class="slide">
-        <iframe src="//player.vimeo.com/video/101594443" width="967px" height="483px" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
-      </div>
+      <% @user.session_videos.each do |video| %>
+          <div class="slide">
+            <iframe src="<%= video.video_url %>" width="967px" height="483px" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+          </div>
+      <% end %>
     </div>
   </div>
 </section>
@@ -430,17 +426,17 @@
         <div class="charts-and-image-wrapper">
           <%= image_tag 'anatomy-placeholder.jpg' %>
 
-            <div class="small-chart-wrapper chart-optimo">
-              <span>Izq.</span>
-              <canvas id="q_angle_left" class="anatomy1" width="60" height="60" data-var="<%= @user.anatomica_data(:q_angle_left) %>"></canvas>
-              <span class="down">Óptimo</span>
-              <h6>Angulo Q</h6>
-            </div>
-            <div class="small-chart-wrapper chart-optimo-right">
-              <span>Dcho.</span>
-              <canvas id="q_angle_right" class="anatomy1" width="60" height="60" data-var="<%= @user.anatomica_data(:q_angle_right) %>"></canvas>
-              <span class="down">Óptimo</span>
-            </div>
+          <div class="small-chart-wrapper chart-optimo">
+            <span>Izq.</span>
+            <canvas id="q_angle_left" class="anatomy1" width="60" height="60" data-var="<%= @user.anatomica_data(:q_angle_left) %>"></canvas>
+            <span class="down">Óptimo</span>
+            <h6>Angulo Q</h6>
+          </div>
+          <div class="small-chart-wrapper chart-optimo-right">
+            <span>Dcho.</span>
+            <canvas id="q_angle_right" class="anatomy1" width="60" height="60" data-var="<%= @user.anatomica_data(:q_angle_right) %>"></canvas>
+            <span class="down">Óptimo</span>
+          </div>
 
 
           <div class="small-chart-wrapper chart-bajo">
@@ -528,10 +524,6 @@
           </div>
 
 
-
-
-
-
           <div class="small-chart-wrapper chart-right-1">
             <span>Izq.</span>
             <canvas class="anatomy1" width="60" height="60" data-var="<%= @user.anatomica_data(:psoas_iliaco_left) %>"></canvas>
@@ -567,7 +559,6 @@
             <canvas class="anatomy1" width="60" height="60" data-var="<%= @user.anatomica_data(:gastrocnemius_y_soleo_right) %>"></canvas>
             <span class="down">Óptimo</span>
           </div>
-
 
 
         </div>
@@ -627,10 +618,6 @@
             <canvas class="anatomy1" width="60" height="60" data-var="<%= @user.anatomica_data(:vasto_lateral_right) %>"></canvas>
             <span class="down">Óptimo</span>
           </div>
-
-
-
-
 
 
           <div class="small-chart-wrapper chart-right-1">
@@ -726,69 +713,23 @@
   </div>
 </section>
 <section class="programme-open accordion-open">
-  <div class="content-wrapper">
-    <div class="container container--inside">
-      <div class="left">
-        <h3 class="programme-headline">1. SENTADILLAS</h3>
+  <% @user.programs.each.with_index do |program, index|%>
+      <div class="content-wrapper">
+        <div class="container container--inside">
+          <div class="left">
+            <h3 class="programme-headline"><%= index + 1 %>. </h3>
 
-        <p>De pie, con los pies separados a la anchura de los hombros y las manos en las caderas, realizar una flexión
-          de rodilla hasta alcanzar los 90º llevando nuestro culo hacia abajo y atrás. Cuando bajemos tenemos que evitar
-          que las
-          rodillas sobrepasen la punta de los pies y que estas se desplacen lateralmente, siempre en línea con nuestros
-          pies. Podemos incrementar la intensidad del ejercicio cruzando los brazos delante del pecho o llevándolos
-          encima
-          de la cabeza.</p>
+            <p><%= program.text %></p>
 
-        <p>Principales músculos que intervienen: Cuádriceps (recto anterior, vasto interno y externo), glúteo mayor y
-          glúteo medio (estabilizador).</p>
+          </div>
+          <% if @user.program_videos.to_a[index].present? %>
+          <div class="right">
+            <iframe src="<%= @user.program_videos.all.to_a[index].video_url.sub('vimeo.com', 'player.vimeo.com/video') %>" width="540px" height="270px" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+          </div>
+              <% end %>
+        </div>
       </div>
-      <div class="right">
-        <iframe src="//player.vimeo.com/video/101594443" width="540px" height="270px" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
-      </div>
-    </div>
-  </div>
-  <div class="content-wrapper">
-    <div class="container container--inside">
-      <div class="left">
-        <h3 class="programme-headline">2. SENTADILLAS A UNA PIERNA</h3>
-
-        <p>Apoyando un solo pie y con las manos en las caderas, realizar una flexión de rodilla hasta alcanzar los 90º
-          llevando nuestro culo hacia abajo y atrás. Cuando bajemos tenemos que evitar que las rodillas sobrepasen la
-          punta de los
-          pies y que estas se desplacen lateralmente, siempre en línea con nuestros pies. Haz el mismo número de
-          repeticiones con cada pierna. Podemos incrementar la intensidad del ejercicio cruzando los brazos delante del
-          pecho o llevándoos
-          encima de la cabeza. </p>
-
-        <p>Principales músculos que intervienen: Cuádriceps (recto anterior, vasto interno y externo), glúteo mayor y
-          glúteo medio (estabilizador, mayor participación puesto que es un ejercicio en equilibrio).</p>
-      </div>
-      <div class="right">
-        <iframe src="//player.vimeo.com/video/101594443" width="540px" height="270px" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
-      </div>
-    </div>
-  </div>
-  <div class="content-wrapper">
-    <div class="container container--inside">
-      <div class="left">
-        <h3 class="programme-headline">3. BAJAR A TOCAR EL SUELO</h3>
-
-        <p>Apoyando un solo pie y con los brazos a lo largo del cuerpo, realizar una flexión de tronco, cadera y rodilla
-          hasta tocar un objeto que se encuentra delante de nosotros en el suelo (una botella por ejemplo). Cuando
-          bajemos tenemos
-          que evitar que las rodillas se desplacen lateralmente, siempre en línea con nuestros pies. Podemos incrementar
-          la intensidad del ejercicio llevando la pierna que está en suspensión en posición tándem (rodilla en alto a la
-          altura
-          de nuestras caderas). </p>
-
-        <p>Principales músculos que intervienen: Cuádriceps (recto anterior, vasto interno y externos), glúteo mayor y
-          glúteo medio (estabilizador, mayor participación puesto que es un ejercicio en equilibrio). </p>
-      </div>
-      <div class="right">
-        <iframe src="//player.vimeo.com/video/101594443" width="540px" height="270px" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
-      </div>
-    </div>
-  </div>
+  <% end %>
 </section>
 
 <!-- Page footer -->
