@@ -8,8 +8,12 @@
     <a href="#" class="js-open-popup"><%= image_tag 'mail.png', alt: 'mail' %></a>
 
 <% else %>
-    <% unless signed_in? %>
+    <% if signed_in? %>
+        <% unless current_user.admin? %>
+            <%= link_to 'HUZ TU PROPIO INFORME', 'http://imasdrunning.com/', role: 'button', class: 'btn-admin red-static' %>
+        <% end %>
+    <% else %>
         <%= link_to 'SIGN IN', signin_path, role: 'button', class: 'btn-admin' %>
     <% end %>
-    <%= link_to 'HUZ TU PROPIO INFORME', 'http://imasdrunning.com/', role: 'button', class: 'btn-admin red-static' %>
+
 <% end %>
