@@ -16,6 +16,6 @@
 //= require jquery.turbolinks
 //= require bootstrap
 //= require Chart
-//= require slick
+//= require slick.js
 //= require users
 //= require scripts
