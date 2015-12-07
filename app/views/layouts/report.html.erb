@@ -9,6 +9,7 @@
   <link href='//fonts.googleapis.com/css?family=Roboto:400,500' rel='stylesheet' type='text/css'>
   <%= csrf_meta_tags %>
   <meta property="og:site_name" content="I+D Running"/>
+  <meta property="og:url" content="<%= request.original_url %>"/>
   <meta property="og:title" content="Estudio biomecánico en 3D de técnica de carrera para <%= yield :customer_name %>" />
   <meta property="og:description" content="¿Aumenta tu técnica de carrera la posibilidad de caer en lesiones? ¿Qué partes de tu patrón de movimiento están especialmente sobrecargadas? Nuestro sistema de captación de movimiento en 3D y la base de datos biomecánicos de corredores en 3D más extensa del mundo nos permite entender cómo corre tu cuerpo e identificar las debilidades en tu forma de correr que limitan tu potencial y te llevan a lesionarte." />
   <meta property="og:image" content="<%= image_url('facebook.png') %>" />

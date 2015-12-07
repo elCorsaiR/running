@@ -1,6 +1,6 @@
 <% if signed_in? and current_user?(@user) %>
     <%= link_to 'salir', signout_path, method: :delete, class: 'orange footer-link' %>
-    <a id="fb-root" href="https://www.facebook.com/sharer/sharer.php?u=<%= h user_url(@user) %>&display=popup?v=1" class="share-popup round-button">
+    <a id="fb-root" href="https://www.facebook.com/sharer/sharer.php?u=<%= h user_url(@user) %>&display=popup&v=1" class="share-popup round-button">
       <%= image_tag 'fb.png', alt: 'facebook' %>
     </a>
 
