@@ -1040,17 +1040,52 @@ class User < ActiveRecord::Base
            row[0].to_s.start_with?('URL VÍDEO VISIÓN LATERAL') or
            row[0].to_s.start_with?('URL VÍDEO VISION TRASERA') or
            row[0].to_s.start_with?('URL VIDEO PISTA DE ATLETISM')) and row[1].present?
-          self.session_videos.build video_url: row[1]
+
+          video_url = row[1]
+          if video_url =~ /.*?vimeo.*?(\d+)/
+            video_url = "https://player.vimeo.com/video/#{$1}"
+          end
+          self.session_videos.build video_url: video_url
         end
 
         if row[0].to_s.start_with?('EJERCICIO') and row[1].present?
           m = row[0].to_s.match(/\d+$/)
+          num = nil
           num = row[0].to_s.match(/\d+$/)[0].to_i unless m.nil?
-          self.programs.build text: row[1], order_num: num
+          if num.nil?
+            self.programs.build text: row[1], order_num: num
+          else
+            found_programs = self.programs.select { |p| p.order_num == num }
+            if found_programs.size > 0
+              found_programs[0].text = row[1]
+            else
+              self.programs.build( order_num: num, text: row[1] )
+            end
+          end
+
+        end
+
+        if (row[0].to_s.start_with?('TITULO EJERCICIO') or row[0].to_s.start_with?('TÍTULO EJERCICIO')) and row[1].present?
+          m = row[0].to_s.match(/\d+$/)
+          num = nil
+          num = row[0].to_s.match(/\d+$/)[0].to_i unless m.nil?
+          unless num.nil?
+            found_programs = self.programs.select { |p| p.order_num == num }
+            if found_programs.size > 0
+              found_programs[0].title = row[1]
+            else
+              self.programs.build( order_num: num, title: row[1] )
+            end
+          end
         end
 
         if row[0].to_s.start_with?('URL VIDEO EJERCICIO') and row[1].present?
-          self.program_videos.build video_url: row[1]
+          video_url = row[1]
+          if video_url =~ /.*?vimeo.*?(\d+)/
+            video_url = "https://player.vimeo.com/video/#{$1}"
+          end
+
+          self.program_videos.build video_url: video_url
         end
 
         if (row[0].to_s.start_with?('RECOMENDACION') or row[0].to_s.start_with?('RECOMENDACIÓN')) and row[1].present?

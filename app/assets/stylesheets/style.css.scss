@@ -894,7 +894,8 @@ footer {
 .logo--footer {
   position: absolute;
   top: 50%;
-  margin-top: -20px;
+  margin-top: -15px;
+  font-size: 14px;
 }
 
 .left {
@@ -1249,8 +1250,10 @@ iframe {
 }
 
 .client {
-  color: #666776;
   font-size: 14px;
+}
+.client-color {
+  color: #666776;
 }
 
 .client-list-checkbox {
@@ -2287,9 +2290,7 @@ input[type="submit"] {
 
 .footer-link {
   text-decoration: none;
-  display: inline-block;
-  vertical-align: middle;
-  height: 50px;
+  font-size: 14px;
 }
 
 .white {
@@ -2299,4 +2300,9 @@ input[type="submit"] {
 .bold {
   font-weight: bold;
   color: black;
+}
+
+.round-button {
+  display: inline-flex;
+  vertical-align: middle;
 }

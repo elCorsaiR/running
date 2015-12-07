@@ -18,11 +18,15 @@ $(document).ready(function(){
     var currentSectionName = null;
 
     $('.share-popup').click(function(event) {
+        var url_str = this.href;
+        if ($(this).data("text") != ""){
+            url_str += "?text=" + $(this).data("text")
+        }
         var width  = 575,
             height = 500,
             left   = ($(window).width()  - width)  / 2,
             top    = ($(window).height() - height) / 2,
-            url    = this.href,
+            url    = url_str,
             opts   = 'status=1' +
                 ',width='  + width  +
                 ',height=' + height +
@@ -95,11 +99,15 @@ function accordion() {
 			$(this).removeClass('isSlideDown');
             $(this).find('.closed-section').show();
             $(this).find('.opened-section').hide();
+            $('.close-current-section').hide();
 		} else {
 			$(this).next('.accordion-open').addClass('accordion-opened');
 			$(this).addClass('isSlideDown');
             $(this).find('.closed-section').hide();
             $(this).find('.opened-section').show();
+            if($(currentSectionName).is($(this))) {
+                $('.close-current-section').show();
+            }
 		}
         setTimeout(function(){ changeHeaderName(); }, 100);
 	})
@@ -137,6 +145,7 @@ function closeCurrentSection() {
         $(currentSectionName).removeClass('isSlideDown');
         $(currentSectionName).find('.closed-section').show();
         $(currentSectionName).find('.opened-section').hide();
+        $('.close-current-section').hide();
 
         setTimeout(function(){ changeHeaderName(); }, 100);
     });
@@ -176,9 +185,12 @@ function changeHeaderName() {
             $('.name-of-current-section').text('PROGRAMA DE EJERCICIOS');
             currentSectionName = '.programme';
         }
-
+        if((typeof(currentSectionName) != 'undefined') && $(currentSectionName).hasClass('isSlideDown')){
+            $('.close-current-section').show();
+        }else{
+            $('.close-current-section').hide();
+        }
     });
-
 }
 
 function AddCharts() {

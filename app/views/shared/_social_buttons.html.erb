@@ -1,23 +1,22 @@
 <% if signed_in? and current_user?(@user) %>
     <%= link_to 'salir', signout_path, method: :delete, class: 'orange footer-link' %>
-    <a id="fb-root" href="https://www.facebook.com/sharer/sharer.php?u=<%= h user_url(@user) %>&display=popup" class="share-popup">
+    <a id="fb-root" href="https://www.facebook.com/sharer/sharer.php?u=<%= h user_url(@user) %>&display=popup" class="share-popup round-button">
       <%= image_tag 'fb.png', alt: 'facebook' %>
     </a>
 
-    <a href="https://twitter.com/share" class="share-popup">
+    <a href="https://twitter.com/share" class="share-popup round-button" data-text="Me he hecho un estudio biomecánico 3D con I%2BDRunning y ahora tengo un informe detallado sobre mi técnica de carrera: ">
       <%= image_tag 'twitter.png', alt: 'twitter' %>
     </a>
 
-    <a href="#" class="js-open-popup"><%= image_tag 'mail.png', alt: 'mail' %></a>
+    <a href="#" class="js-open-popup round-button"><%= image_tag 'mail.png', alt: 'mail' %></a>
 
 <% else %>
     <% if signed_in? %>
         <% unless current_user.admin? %>
-            <%= link_to 'HUZ TU PROPIO INFORME', 'http://imasdrunning.com/', role: 'button', class: 'btn-admin red-static' %>
+            <%= link_to 'HAZ TU PROPIO INFORME', 'http://imasdrunning.com/', role: 'button', class: 'btn-admin red-static' %>
         <% end %>
     <% else %>
-        <%= link_to 'SIGN IN', signin_path, role: 'button', class: 'btn-admin' %>
-        <%= link_to 'HUZ TU PROPIO INFORME', 'http://imasdrunning.com/', role: 'button', class: 'btn-admin red-static' %>
+        <%= link_to 'HAZ TU PROPIO INFORME', 'http://imasdrunning.com/', role: 'button', class: 'btn-admin red-static' %>
     <% end %>
 
 <% end %>

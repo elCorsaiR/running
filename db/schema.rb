@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151206172223) do
+ActiveRecord::Schema.define(version: 20151207173001) do
 
   create_table "ankles", force: true do |t|
     t.integer "user_id"
@@ -87,6 +87,7 @@ ActiveRecord::Schema.define(version: 20151206172223) do
     t.string  "video_url"
     t.integer "order_num"
     t.text    "text",      limit: 255
+    t.string  "title"
   end
 
   create_table "recommendations", force: true do |t|

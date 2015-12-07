@@ -1,28 +1,32 @@
 <!-- Page content -->
-<section class="accordion video">
-  <div class="container">
-    <h2 class="section-headline">VÍDEOS DE LA <br>SESIÓN</h2>
+<% unless @user.session_videos.empty? %>
+    <section class="accordion video">
+      <div class="container">
+        <h2 class="section-headline">VÍDEOS DE LA <br>SESIÓN</h2>
 
-    <p class="section-text">¿Te has visto alguna vez correr? Todos tenemos una idea de los gestos que hacemos al correr,
-      pero ¿verdaderamente has identificado esos movimientos en un video en el que corres? La mayoría de los runners no
-      se han visto correr nunca y te sorprenderá descubrir si la idea que tienes de como corres es correcta o al
-      contrario haces movimientos de los que no eras consciente.</p>
-    <a class="btn"><span class="closed-section">Ver</span><span class="opened-section">Cerrar</span> los videos de la
-      sesion</a>
-  </div>
-</section>
-<section class="video-open accordion-open">
-  <div class="container container--video">
-    <div class="slider">
-      <% @user.session_videos.each do |video| %>
-          <div class="slide">
-            <iframe src="<%= video.video_url %>" width="967px" height="483px" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
-          </div>
-      <% end %>
-    </div>
-  </div>
-</section>
-
+        <p class="section-text">¿Te has visto alguna vez correr? Todos tenemos una idea de los gestos que hacemos al
+          correr,
+          pero ¿verdaderamente has identificado esos movimientos en un video en el que corres? La mayoría de los runners
+          no
+          se han visto correr nunca y te sorprenderá descubrir si la idea que tienes de como corres es correcta o al
+          contrario haces movimientos de los que no eras consciente.</p>
+        <a class="btn"><span class="closed-section">Ver</span><span class="opened-section">Cerrar</span> los videos de
+          la
+          sesion</a>
+      </div>
+    </section>
+    <section class="video-open accordion-open">
+      <div class="container container--video">
+        <div class="slider">
+          <% @user.session_videos.each do |video| %>
+              <div class="slide">
+                <iframe src="<%= video.video_url %>" width="967px" height="483px" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+              </div>
+          <% end %>
+        </div>
+      </div>
+    </section>
+<% end %>
 
 <section class="accordion performance">
   <div class="container">
@@ -46,20 +50,24 @@
         pudiendo identificar cuál de ellas tiene una peor performance y mayor posibilidad de lesión. Un corredor medio
         lesionado esta entorno al 42% mientras que uno no lesionado se sitúa en un 65%. Un corredor de elite se situaría
         en torno al 90%.</p>
+      <% if @user.total.present? %>
+          <div class="performance-chart">
+            <div class="performance-chart__text">
+              <h4><%= @user.total %>%</h4>
+              <span>Performance Index</span>
+            </div>
+            <canvas id="performanceChart" width="260" height="260" data-var="<%= @user.perf_index_data %>"></canvas>
+          </div>
+      <% end %>
+    </div>
 
-      <div class="performance-chart">
-        <div class="performance-chart__text">
-          <h4><%= @user.total %>%</h4>
-          <span>Performance Index</span>
+    <% if @user.ankle.present? or @user.knee.present? or @user.functionality.present? or @user.hip.present %>
+        <div class="right right-anatomy">
+          <div class="performance-radar-chart">
+            <canvas id="performanceRadarChart" width="400" height="400" data-var="<%= @user.index_data %>"></canvas>
+          </div>
         </div>
-        <canvas id="performanceChart" width="260" height="260" data-var="<%= @user.perf_index_data %>"></canvas>
-      </div>
-    </div>
-    <div class="right right-anatomy">
-      <div class="performance-radar-chart">
-        <canvas id="performanceRadarChart" width="400" height="400" data-var="<%= @user.index_data %>"></canvas>
-      </div>
-    </div>
+    <% end %>
   </div>
 </section>
 
@@ -156,35 +164,46 @@
       </div>
     </div>
   </div>
-  <div class="technical-section">
-    <div class="container container-technical">
-      <div class="wrapper-top">
-        <h3 class="anatomy-headline">TOBILLO I: Ángulo del pie</h3>
+  <% if !@user.ankles.empty? or @user.max_pronation_left.present? or @user.pronation_speed_left.present? or @user.tibia_max_rotation_left.present? or @user.tibia_rotation_left.present? or
+          @user.max_pronation_right.present? or @user.pronation_speed_right.present? or @user.tibia_max_rotation_right.present? or @user.tibia_rotation_right.present?
+  %>
+      <div class="technical-section">
+        <div class="container container-technical">
+          <div class="wrapper-top">
+            <h3 class="anatomy-headline">TOBILLO I: Ángulo del pie</h3>
 
-        <p class="technical-text">¿Cuánto prona o supina tu pie cuando lo apoyas durante la carrera? La pronación es
-          sinónimo de pie "desbloqueado", y es necesaria para acomodarse a las superficies irregulares y permitir que el
-          dedo gordo del pie llegue a tocas el suelo.</p>
+            <p class="technical-text">¿Cuánto prona o supina tu pie cuando lo apoyas durante la carrera? La pronación es
+              sinónimo de pie "desbloqueado", y es necesaria para acomodarse a las superficies irregulares y permitir
+              que el
+              dedo gordo del pie llegue a tocas el suelo.</p>
 
-        <div class="foots-img">
-          <%= image_tag '4-3.png', alt: 'foot', width: '472px', height: '122px' %>
+            <div class="foots-img">
+              <%= image_tag '4-3.png', alt: 'foot', width: '472px', height: '122px' %>
+            </div>
+          </div>
+          <div class="wrapper-charts">
+            <% unless @user.ankles.empty? %>
+                <div class="chart-linear-wrapper">
+                  <span class="chart-title-x">Tiempo de contacto [%]</span>
+                  <span class="chart-title-y">Angulo de pronación del tobillo[&#176;]</span>
+                  <canvas class="chart1" width="560" height="310" data-var="<%= @user.ankle_data %>"></canvas>
+                </div>
+            <% end %>
+            <% if @user.max_pronation_left.present? or @user.pronation_speed_left.present? or @user.tibia_max_rotation_left.present? or @user.tibia_rotation_left.present? or
+                    @user.max_pronation_right.present? or @user.pronation_speed_right.present? or @user.tibia_max_rotation_right.present? or @user.tibia_rotation_right.present?
+            %>
+                <div class="chart-custom chart-custom--small chart-custom--I">
+                  <span class="interval1">Exceso</span>
+                  <span class="interval2">Óptimo</span>
+                  <span class="interval3">Escaso</span>
+                  <canvas class="chart2" width="530" height="310" data-var="<%= @user.bar_data %>"></canvas>
+                </div>
+            <% end %>
+          </div>
         </div>
       </div>
-      <div class="wrapper-charts">
-        <div class="chart-linear-wrapper">
-          <span class="chart-title-x">Tiempo de contacto [%]</span>
-          <span class="chart-title-y">Angulo de pronación del tobillo[&#176;]</span>
-          <canvas class="chart1" width="560" height="310" data-var="<%= @user.ankle_data %>"></canvas>
-        </div>
+  <% end %>
 
-        <div class="chart-custom chart-custom--small chart-custom--I">
-          <span class="interval1">Exceso</span>
-          <span class="interval2">Óptimo</span>
-          <span class="interval3">Escaso</span>
-          <canvas class="chart2" width="530" height="310" data-var="<%= @user.bar_data %>"></canvas>
-        </div>
-      </div>
-    </div>
-  </div>
   <div class="technical-section">
     <div class="container container-technical">
       <div class="wrapper-top">
@@ -707,14 +726,14 @@
       <div class="content-wrapper">
         <div class="container container--inside">
           <div class="left">
-            <h3 class="programme-headline"><%= index + 1 %>. </h3>
+            <h3 class="programme-headline"><%= "#{index + 1}. #{program.title}" %></h3>
 
             <p><%= program.text %></p>
 
           </div>
           <% if @user.program_videos.to_a[index].present? %>
               <div class="right">
-                <iframe src="<%= @user.program_videos.all.to_a[index].video_url.sub('vimeo.com', 'player.vimeo.com/video') %>" width="540px" height="270px" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+                <iframe src="<%= @user.program_videos.all.to_a[index].video_url %>" width="540px" height="270px" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
               </div>
           <% end %>
         </div>
@@ -725,8 +744,8 @@
 <!-- Page footer -->
 <footer>
   <div class="container">
-    <a class="logo logo--footer" href="<%= root_path %>">
-      <%= image_tag 'logo.png', alt: 'running' %> <span class="orange">Estudio biomecánico en 3D de tu técnica de carrera</span></a>
+    <a class="logo logo--footer orange" href="<%= root_path %>">
+      <%= image_tag 'logo.png', alt: 'running' %> Estudio biomecánico en 3D de tu técnica de carrera</a>
 
     <div class="social">
       <%= link_to 'SOBRE NOSOTROS', 'http://imasdrunning.com', class: 'footer-link white' %>
