@@ -3,7 +3,12 @@ class UsersController < ApplicationController
   before_action :admin_user, only: [:index, :new, :create, :destroy]
   # before_action :correct_user, only: [:show]
   def index
-    @users = User.clients.paginate(page: params[:page])
+    if params[:term].present?
+      @users = User.clients.search params[:term]
+    else
+      @users = User.clients
+    end
+
   end
 
   def new

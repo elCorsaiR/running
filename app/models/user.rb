@@ -24,6 +24,7 @@ class User < ActiveRecord::Base
   before_update :parse_file
   has_secure_password
 
+  scope :search, -> (term) { where('name like :c or email like :c or ((CAST( id AS text ) || solt) like :c)', { c: "%#{term.strip}%" }) }
   scope :clients, -> { where admin: false }
   default_scope -> { order 'report_date desc' }
 
@@ -33,7 +34,6 @@ class User < ActiveRecord::Base
   validates :email, presence: true, uniqueness: {case_sensitive: false}
   validates :password, length: {minimum: 6}, :if => :should_validate_password?
 
-  scope :search, -> (term) { where('email like ?', "%#{term}%") }
   # scope :clients, -> (is_clients) { where('client = ?', is_clients)  }
 
   def to_param
