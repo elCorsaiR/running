@@ -24,7 +24,7 @@ class User < ActiveRecord::Base
   before_update :parse_file
   has_secure_password
 
-  scope :search, -> (term) { where('name like :c or email like :c or ((CAST( id AS text ) || solt) like :c)', { c: "%#{term.strip}%" }) }
+  scope :search, -> (term) { where('lower(name) like :c or email like :c or ((CAST( id AS text ) || solt) like :c)', { c: "%#{term.strip.downcase}%" }) }
   scope :clients, -> { where admin: false }
   default_scope -> { order 'report_date desc' }
 
