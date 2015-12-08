@@ -161,27 +161,27 @@ function changeHeaderName() {
     var programmePosition = $('.programme').offset();
 
     $(window).on('scroll', function(){
-        if($(window).scrollTop() > videoPosition.top){
+        if( ( typeof(videoPosition) != 'undefined' ) && $(window).scrollTop() > videoPosition.top){
             $('.name-of-current-section').text('VÍDEOS DE LA SESIÓN');
             currentSectionName = '.video';
         }
-        if ($(window).scrollTop() > prformancePosition.top) {
+        if (( typeof(prformancePosition) != 'undefined' ) && $(window).scrollTop() > prformancePosition.top) {
             $('.name-of-current-section').text('ÍNDICE DE RENDIMIENTO');
             currentSectionName = '.performance';
         }
-        if ($(window).scrollTop() > technicalPosition.top) {
+        if (( typeof(technicalPosition) != 'undefined' ) && $(window).scrollTop() > technicalPosition.top) {
             $('.name-of-current-section').text('ANÁLISIS TÉCNICO');
             currentSectionName = '.technical-analysis';
         }
-        if ($(window).scrollTop() > anatomyPosition.top) {
+        if (( typeof(anatomyPosition) != 'undefined' ) && $(window).scrollTop() > anatomyPosition.top) {
             $('.name-of-current-section').text('EVALUACIÓN ANATÓMICA');
             currentSectionName = '.anatomy';
         }
-        if ($(window).scrollTop() > conclusionPosition.top) {
+        if (( typeof(conclusionPosition) != 'undefined' ) && $(window).scrollTop() > conclusionPosition.top) {
             $('.name-of-current-section').text('NUESTRAS CONCLUSIONES');
             currentSectionName = '.conclusion';
         }
-        if ($(window).scrollTop() > programmePosition.top) {
+        if (( typeof(programmePosition) != 'undefined' ) && $(window).scrollTop() > programmePosition.top) {
             $('.name-of-current-section').text('PROGRAMA DE EJERCICIOS');
             currentSectionName = '.programme';
         }

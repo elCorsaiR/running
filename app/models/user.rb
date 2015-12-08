@@ -247,7 +247,7 @@ class User < ActiveRecord::Base
   def chart6_data
 
     json = {
-        labels: ['Frecuencia de zancada', 'Movimiento del talon', 'Direccion punta del pie', 'Anchura entre apoyo'],
+        labels: ['Frecuencia de zancada', 'Direccion punta del pie', 'Anchura entre apoyo'],
         datasets: [
             {
                 label: 'izquierdo',
@@ -255,7 +255,7 @@ class User < ActiveRecord::Base
                 strokeColor: '#958899',
                 highlightFill: '#958899',
                 highlightStroke: '#958899',
-                data: [left_stride_frequency_evaluation, 0, tip_direction_of_left_foot_evaluation, width_between_left_stances_evaluation]
+                data: [left_stride_frequency_evaluation,  tip_direction_of_left_foot_evaluation, width_between_left_stances_evaluation]
             },
             {
                 label: 'derecho',
@@ -263,7 +263,7 @@ class User < ActiveRecord::Base
                 strokeColor: '#fe8e64',
                 highlightFill: '#fe8e64',
                 highlightStroke: '#fe8e64',
-                data: [right_stride_frequency_evaluation, 0, tip_direction_of_right_foot_evaluation, width_between_right_stances_evaluation]
+                data: [right_stride_frequency_evaluation,  tip_direction_of_right_foot_evaluation, width_between_right_stances_evaluation]
             }
         ]
     }.to_json
@@ -534,42 +534,6 @@ class User < ActiveRecord::Base
             }
         ]
     }.to_json
-  end
-
-  def a1_data
-    [
-        {
-            value: q_angle_left,
-            color: '#fa874e',
-            highlight: '#fa874e',
-            label: 'Angulo Q'
-        },
-        {
-            value: 200,
-            color: '#febc46',
-            highlight: '#febc46',
-            label: 'Discrepancia'
-        },
-        {
-            value: 100,
-            color: '#ffcb8c',
-            highlight: '#ffcb8c',
-            label: ''
-        },
-        {
-            value: 300,
-            color: '#cbcad4',
-            highlight: '#cbcad4',
-            label: ''
-        },
-        {
-            value: 200,
-            color: '#88768b',
-            highlight: '#88768b',
-            label: ''
-        }
-
-    ].to_json
   end
 
   def ankle_data
