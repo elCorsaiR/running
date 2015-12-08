@@ -29,14 +29,13 @@
   <div id="clients_table" class="clients-list">
     <div class="client-row client-header">
       <div class="col col-name">
-        <input class="client-list-checkbox" type="checkbox" name="name" value="0"/>
-        <a class="headline" href="#">NOMBRE</a>
+        <div class="headline-withoutsort">NOMBRE</div>
       </div>
-      <div class="col col-mail"><a class="headline" href="#">EMAIL</a></div>
-      <div class="col col-nevel"><a class="headline" href="#">NEVEL</a></div>
-      <div class="col col-deporte"><a class="headline" href="#">DEPORTE</a></div>
-      <div class="col col-distance"><a class="headline" href="#">DISTANCIA HABITUAL</a></div>
-      <div class="col col-date"><a class="headline active" href="#">FECHA DEL INFORME</a></div>
+      <div class="col col-mail"><div class="headline-withoutsort">EMAIL</div></div>
+      <div class="col col-nevel"><div class="headline-withoutsort">NEVEL</div></div>
+      <div class="col col-deporte"><div class="headline-withoutsort">DEPORTE</div></div>
+      <div class="col col-distance"><div class="headline-withoutsort">DISTANCIA HABITUAL</div></div>
+      <div class="col col-date"><div class="headline-withoutsort">FECHA DEL INFORME</div></div>
     </div>
     <%= render @users %>
   </div>

@@ -59,7 +59,7 @@ $(document).ready(function(){
 	$('.client-row').on('click', function(){
 		//$(this).find('.client-list-checkbox').click();
         var url = $(this).find('.client-list-link').val();
-        if (url != "") {
+        if ((typeof(url) != 'undefined' ) && (url != "")) {
             window.location.href = url;
         }
 	});
