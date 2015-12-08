@@ -1,3 +1,4 @@
+var chart_hash = {};
 $(document).ready(function(){
 	'use strict';
 
@@ -68,7 +69,35 @@ $(document).ready(function(){
         e.stopPropagation();
     });
 
+    $('.show_left').on('click', function(e){
+        e.preventDefault();
+        $(this).removeClass("gray");
+        $(this).addClass("orange");
 
+        $(this).parent().find(".show_right").removeClass("orange");
+        $(this).parent().find(".show_right").addClass("gray");
+
+        $(this).parent().parent().find('.chartright').hide();
+        $(this).parent().parent().find('.chartleft').show();
+        //$(this).parent().parent().find('.chartleft').each(function(){
+        //    chart_hash[this.id].update();
+        //});
+    });
+
+    $('.show_right').on('click', function(e){
+        e.preventDefault();
+        $(this).removeClass("gray");
+        $(this).addClass("orange");
+
+        $(this).parent().find(".show_left").removeClass("orange");
+        $(this).parent().find(".show_left").addClass("gray");
+
+        $(this).parent().parent().find('.chartright').show();
+        $(this).parent().parent().find('.chartleft').hide();
+        $(this).parent().parent().find('.chartright').each(function(){
+            chart_hash[this.id].update();
+        });
+    });
 
 	$('.facebook-share').on('click', function(e){
 		e.preventDefault();
@@ -87,7 +116,7 @@ $(document).ready(function(){
     changeHeaderName();
     closeCurrentSection();
 
-
+    $('.chartright').hide();
 
 });
 
@@ -112,7 +141,6 @@ function accordion() {
         setTimeout(function(){ changeHeaderName(); }, 100);
 	})
 }
-
 
 function showPopup() {
 	$('.js-open-popup').on('click', function(e) {
@@ -203,8 +231,6 @@ function AddCharts() {
 	AddBarCharts();
 }
 
-
-
 function AddLinearCharts() {
 
 	var datal1 = $(".chart1").data("var");
@@ -274,7 +300,6 @@ function AddLinearCharts() {
 
 }
 
-
 function AddDonutCharts(){
 
 
@@ -335,7 +360,8 @@ function AddDonutCharts(){
             animateRotate : false,
             percentageInnerCutout : 80
         });
-        $(this).nextAll('.down:first').text(dataOptimo[1].label);
+        chart_hash[this.id] = myDoughnutChart;
+        $(this).prev('.down:first').text(dataOptimo[1].label);
     });
 
 }
@@ -351,32 +377,28 @@ function AddRadarAndPolarCharts() {
         });
     }
 
-	var dataP1 = $(".chart-a1").data("var");
+    $('.chart-a1').each(function(){
+        var dataP1 = $(this).data("var");
 
-    var chart_a1 = $(".chart-a1");
-    if (chart_a1.length) {
-        var chartP1 = chart_a1.get(0).getContext("2d");
-        var chartPolar1 = new Chart(chartP1).PolarArea(dataP1, {
-            segmentStrokeWidth: 4
-        });
-    }
+        var chart_a1 = $(this);
+            var chartP1 = chart_a1.get(0).getContext("2d");
+            var chartPolar1 = new Chart(chartP1).PolarArea(dataP1, {
+                segmentStrokeWidth: 4
+            });
+        chart_hash[this.id] = chartPolar1;
+    });
 
-    dataP1 = $(".chart-a2").data("var");
-    var chart_a2 = $(".chart-a2");
-    if (chart_a2.length) {
-        var chartP2 = chart_a2.get(0).getContext("2d");
+    //var dataP1 = $(".chart-a1").data("var");
+    //
+    //var chart_a1 = $(".chart-a1");
+    //if (chart_a1.length) {
+    //    var chartP1 = chart_a1.get(0).getContext("2d");
+    //    var chartPolar1 = new Chart(chartP1).PolarArea(dataP1, {
+    //        segmentStrokeWidth: 4
+    //    });
+    //}
 
-        var chartPolar2 = new Chart(chartP2).PolarArea(dataP1, {
-            segmentStrokeWidth: 4
-        });
-    }
-    dataP1 = $(".chart-a3").data("var");
-	var chartP3 = $(".chart-a3").get(0).getContext("2d");
-
-	var chartPolar3 = new Chart(chartP3).PolarArea(dataP1, {
-		segmentStrokeWidth : 4
-	});
-};
+}
 
 
 function AddBarCharts() {

@@ -1414,7 +1414,7 @@ iframe {
 .chart-optimo {
   position: absolute;
   top: 160px;
-  left: 110px;
+  left: 130px;
 }
 
 .chart-optimo-right {
@@ -1437,19 +1437,14 @@ iframe {
   text-align: center;
 }
 
-.small-chart-wrapper .down {
-  top: 100%;
-  margin-top: -10px;
-}
 .small-chart-wrapper h6 {
   margin: 0;
   color: #545454;
   font-weight: 600;
   font-size: 13px;
   position: absolute;
-  left: 25%;
-//  margin-left: -48px;
-  margin-top: 12px;
+  left: 50%;
+  margin-left: -48px;
   top: 100%;
   line-height: 13px;
   text-align: center;
@@ -1459,7 +1454,7 @@ iframe {
 .chart-bajo {
   position: absolute;
   top: 410px;
-  left: 80px;
+  left: 110px;
 }
 
 .chart-bajo-right {
@@ -1471,7 +1466,7 @@ iframe {
 .chart-left-1 {
   position: absolute;
   top: 80px;
-  left: 80px;
+  left: 110px;
 }
 
 .chart-left-1-right {
@@ -1483,7 +1478,7 @@ iframe {
 .chart-left-2 {
   position: absolute;
   top: 250px;
-  left: 80px;
+  left: 110px;
 }
 
 .chart-left-2-right {
@@ -1497,7 +1492,7 @@ iframe {
 .chart-right-1 {
   position: absolute;
   top: 80px;
-  right: 0;
+  right: -70px;
 }
 
 .chart-right-1-right {
@@ -1509,7 +1504,7 @@ iframe {
 .chart-right-2 {
   position: absolute;
   top: 250px;
-  right: 0;
+  right: -70px;
 }
 
 .chart-right-2-right {
@@ -1521,7 +1516,7 @@ iframe {
 .chart-right-3 {
   position: absolute;
   top: 410px;
-  right: 0;
+  right: -70px;
 }
 
 .chart-right-3-right {
@@ -1532,8 +1527,8 @@ iframe {
 
 .chart-aceptable {
   position: absolute;
-  top: 270px;
-  right: 20px;
+  top: 290px;
+  right: -70px;
 }
 
 .chart-aceptable-right {
@@ -2316,3 +2311,14 @@ input[type="submit"] {
   display: inline-flex;
   vertical-align: middle;
 }
+
+.left--anatomy a {
+  text-decoration: none;
+  font-size: 14px;
+}
+
+.gray {
+  color: #a9a9a9;
+}
+
+

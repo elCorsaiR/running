@@ -24,7 +24,7 @@ class User < ActiveRecord::Base
   before_update :parse_file
   has_secure_password
 
-  scope :search, -> (term) { where('lower(name) like :c or email like :c or ((CAST( id AS text ) || solt) like :c)', { c: "%#{term.strip.downcase}%" }) }
+  scope :search, -> (term) { where('lower(name) like :c or email like :c or ((CAST( id AS text ) || solt) like :c)', {c: "%#{term.strip.downcase}%"}) }
   scope :clients, -> { where admin: false }
   default_scope -> { order 'report_date desc' }
 
@@ -255,7 +255,7 @@ class User < ActiveRecord::Base
                 strokeColor: '#958899',
                 highlightFill: '#958899',
                 highlightStroke: '#958899',
-                data: [left_stride_frequency_evaluation,  tip_direction_of_left_foot_evaluation, width_between_left_stances_evaluation]
+                data: [left_stride_frequency_evaluation, tip_direction_of_left_foot_evaluation, width_between_left_stances_evaluation]
             },
             {
                 label: 'derecho',
@@ -263,7 +263,7 @@ class User < ActiveRecord::Base
                 strokeColor: '#fe8e64',
                 highlightFill: '#fe8e64',
                 highlightStroke: '#fe8e64',
-                data: [right_stride_frequency_evaluation,  tip_direction_of_right_foot_evaluation, width_between_right_stances_evaluation]
+                data: [right_stride_frequency_evaluation, tip_direction_of_right_foot_evaluation, width_between_right_stances_evaluation]
             }
         ]
     }.to_json
@@ -639,109 +639,217 @@ class User < ActiveRecord::Base
     ].to_json
   end
 
-  def a1_data
-    [
-            {
-                value: ((q_angle_left.to_i + q_angle_right.to_i) / 2).to_i,
-                color:"#fa874e",
-                highlight: "#fa874e",
-                label: "Angulo Q"
-            },
-            {
-                value: (legs_length_discrepancy_left.to_i + legs_length_discrepancy_right.to_i) / 2,
-                color: "#febc46",
-                highlight: "#febc46",
-                label: "Discrepancia"
-            },
-            {
-                value: (back_foot_angle_left.to_i + back_foot_angle_right.to_i) / 2,
-                color: "#ffcb8c",
-                highlight: "#ffcb8c",
-                label: "Angulo del retro-pie"
-            }
-
-        ].to_json
-  end
-
-  def a2_data
+  def a1_data_left
     [
         {
-            value: ((hip_rotatoes_left.to_i + hip_rotatoes_right.to_i) / 2).to_i,
-            color:"#fa874e",
-            highlight: "#fa874e",
-            label: "Rotadores de cadero"
+            value: q_angle_left.to_i,
+            color: '#fa874e',
+            highlight: '#fa874e',
+            label: 'Angulo Q'
         },
         {
-            value: (isquiotibiales_left.to_i + isquiotibiales_right.to_i) / 2,
-            color: "#febc46",
-            highlight: "#febc46",
-            label: "Isquitibiles"
+            value: legs_length_discrepancy_left.to_i,
+            color: '#febc46',
+            highlight: '#febc46',
+            label: 'Discrepancia'
         },
         {
-            value: (iliotibial_band_left.to_i + iliotibial_band_right.to_i) / 2,
-            color: "#ffcb8c",
-            highlight: "#ffcb8c",
-            label: "Recto femoral"
-        },
-        {
-            value: (psoas_iliaco_left.to_i + psoas_iliaco_right.to_i) / 2,
-            color: "#cbcad4",
-            highlight: "#cbcad4",
-            label: "Psoas iliaco"
-        },
-        {
-            value: (recto_femoral_left.to_i + recto_femoral_right.to_i) / 2,
-            color: "#88768b",
-            highlight: "#88768b",
-            label: "Recto femoral"
-        },
-        {
-            value: (gastrocnemius_y_soleo_left.to_i + gastrocnemius_y_soleo_right.to_i) / 2,
-            color: "#6483c3",
-            highlight: "#6483c3",
-            label: "Gastrocnemius y soleo"
+            value: back_foot_angle_left.to_i,
+            color: '#ffcb8c',
+            highlight: '#ffcb8c',
+            label: 'Angulo del retro-pie'
         }
 
     ].to_json
   end
 
-  def a3_data
+  def a1_data_right
     [
         {
-            value: ((mid_gluteus_strength_left.to_i + mid_gluteus_strength_right.to_i) / 2).to_i,
-            color:"#fa874e",
-            highlight: "#fa874e",
-            label: "Gluteo medio"
+            value: q_angle_right.to_i,
+            color: '#fa874e',
+            highlight: '#fa874e',
+            label: 'Angulo Q'
         },
         {
-            value: (isquiotibial_strength_left.to_i + isquiotibial_strength_right.to_i) / 2,
-            color: "#febc46",
-            highlight: "#febc46",
-            label: "Isquiotibiles"
+            value: legs_length_discrepancy_right.to_i,
+            color: '#febc46',
+            highlight: '#febc46',
+            label: 'Discrepancia'
         },
         {
-            value: (vasto_lateral_left.to_i + vasto_lateral_right.to_i) / 2,
-            color: "#ffcb8c",
-            highlight: "#ffcb8c",
-            label: "Vasto lateral"
+            value: back_foot_angle_right.to_i,
+            color: '#ffcb8c',
+            highlight: '#ffcb8c',
+            label: 'Angulo del retro-pie'
+        }
+
+    ].to_json
+  end
+
+  def a2_data_left
+    [
+        {
+            value: hip_rotatoes_left.to_i,
+            color: '#fa874e',
+            highlight: '#fa874e',
+            label: 'Rotadores de cadero'
         },
         {
-            value: (vasto_intermedio_left.to_i + vasto_intermedio_right.to_i) / 2,
-            color: "#cbcad4",
-            highlight: "#cbcad4",
-            label: "Vasto intermedio"
+            value: isquiotibiales_left.to_i,
+            color: '#febc46',
+            highlight: '#febc46',
+            label: 'Isquitibiles'
         },
         {
-            value: (vasto_medial_left.to_i + vasto_medial_right.to_i) / 2,
-            color: "#88768b",
-            highlight: "#88768b",
-            label: "Vasto medial"
+            value: iliotibial_band_left.to_i,
+            color: '#ffcb8c',
+            highlight: '#ffcb8c',
+            label: 'Recto femoral'
         },
         {
-            value: (back_tibial_strength_left.to_i + back_tibial_strength_right.to_i) / 2,
-            color: "#6483c3",
-            highlight: "#6483c3",
-            label: "Tibial posterior"
+            value: psoas_iliaco_left.to_i,
+            color: '#cbcad4',
+            highlight: '#cbcad4',
+            label: 'Psoas iliaco'
+        },
+        {
+            value: recto_femoral_left.to_i,
+            color: '#88768b',
+            highlight: '#88768b',
+            label: 'Recto femoral'
+        },
+        {
+            value: gastrocnemius_y_soleo_left.to_i,
+            color: '#6483c3',
+            highlight: '#6483c3',
+            label: 'Gastrocnemius y soleo'
+        }
+
+    ].to_json
+  end
+
+  def a2_data_right
+    [
+        {
+            value: hip_rotatoes_right.to_i,
+            color: '#fa874e',
+            highlight: '#fa874e',
+            label: 'Rotadores de cadero'
+        },
+        {
+            value: isquiotibiales_right.to_i,
+            color: '#febc46',
+            highlight: '#febc46',
+            label: 'Isquitibiles'
+        },
+        {
+            value: iliotibial_band_right.to_i,
+            color: '#ffcb8c',
+            highlight: '#ffcb8c',
+            label: 'Recto femoral'
+        },
+        {
+            value: psoas_iliaco_right.to_i,
+            color: '#cbcad4',
+            highlight: '#cbcad4',
+            label: 'Psoas iliaco'
+        },
+        {
+            value: recto_femoral_right.to_i,
+            color: '#88768b',
+            highlight: '#88768b',
+            label: 'Recto femoral'
+        },
+        {
+            value: gastrocnemius_y_soleo_right.to_i,
+            color: '#6483c3',
+            highlight: '#6483c3',
+            label: 'Gastrocnemius y soleo'
+        }
+
+    ].to_json
+  end
+
+  def a3_data_left
+    [
+        {
+            value: mid_gluteus_strength_left.to_i,
+            color: '#fa874e',
+            highlight: '#fa874e',
+            label: 'Gluteo medio'
+        },
+        {
+            value: isquiotibial_strength_left.to_i,
+            color: '#febc46',
+            highlight: '#febc46',
+            label: 'Isquiotibiles'
+        },
+        {
+            value: vasto_lateral_left.to_i,
+            color: '#ffcb8c',
+            highlight: '#ffcb8c',
+            label: 'Vasto lateral'
+        },
+        {
+            value: vasto_intermedio_left.to_i,
+            color: '#cbcad4',
+            highlight: '#cbcad4',
+            label: 'Vasto intermedio'
+        },
+        {
+            value: vasto_medial_left.to_i,
+            color: '#88768b',
+            highlight: '#88768b',
+            label: 'Vasto medial'
+        },
+        {
+            value: back_tibial_strength_left.to_i,
+            color: '#6483c3',
+            highlight: '#6483c3',
+            label: 'Tibial posterior'
+        }
+
+    ].to_json
+  end
+
+  def a3_data_right
+    [
+        {
+            value: mid_gluteus_strength_right.to_i,
+            color: '#fa874e',
+            highlight: '#fa874e',
+            label: 'Gluteo medio'
+        },
+        {
+            value: isquiotibial_strength_right.to_i,
+            color: '#febc46',
+            highlight: '#febc46',
+            label: 'Isquiotibiles'
+        },
+        {
+            value: vasto_lateral_right.to_i,
+            color: '#ffcb8c',
+            highlight: '#ffcb8c',
+            label: 'Vasto lateral'
+        },
+        {
+            value: vasto_intermedio_right.to_i,
+            color: '#cbcad4',
+            highlight: '#cbcad4',
+            label: 'Vasto intermedio'
+        },
+        {
+            value: vasto_medial_right.to_i,
+            color: '#88768b',
+            highlight: '#88768b',
+            label: 'Vasto medial'
+        },
+        {
+            value: back_tibial_strength_right.to_i,
+            color: '#6483c3',
+            highlight: '#6483c3',
+            label: 'Tibial posterior'
         }
 
     ].to_json
@@ -772,19 +880,19 @@ class User < ActiveRecord::Base
   end
 
   def color_by_field(field)
-    case  field
+    case field
       when :q_angle_left, :q_angle_right, :hip_rotatoes_left, :hip_rotatoes_right, :mid_gluteus_strength_left, :mid_gluteus_strength_right
         '#fa874e'
       when :legs_length_discrepancy_left, :legs_length_discrepancy_right, :isquiotibiales_left, :isquiotibiales_right, :isquiotibial_strength_left, :isquiotibial_strength_right
-          '#febc46'
-      when :back_foot_angle_left, :back_foot_angle_right, :iliotibial_band_left, :iliotibial_band_right, :vasto_lateral_left, :vasto_lateral_right        
-          '#ffcb8c'
-      when :psoas_iliaco_left, :psoas_iliaco_right, :vasto_intermedio_left, :vasto_intermedio_right        
-          '#cbcad4'
-      when :recto_femoral_left, :recto_femoral_right, :vasto_medial_left, :vasto_medial_right 
-          '#88768b'
+        '#febc46'
+      when :back_foot_angle_left, :back_foot_angle_right, :iliotibial_band_left, :iliotibial_band_right, :vasto_lateral_left, :vasto_lateral_right
+        '#ffcb8c'
+      when :psoas_iliaco_left, :psoas_iliaco_right, :vasto_intermedio_left, :vasto_intermedio_right
+        '#cbcad4'
+      when :recto_femoral_left, :recto_femoral_right, :vasto_medial_left, :vasto_medial_right
+        '#88768b'
       when :gastrocnemius_y_soleo_left, :gastrocnemius_y_soleo_right, :back_tibial_strength_left, :back_tibial_strength_right
-          '#6483c3'        
+        '#6483c3'
       else
         '#ffffff'
     end
@@ -1001,9 +1109,9 @@ class User < ActiveRecord::Base
         end
 
         if (row[0].to_s.start_with?('URL VÍDEO REPRESENTACIÓN ESQUELÉTICA') or
-           row[0].to_s.start_with?('URL VÍDEO VISIÓN LATERAL') or
-           row[0].to_s.start_with?('URL VÍDEO VISION TRASERA') or
-           row[0].to_s.start_with?('URL VIDEO PISTA DE ATLETISM')) and row[1].present?
+            row[0].to_s.start_with?('URL VÍDEO VISIÓN LATERAL') or
+            row[0].to_s.start_with?('URL VÍDEO VISION TRASERA') or
+            row[0].to_s.start_with?('URL VIDEO PISTA DE ATLETISM')) and row[1].present?
 
           video_url = row[1]
           if video_url =~ /.*?vimeo.*?(\d+)/
@@ -1023,7 +1131,7 @@ class User < ActiveRecord::Base
             if found_programs.size > 0
               found_programs[0].text = row[1]
             else
-              self.programs.build( order_num: num, text: row[1] )
+              self.programs.build(order_num: num, text: row[1])
             end
           end
 
@@ -1038,7 +1146,7 @@ class User < ActiveRecord::Base
             if found_programs.size > 0
               found_programs[0].title = row[1]
             else
-              self.programs.build( order_num: num, title: row[1] )
+              self.programs.build(order_num: num, title: row[1])
             end
           end
         end

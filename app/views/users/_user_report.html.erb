@@ -493,9 +493,11 @@
                   <strong>discrepancia en la longitud de las piernas</strong> es la diferencia de longitud de una pierna
                   sobre
                   la otra (si tienes una pierna más corta que la otra).</p>
+                <a class="show_left orange" href="#">Pierna izquierda</a> <span class="gray">|</span> <a class="show_right gray" href="#">Pierna derecha</a>
 
                 <div class="annatomy-chart-wrapper">
-                  <canvas class="chart-a1" width="360" height="360" data-var="<%= @user.a1_data %>"></canvas>
+                  <canvas id="charta1chartleft" class="chart-a1 chartleft" width="360" height="360" data-var="<%= @user.a1_data_left %>"></canvas>
+                  <canvas id="charta1chartright" class="chart-a1 chartright" width="360" height="360" data-var="<%= @user.a1_data_right %>" ></canvas>
                 </div>
 
               </div>
@@ -503,42 +505,39 @@
                 <div class="charts-and-image-wrapper">
                   <%= image_tag 'anatomy-placeholder.jpg' %>
 
-                  <div class="small-chart-wrapper chart-optimo">
-                    <span>Izq.</span>
-                    <canvas id="q_angle_left" class="anatomy1" width="60" height="60" data-var="<%= @user.anatomica_data(:q_angle_left) %>"></canvas>
+                  <div id="divq_angle_left" class="small-chart-wrapper chart-optimo chartleft">
                     <span class="down">Óptimo</span>
+                    <canvas id="q_angle_left" class="anatomy1 " width="95" height="95" data-var="<%= @user.anatomica_data(:q_angle_left) %>"></canvas>
                     <h6>Angulo Q</h6>
                   </div>
-                  <div class="small-chart-wrapper chart-optimo-right">
-                    <span>Dcho.</span>
-                    <canvas id="q_angle_right" class="anatomy1" width="60" height="60" data-var="<%= @user.anatomica_data(:q_angle_right) %>"></canvas>
+                  <div id="divq_angle_right" class="small-chart-wrapper chart-optimo chartright">
                     <span class="down">Óptimo</span>
+                    <canvas id="q_angle_right" class="anatomy1 " width="95" height="95" data-var="<%= @user.anatomica_data(:q_angle_right) %>"></canvas>
+                    <h6>Angulo Q</h6>
                   </div>
 
 
-                  <div class="small-chart-wrapper chart-bajo">
-                    <span>Izq.</span>
-                    <canvas id="q_angle_left" class="anatomy1" width="60" height="60" data-var="<%= @user.anatomica_data(:legs_length_discrepancy_left) %>"></canvas>
+                  <div id="legs_length_discrepancy_left" class="small-chart-wrapper chart-bajo chartleft">
                     <span class="down">Óptimo</span>
+                    <canvas id="q_angle_left" class="anatomy1" width="95" height="95" data-var="<%= @user.anatomica_data(:legs_length_discrepancy_left) %>"></canvas>
                     <h6>Discrepancia longitud de las piernas</h6>
                   </div>
-                  <div class="small-chart-wrapper chart-bajo-right">
-                    <span>Dcho.</span>
-                    <canvas id="q_angle_right" class="anatomy1" width="60" height="60" data-var="<%= @user.anatomica_data(:legs_length_discrepancy_right) %>"></canvas>
+                  <div id="legs_length_discrepancy_right" class="small-chart-wrapper chart-bajo chartright">
                     <span class="down">Óptimo</span>
+                    <canvas id="q_angle_right" class="anatomy1" width="95" height="95" data-var="<%= @user.anatomica_data(:legs_length_discrepancy_right) %>"></canvas>
+                    <h6>Discrepancia longitud de las piernas</h6>
                   </div>
 
 
-                  <div class="small-chart-wrapper chart-aceptable">
-                    <span>Izq.</span>
-                    <canvas id="q_angle_left" class="anatomy1" width="60" height="60" data-var="<%= @user.anatomica_data(:back_foot_angle_left) %>"></canvas>
+                  <div id="back_foot_angle_left" class="small-chart-wrapper chart-aceptable chartleft">
                     <span class="down">Óptimo</span>
+                    <canvas id="q_angle_left" class="anatomy1" width="95" height="95" data-var="<%= @user.anatomica_data(:back_foot_angle_left) %>"></canvas>
                     <h6>Angulo del retro-pie</h6>
                   </div>
-                  <div class="small-chart-wrapper chart-aceptable-right">
-                    <span>Dcho.</span>
-                    <canvas id="q_angle_right" class="anatomy1" width="60" height="60" data-var="<%= @user.anatomica_data(:back_foot_angle_right) %>"></canvas>
+                  <div id="back_foot_angle_right" class="small-chart-wrapper chart-aceptable chartright">
                     <span class="down">Óptimo</span>
+                    <canvas id="q_angle_right" class="anatomy1" width="95" height="95" data-var="<%= @user.anatomica_data(:back_foot_angle_right) %>"></canvas>
+                    <h6>Angulo del retro-pie</h6>
                   </div>
                 </div>
               </div>
@@ -561,89 +560,81 @@
                   Los <strong>isquitibiales</strong> son varios músculos que recorren la parte posterior del muslo. La
                   <strong>banda isquitibial</strong> es un músculo que recorre la parte lateral (externa) del muslo.
                 </p>
-
+                <a class="show_left orange" href="#">Pierna izquierda</a> <span class="gray">|</span> <a class="show_right gray" href="#">Pierna derecha</a>
                 <div class="annatomy-chart-wrapper">
-                  <canvas class="chart-a2" width="360" height="360" data-var="<%= @user.a2_data %>"></canvas>
+                  <canvas id="charta2chartleft" class="chart-a1 chartleft" width="360" height="360" data-var="<%= @user.a2_data_left %>"></canvas>
+                  <canvas id="charta2chartright" class="chart-a1 chartright" width="360" height="360" data-var="<%= @user.a2_data_right %>"></canvas>
                 </div>
               </div>
               <div class="right right-anatomy">
                 <div class="charts-and-image-wrapper">
                   <%= image_tag 'anatomy-placeholder.jpg' %>
 
-                  <div class="small-chart-wrapper chart-left-1">
-                    <span>Izq.</span>
-                    <canvas class="anatomy1" width="60" height="60" data-var="<%= @user.anatomica_data(:hip_rotatoes_left) %>"></canvas>
+                  <div id="hip_rotatoes_left" class="small-chart-wrapper chart-left-1 chartleft">
                     <span class="down">Óptimo</span>
+                    <canvas class="anatomy1" width="95" height="95" data-var="<%= @user.anatomica_data(:hip_rotatoes_left) %>"></canvas>
                     <h6>Rotadores de cadero</h6>
                   </div>
-                  <div class="small-chart-wrapper chart-left-1-right">
-                    <span>Dcho.</span>
-                    <canvas class="anatomy1" width="60" height="60" data-var="<%= @user.anatomica_data(:hip_rotatoes_right) %>"></canvas>
+                  <div id="hip_rotatoes_right" class="small-chart-wrapper chart-left-1 chartright">
                     <span class="down">Óptimo</span>
+                    <canvas class="anatomy1" width="95" height="95" data-var="<%= @user.anatomica_data(:hip_rotatoes_right) %>"></canvas>
+                    <h6>Rotadores de cadero</h6>
                   </div>
 
-                  <div class="small-chart-wrapper chart-left-2">
-                    <span>Izq.</span>
-                    <canvas class="anatomy1" width="60" height="60" data-var="<%= @user.anatomica_data(:isquiotibiales_left) %>"></canvas>
+                  <div id="isquiotibiales_left" class="small-chart-wrapper chart-left-2 chartleft">
                     <span class="down">Óptimo</span>
+                    <canvas class="anatomy1" width="95" height="95" data-var="<%= @user.anatomica_data(:isquiotibiales_left) %>"></canvas>
                     <h6>Isquitibiles</h6>
                   </div>
-                  <div class="small-chart-wrapper chart-left-2-right">
-                    <span>Dcho.</span>
-                    <canvas class="anatomy1" width="60" height="60" data-var="<%= @user.anatomica_data(:isquiotibiales_right) %>"></canvas>
+                  <div id="isquiotibiales_right" class="small-chart-wrapper chart-left-2 chartright">
                     <span class="down">Óptimo</span>
+                    <canvas class="anatomy1" width="95" height="95" data-var="<%= @user.anatomica_data(:isquiotibiales_right) %>"></canvas>
+                    <h6>Isquitibiles</h6>
                   </div>
 
-                  <div class="small-chart-wrapper chart-bajo">
-                    <span>Izq.</span>
-                    <canvas class="anatomy1" width="60" height="60" data-var="<%= @user.anatomica_data(:iliotibial_band_left) %>"></canvas>
+                  <div id="iliotibial_band_left" class="small-chart-wrapper chart-bajo chartleft">
                     <span class="down">Óptimo</span>
+                    <canvas class="anatomy1" width="95" height="95" data-var="<%= @user.anatomica_data(:iliotibial_band_left) %>"></canvas>
                     <h6>Recto femoral</h6>
                   </div>
-                  <div class="small-chart-wrapper chart-bajo-right">
-                    <span>Dcho.</span>
-                    <canvas class="anatomy1" width="60" height="60" data-var="<%= @user.anatomica_data(:iliotibial_band_right) %>"></canvas>
+                  <div id="iliotibial_band_right" class="small-chart-wrapper chart-bajo chartright">
                     <span class="down">Óptimo</span>
+                    <canvas class="anatomy1" width="95" height="95" data-var="<%= @user.anatomica_data(:iliotibial_band_right) %>"></canvas>
+                    <h6>Recto femoral</h6>
                   </div>
 
-
-                  <div class="small-chart-wrapper chart-right-1">
-                    <span>Izq.</span>
-                    <canvas class="anatomy1" width="60" height="60" data-var="<%= @user.anatomica_data(:psoas_iliaco_left) %>"></canvas>
+                  <div id="psoas_iliaco_left" class="small-chart-wrapper chart-right-1 chartleft">
                     <span class="down">Óptimo</span>
+                    <canvas class="anatomy1" width="95" height="95" data-var="<%= @user.anatomica_data(:psoas_iliaco_left) %>"></canvas>
                     <h6>Psoas iliaco</h6>
                   </div>
-                  <div class="small-chart-wrapper chart-right-1-right">
-                    <span>Dcho.</span>
-                    <canvas class="anatomy1" width="60" height="60" data-var="<%= @user.anatomica_data(:psoas_iliaco_right) %>"></canvas>
+                  <div id="psoas_iliaco_right" class="small-chart-wrapper chart-right-1 chartright">
                     <span class="down">Óptimo</span>
+                    <canvas class="anatomy1" width="95" height="95" data-var="<%= @user.anatomica_data(:psoas_iliaco_right) %>"></canvas>
+                    <h6>Psoas iliaco</h6>
                   </div>
 
-                  <div class="small-chart-wrapper chart-right-2">
-                    <span>Izq.</span>
-                    <canvas class="anatomy1" width="60" height="60" data-var="<%= @user.anatomica_data(:recto_femoral_left) %>"></canvas>
+                  <div id="recto_femoral_left" class="small-chart-wrapper chart-right-2 chartleft">
                     <span class="down">Óptimo</span>
+                    <canvas class="anatomy1" width="95" height="95" data-var="<%= @user.anatomica_data(:recto_femoral_left) %>"></canvas>
                     <h6>Recto femoral</h6>
                   </div>
-                  <div class="small-chart-wrapper chart-right-2-right">
-                    <span>Dcho.</span>
-                    <canvas class="anatomy1" width="60" height="60" data-var="<%= @user.anatomica_data(:recto_femoral_right) %>"></canvas>
+                  <div id="recto_femoral_right" class="small-chart-wrapper chart-right-2 chartright">
                     <span class="down">Óptimo</span>
+                    <canvas class="anatomy1" width="95" height="95" data-var="<%= @user.anatomica_data(:recto_femoral_right) %>"></canvas>
+                    <h6>Recto femoral</h6>
                   </div>
 
-                  <div class="small-chart-wrapper chart-right-3">
-                    <span>Izq.</span>
-                    <canvas class="anatomy1" width="60" height="60" data-var="<%= @user.anatomica_data(:gastrocnemius_y_soleo_left) %>"></canvas>
+                  <div id="gastrocnemius_y_soleo_left" class="small-chart-wrapper chart-right-3 chartleft">
                     <span class="down">Óptimo</span>
+                    <canvas class="anatomy1" width="95" height="95" data-var="<%= @user.anatomica_data(:gastrocnemius_y_soleo_left) %>"></canvas>
                     <h6>Gastrocnemius y soleo</h6>
                   </div>
-                  <div class="small-chart-wrapper chart-right-3-right">
-                    <span>Dcho.</span>
-                    <canvas class="anatomy1" width="60" height="60" data-var="<%= @user.anatomica_data(:gastrocnemius_y_soleo_right) %>"></canvas>
+                  <div id="gastrocnemius_y_soleo_right" class="small-chart-wrapper chart-right-3 chartright">
                     <span class="down">Óptimo</span>
+                    <canvas class="anatomy1" width="95" height="95" data-var="<%= @user.anatomica_data(:gastrocnemius_y_soleo_right) %>"></canvas>
+                    <h6>Gastrocnemius y soleo</h6>
                   </div>
-
-
                 </div>
               </div>
             </div>
@@ -664,85 +655,81 @@
                   cadera. Los <strong>isquiotibiales</strong> son varios músculos que recorren la parte posterior del
                   muslo.
                   Finalmente, el <strong>vasto lateral</strong> se refiere a las fibras externas del cuádriceps.</p>
-
+                <a class="show_left orange" href="#">Pierna izquierda</a> <span class="gray">|</span> <a class="show_right gray" href="#">Pierna derecha</a>
                 <div class="annatomy-chart-wrapper">
-                  <canvas class="chart-a3" width="360" height="360" data-var="<%= @user.a3_data %>"></canvas>
+                  <canvas id="charta3chartleft" class="chart-a1 chartleft" width="395" height="395" data-var="<%= @user.a3_data_left %>"></canvas>
+                  <canvas id="charta3chartright" class="chart-a1 chartright" width="395" height="395" data-var="<%= @user.a3_data_right %>"></canvas>
                 </div>
               </div>
               <div class="right right-anatomy">
                 <div class="charts-and-image-wrapper">
                   <%= image_tag 'anatomy-placeholder.jpg' %>
-                  <div class="small-chart-wrapper chart-left-1">
-                    <span>Izq.</span>
-                    <canvas class="anatomy1" width="60" height="60" data-var="<%= @user.anatomica_data(:mid_gluteus_strength_left) %>"></canvas>
+
+                  <div id="mid_gluteus_strength_left" class="small-chart-wrapper chart-left-1 chartleft">
                     <span class="down">Óptimo</span>
+                    <canvas class="anatomy1" width="95" height="95" data-var="<%= @user.anatomica_data(:mid_gluteus_strength_left) %>"></canvas>
                     <h6>Gluteo medio</h6>
                   </div>
-                  <div class="small-chart-wrapper chart-left-1-right">
-                    <span>Dcho.</span>
-                    <canvas class="anatomy1" width="60" height="60" data-var="<%= @user.anatomica_data(:mid_gluteus_strength_right) %>"></canvas>
+                  <div id="mid_gluteus_strength_right" class="small-chart-wrapper chart-left-1 chartright">
                     <span class="down">Óptimo</span>
+                    <canvas class="anatomy1" width="95" height="95" data-var="<%= @user.anatomica_data(:mid_gluteus_strength_right) %>"></canvas>
+                    <h6>Gluteo medio</h6>
                   </div>
 
-                  <div class="small-chart-wrapper chart-left-2">
-                    <span>Izq.</span>
-                    <canvas class="anatomy1" width="60" height="60" data-var="<%= @user.anatomica_data(:isquiotibial_strength_left) %>"></canvas>
+                  <div id="isquiotibial_strength_left" class="small-chart-wrapper chart-left-2 chartleft">
                     <span class="down">Óptimo</span>
+                    <canvas class="anatomy1" width="95" height="95" data-var="<%= @user.anatomica_data(:isquiotibial_strength_left) %>"></canvas>
                     <h6>Isquiotibiles</h6>
                   </div>
-                  <div class="small-chart-wrapper chart-left-2-right">
-                    <span>Dcho.</span>
-                    <canvas class="anatomy1" width="60" height="60" data-var="<%= @user.anatomica_data(:isquiotibial_strength_right) %>"></canvas>
+                  <div id="isquiotibial_strength_right" class="small-chart-wrapper chart-left-2 chartright">
                     <span class="down">Óptimo</span>
+                    <canvas class="anatomy1" width="95" height="95" data-var="<%= @user.anatomica_data(:isquiotibial_strength_right) %>"></canvas>
+                    <h6>Isquiotibiles</h6>
                   </div>
 
-                  <div class="small-chart-wrapper chart-bajo">
-                    <span>Izq.</span>
-                    <canvas class="anatomy1" width="60" height="60" data-var="<%= @user.anatomica_data(:vasto_lateral_left) %>"></canvas>
+                  <div id="vasto_lateral_left" class="small-chart-wrapper chart-bajo chartleft">
                     <span class="down">Óptimo</span>
+                    <canvas class="anatomy1" width="95" height="95" data-var="<%= @user.anatomica_data(:vasto_lateral_left) %>"></canvas>
                     <h6>Vasto lateral</h6>
                   </div>
-                  <div class="small-chart-wrapper chart-bajo-right">
-                    <span>Dcho.</span>
-                    <canvas class="anatomy1" width="60" height="60" data-var="<%= @user.anatomica_data(:vasto_lateral_right) %>"></canvas>
+                  <div id="vasto_lateral_right" class="small-chart-wrapper chart-bajo chartright">
                     <span class="down">Óptimo</span>
+                    <canvas class="anatomy1" width="95" height="95" data-var="<%= @user.anatomica_data(:vasto_lateral_right) %>"></canvas>
+                    <h6>Vasto lateral</h6>
                   </div>
 
 
-                  <div class="small-chart-wrapper chart-right-1">
-                    <span>Izq.</span>
-                    <canvas class="anatomy1" width="60" height="60" data-var="<%= @user.anatomica_data(:vasto_intermedio_left) %>"></canvas>
+                  <div id="vasto_intermedio_left" class="small-chart-wrapper chart-right-1 chartleft">
                     <span class="down">Óptimo</span>
+                    <canvas class="anatomy1" width="95" height="95" data-var="<%= @user.anatomica_data(:vasto_intermedio_left) %>"></canvas>
                     <h6>Vasto intermedio</h6>
                   </div>
-                  <div class="small-chart-wrapper chart-right-1-right">
-                    <span>Dcho.</span>
-                    <canvas class="anatomy1" width="60" height="60" data-var="<%= @user.anatomica_data(:vasto_intermedio_right) %>"></canvas>
+                  <div id="vasto_intermedio_right" class="small-chart-wrapper chart-right-1 chartright">
                     <span class="down">Óptimo</span>
+                    <canvas class="anatomy1" width="95" height="95" data-var="<%= @user.anatomica_data(:vasto_intermedio_right) %>"></canvas>
+                    <h6>Vasto intermedio</h6>
                   </div>
 
-                  <div class="small-chart-wrapper chart-right-2">
-                    <span>Izq.</span>
-                    <canvas class="anatomy1" width="60" height="60" data-var="<%= @user.anatomica_data(:vasto_medial_left) %>"></canvas>
+                  <div id="vasto_medial_left" class="small-chart-wrapper chart-right-2 chartleft">
                     <span class="down">Óptimo</span>
+                    <canvas class="anatomy1" width="95" height="95" data-var="<%= @user.anatomica_data(:vasto_medial_left) %>"></canvas>
                     <h6>Vasto medial</h6>
                   </div>
-                  <div class="small-chart-wrapper chart-right-2-right">
-                    <span>Dcho.</span>
-                    <canvas class="anatomy1" width="60" height="60" data-var="<%= @user.anatomica_data(:vasto_medial_right) %>"></canvas>
+                  <div id="vasto_medial_right" class="small-chart-wrapper chart-right-2 chartright">
                     <span class="down">Óptimo</span>
+                    <canvas class="anatomy1" width="95" height="95" data-var="<%= @user.anatomica_data(:vasto_medial_right) %>"></canvas>
+                    <h6>Vasto medial</h6>
                   </div>
 
-                  <div class="small-chart-wrapper chart-right-3">
-                    <span>Izq.</span>
-                    <canvas class="anatomy1" width="60" height="60" data-var="<%= @user.anatomica_data(:back_tibial_strength_left) %>"></canvas>
+                  <div id="back_tibial_strength_left" class="small-chart-wrapper chart-right-3 chartleft">
                     <span class="down">Óptimo</span>
+                    <canvas class="anatomy1" width="95" height="95" data-var="<%= @user.anatomica_data(:back_tibial_strength_left) %>"></canvas>
                     <h6>Tibial posterior</h6>
                   </div>
-                  <div class="small-chart-wrapper chart-right-3-right">
-                    <span>Dcho.</span>
-                    <canvas class="anatomy1" width="60" height="60" data-var="<%= @user.anatomica_data(:back_tibial_strength_right) %>"></canvas>
+                  <div id="back_tibial_strength_right" class="small-chart-wrapper chart-right-3 chartright">
                     <span class="down">Óptimo</span>
+                    <canvas class="anatomy1" width="95" height="95" data-var="<%= @user.anatomica_data(:back_tibial_strength_right) %>"></canvas>
+                    <h6>Tibial posterior</h6>
                   </div>
                 </div>
               </div>
