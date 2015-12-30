@@ -241,7 +241,6 @@ function AddLinearCharts() {
         multiTooltipTemplate: "<%= datasetLabel %>: <%= value %>"
 	});
 
-
 	var datal2 = $(".chart3").data("var");
 	var chartL2 = $(".chart3").get(0).getContext("2d");
 	var myLineChart = new Chart(chartL2).Line(datal2, {
@@ -311,6 +310,8 @@ function AddDonutCharts(){
 		percentageInnerCutout : 70,
 		tooltipTemplate: "<%= value %>%"
 	});
+
+    $('.performance-chart__text h4').css('color', $("#performanceChart").data("color"));
 
 	var dataD2 = $("#chart1").data("var");
 	var chartD2 = document.getElementById("chart1").getContext("2d");
@@ -407,12 +408,17 @@ function AddBarCharts() {
 
 	BarWidth();
 
+    tooltip = "<%if (value >= 6.5){%><%='exceso'%><%}else if(value >= 3.5){%><%='óptimo'%><%} else %><%='escaso'%>";
 
 	var chartB1 = document.getElementById("chart6").getContext("2d");
 	var chartBar1 = new Chart(chartB1).Bar(dataB1, {
         showTooltips: true,
         tooltipFillColor: "rgba(0,0,0,0.8)",
-        multiTooltipTemplate: "<%= datasetLabel %>: <%= value %>"
+        scaleOverride : true,
+        scaleSteps : 9,
+        scaleStepWidth : 1,
+        scaleStartValue : 0,
+        multiTooltipTemplate: "<%= datasetLabel %>: "+tooltip
     });
 
 
@@ -420,21 +426,33 @@ function AddBarCharts() {
 	var chartB2 = $(".chart2").get(0).getContext("2d");
 	var chartBar2 = new Chart(chartB2).Bar(dataB2, {
         tooltipFillColor: "rgba(0,0,0,0.8)",
-        multiTooltipTemplate: "<%= datasetLabel %>: <%= value %>"
+        scaleOverride : true,
+        scaleSteps : 9,
+        scaleStepWidth : 1,
+        scaleStartValue : 0,
+        multiTooltipTemplate: "<%= datasetLabel %>: "+tooltip
     });
 
 	var dataB3 =$(".chart4").data("var");
 	var chartB3 = $(".chart4").get(0).getContext("2d");
 	var chartBar3 = new Chart(chartB3).BarAlt(dataB3, {
         tooltipFillColor: "rgba(0,0,0,0.8)",
-        multiTooltipTemplate: "<%= datasetLabel %>: <%= value %>"
+        scaleOverride : true,
+        scaleSteps : 9,
+        scaleStepWidth : 1,
+        scaleStartValue : 0,
+        multiTooltipTemplate: "<%= datasetLabel %>: "+tooltip
     });
 
 	var dataB4 = $(".chart6").data("var");
 	var chartB4 = $(".chart6").get(0).getContext("2d");
 	var chartBar4 = new Chart(chartB4).BarAlt(dataB4, {
         tooltipFillColor: "rgba(0,0,0,0.8)",
-        multiTooltipTemplate: "<%= datasetLabel %>: <%= value %>"
+        scaleOverride : true,
+        scaleSteps : 9,
+        scaleStepWidth : 1,
+        scaleStartValue : 0,
+        multiTooltipTemplate: "<%= datasetLabel %>: "+tooltip
     });
 
 
@@ -442,7 +460,11 @@ function AddBarCharts() {
 	var chartB5 = $(".chart8").get(0).getContext("2d");
 	var chartBar5 = new Chart(chartB5).BarAlt(dataB5, {
         tooltipFillColor: "rgba(0,0,0,0.8)",
-        multiTooltipTemplate: "<%= datasetLabel %>: <%= value %>"
+        scaleOverride : true,
+        scaleSteps : 9,
+        scaleStepWidth : 1,
+        scaleStartValue : 0,
+        multiTooltipTemplate: "<%= datasetLabel %>: "+tooltip
     });
 
 
@@ -450,7 +472,11 @@ function AddBarCharts() {
 	var chartB6 = $(".chart10").get(0).getContext("2d");
 	var chartBar6 = new Chart(chartB6).BarAlt(dataB6, {
         tooltipFillColor: "rgba(0,0,0,0.8)",
-        multiTooltipTemplate: "<%= datasetLabel %>: <%= value %>"
+        scaleOverride : true,
+        scaleSteps : 9,
+        scaleStepWidth : 1,
+        scaleStartValue : 0,
+        multiTooltipTemplate: "<%= datasetLabel %>: "+tooltip
     });
 
 
@@ -459,7 +485,11 @@ function AddBarCharts() {
 	var chartB7 = $(".chart12").get(0).getContext("2d");
 	var chartBar7 = new Chart(chartB7).BarAlt(dataB7, {
         tooltipFillColor: "rgba(0,0,0,0.8)",
-        multiTooltipTemplate: "<%= datasetLabel %>: <%= value %>"
+        scaleOverride : true,
+        scaleSteps : 9,
+        scaleStepWidth : 1,
+        scaleStartValue : 0,
+        multiTooltipTemplate: "<%= datasetLabel %>: "+tooltip
     });
 
 
@@ -468,7 +498,11 @@ function AddBarCharts() {
 	var chartB8 = $(".chart14").get(0).getContext("2d");
 	var chartBar8 = new Chart(chartB8).BarAlt(dataB8, {
         tooltipFillColor: "rgba(0,0,0,0.8)",
-        multiTooltipTemplate: "<%= datasetLabel %>: <%= value %>"
+        scaleOverride : true,
+        scaleSteps : 9,
+        scaleStepWidth : 1,
+        scaleStartValue : 0,
+        multiTooltipTemplate: "<%= datasetLabel %>: "+tooltip
     });
 
 
@@ -477,11 +511,15 @@ function AddBarCharts() {
 	var chartB9 = $(".chart16").get(0).getContext("2d");
 	var chartBar9 = new Chart(chartB9).BarAlt(dataB9, {
         tooltipFillColor: "rgba(0,0,0,0.8)",
-        multiTooltipTemplate: "<%= datasetLabel %>: <%= value %>"
+        scaleOverride : true,
+        scaleSteps : 9,
+        scaleStepWidth : 1,
+        scaleStartValue : 0,
+        multiTooltipTemplate: "<%= datasetLabel %>: "+tooltip
     });
 
 
-};
+}
 
 function BarWidth() {
     Chart.types.Bar.extend({

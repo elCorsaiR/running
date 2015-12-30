@@ -573,7 +573,8 @@ header {
 }
 
 .technical-text {
-  width: 495px;
+  width: 400px;
+//  width: 50%;
   margin-top: 33px;
   font-size: 14px;
   font-family: 'Roboto';
@@ -1855,6 +1856,30 @@ footer:after,
     top: 140px;
     left: 30px;
   }
+
+  .chart-left-1 {
+    top: 50px;
+    left: 20px;
+  }
+
+  .chart-left-2 {
+    top: 240px;
+    left: 20px;
+  }
+
+  .chart-right-1 {
+    top: 50px;
+    right: -70px;
+  }
+
+  .chart-right-2 {
+    top: 240px;
+    right: -70px;
+  }
+
+  .chart-right-3 {
+    right: -70px;
+  }
 }
 @media (max-width: 860px) {
   .popup-link {
@@ -2010,6 +2035,28 @@ footer:after,
   .chart-optimo {
     top: 110px;
     left: -10px;
+  }
+
+  .chart-left-1 {
+    top: 50px;
+    left: -10px;
+  }
+
+  .chart-left-2 {
+    top: 170px;
+    left: -10px;
+  }
+
+  .chart-right-1 {
+    top: 50px;
+  }
+
+  .chart-right-2 {
+    top: 170px;
+  }
+
+  .chart-right-3 {
+    top: 290px;
   }
 
   .chart-custom--small {
@@ -2220,6 +2267,31 @@ footer:after,
     left: -30px;
   }
 
+  .chart-left-1 {
+    top: 50px;
+    left: -30px;
+  }
+
+  .chart-left-2 {
+    top: 130px;
+    left: -30px;
+  }
+
+  .chart-right-1 {
+    top: 50px;
+    right: -50px;
+  }
+
+  .chart-right-2 {
+    top: 130px;
+    right: -50px;
+  }
+
+  .chart-right-3 {
+    top: 210px;
+    right: -50px;
+  }
+
   .chart-title-y {
     left: -118px;
   }
@@ -2319,6 +2391,12 @@ input[type="submit"] {
 
 .gray {
   color: #a9a9a9;
+}
+
+.speed-table{
+  font-size: 14px;
+  font-family: 'Roboto';
+  line-height: 19px;
 }
 
 

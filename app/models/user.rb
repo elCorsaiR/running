@@ -71,14 +71,18 @@ class User < ActiveRecord::Base
   end
 
   def index_data
+    color = perf_color(total)
+    components =  color[1...color.size].scan(/.{2}/)
+    components = components.map {|component| component.to_i(16)}
+
     json = {
         labels: %w(TOBILLO RODILLA FUNCIONALIDAD CADERA),
         datasets: [
             {
                 label: 'My First dataset',
-                fillColor: 'rgba(163,208,97,0.5)',
-                strokeColor: 'rgba(163,208,97,1)',
-                pointColor: 'rgba(163,208,97,1)',
+                fillColor: "rgba(#{components[0]},#{components[1]},#{components[2]},0.5)",
+                strokeColor: "rgba(#{components[0]},#{components[1]},#{components[2]},1)",
+                pointColor: "rgba(#{components[0]},#{components[1]},#{components[2]},1)",
                 pointStrokeColor: '#fff',
                 pointHighlightFill: '#fff',
                 pointHighlightStroke: 'rgba(220,220,220,1)',
@@ -137,6 +141,7 @@ class User < ActiveRecord::Base
   end
 
   def perf_index_data
+    color = perf_color(total)
     json =
         [
             {
@@ -146,12 +151,22 @@ class User < ActiveRecord::Base
             },
             {
                 value: total,
-                color: '#a3d061',
-                highlight: '#a3d061',
+                color: color,
+                highlight: color,
                 label: 'Performance index: '
             }
 
         ].to_json
+  end
+
+  def perf_color(value, light = true)
+    if value <= 45
+      light ? '#f76060' : '#9a4a4a'
+    elsif value <= 60
+      light ? '#febc46' : '#674914'
+    else
+      light ? '#a3d061' : '#4b6d1a'
+    end
   end
 
   def chart1_data
@@ -245,9 +260,17 @@ class User < ActiveRecord::Base
   end
 
   def chart6_data
-
+    if movimento_left.present?
+      lbls = ['Frecuencia de zancada', 'Movimiento del talon', 'Direccion punta del pie', 'Anchura entre apoyo']
+      data_left = [left_stride_frequency_evaluation, movimento_left.to_i, tip_direction_of_left_foot_evaluation, width_between_left_stances_evaluation]
+      data_right = [right_stride_frequency_evaluation,  movimento_right.to_i, tip_direction_of_right_foot_evaluation, width_between_right_stances_evaluation]
+    else
+      lbls = ['Frecuencia de zancada', 'Direccion punta del pie', 'Anchura entre apoyo']
+      data_left = [left_stride_frequency_evaluation, tip_direction_of_left_foot_evaluation, width_between_left_stances_evaluation]
+      data_right = [right_stride_frequency_evaluation, tip_direction_of_right_foot_evaluation, width_between_right_stances_evaluation]
+    end
     json = {
-        labels: ['Frecuencia de zancada', 'Direccion punta del pie', 'Anchura entre apoyo'],
+        labels: lbls,
         datasets: [
             {
                 label: 'izquierdo',
@@ -255,7 +278,7 @@ class User < ActiveRecord::Base
                 strokeColor: '#958899',
                 highlightFill: '#958899',
                 highlightStroke: '#958899',
-                data: [left_stride_frequency_evaluation, tip_direction_of_left_foot_evaluation, width_between_left_stances_evaluation]
+                data: data_left
             },
             {
                 label: 'derecho',
@@ -263,17 +286,17 @@ class User < ActiveRecord::Base
                 strokeColor: '#fe8e64',
                 highlightFill: '#fe8e64',
                 highlightStroke: '#fe8e64',
-                data: [right_stride_frequency_evaluation, tip_direction_of_right_foot_evaluation, width_between_right_stances_evaluation]
+                data: data_right
             }
         ]
     }.to_json
   end
 
   def foot_and_knee_data
-    left_foot = foot_and_knee_angels.pluck :left_foot_angle
-    left_knee = foot_and_knee_angels.pluck :left_knee_angle
-    right_foot = foot_and_knee_angels.pluck :right_foot_angle
-    right_knee = foot_and_knee_angels.pluck :right_knee_angle
+    left_foot = foot_and_knee_angels.pluck(:left_foot_angle).map { |v| v.round(2) }
+    left_knee = foot_and_knee_angels.pluck(:left_knee_angle).map { |v| v.round(2) }
+    right_foot = foot_and_knee_angels.pluck(:right_foot_angle).map { |v| v.round(2) }
+    right_knee = foot_and_knee_angels.pluck(:right_knee_angle).map { |v| v.round(2) }
 
     labels = ankles.map do |ankle|
       if (ankle.position % 20) == 0
@@ -331,8 +354,8 @@ class User < ActiveRecord::Base
   end
 
   def knee_frontal_data
-    left = knee_frontal_angles.pluck :left
-    right = knee_frontal_angles.pluck :right
+    left = knee_frontal_angles.pluck(:left).map { |v| v.round(2) }
+    right = knee_frontal_angles.pluck(:right).map { |v| v.round(2) }
     labels = knee_frontal_angles.map do |ankle|
       if (ankle.position % 20) == 0
         ankle.position
@@ -537,8 +560,8 @@ class User < ActiveRecord::Base
   end
 
   def ankle_data
-    left = ankles.pluck :left
-    right = ankles.pluck :right
+    left = ankles.pluck(:left).map { |v| v.round(2) }
+    right = ankles.pluck(:right).map { |v| v.round(2)}
     labels = ankles.map do |ankle|
       if (ankle.position % 20) == 0
         ankle.position
@@ -997,6 +1020,12 @@ class User < ActiveRecord::Base
         self.tip_direction_of_left_foot_evaluation = row[1] if row[0] == 'EVALUACIÓN DIRECCIÓN PUNTA DEL PIE IZQUIERDO'
         self.tip_direction_of_right_foot_evaluation = row[1] if row[0] == 'EVALUACIÓN DIRECCIÓN PUNTA DEL PIE DERECHO'
 
+        self.kmh = row[1] if row[0] == 'VELOCIDAD KM/H'
+        self.minkm = row[1] if row[0] == 'VELOCIDAD MIN/KM'
+
+        self.movimento_left = row[1] if (row[0] == 'MOVIMIENTO TALON IZQUIERDO') || (row[0] == 'MOVIMIENTO TALÓN IZQUIERDO')
+        self.movimento_right = row[1] if (row[0] == 'MOVIMIENTO TALON DERECHO') || (row[0] == 'MOVIMIENTO TALÓN DERECHO')
+
         if row[0].to_s.start_with?('GRÁFICA ÁNGULO DEL PIE Y ÁNGULO SAGITAL DE LA RODILLA IZQUIERDO/DERECHO INSTANTE')
           self.foot_and_knee_angels.build position: row[1].to_i, left_foot_angle: row[2], left_knee_angle: row[3], right_foot_angle: row[4], right_knee_angle: row[5]
         end
@@ -1326,8 +1355,8 @@ class User < ActiveRecord::Base
   end
 
   def left_right_data(table)
-    left = self.send(table).pluck :left
-    right = self.send(table).pluck :right
+    left = self.send(table).pluck(:left).map { |v| v.round(2) }
+    right = self.send(table).pluck(:right).map { |v| v.round(2) }
     labels = self.send(table).map do |ankle|
       if (ankle.position % 20) == 0
         ankle.position

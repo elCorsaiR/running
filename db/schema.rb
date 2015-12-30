@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151207173001) do
+ActiveRecord::Schema.define(version: 20151230141601) do
 
   create_table "ankles", force: true do |t|
     t.integer "user_id"
@@ -219,6 +219,10 @@ ActiveRecord::Schema.define(version: 20151207173001) do
     t.string   "solt"
     t.string   "raw_password"
     t.text     "conclusions"
+    t.string   "kmh"
+    t.string   "minkm"
+    t.integer  "movimento_left"
+    t.integer  "movimento_right"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true
