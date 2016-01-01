@@ -233,9 +233,32 @@ function AddCharts() {
 
 function AddLinearCharts() {
 
-	var datal1 = $(".chart1").data("var");
+    Chart.types.Line.extend({
+        name: "LineAlt",
+        intialize: function () {
+            Chart.types.Line.intialize.draw.apply(this, arguments);
+        },
+        draw: function () {
+            Chart.types.Line.prototype.draw.apply(this, arguments);
+
+            var ctx = this.chart.ctx;
+            ctx.save();
+            //ctx.lineWidth = this.scale.lineWidth;
+            ctx.lineWidth = this.scale.lineWidth;
+            ctx.strokeStyle = 'rgba(0,0,0,.3)';
+            ctx.beginPath();
+            ctx.moveTo(this.scale.xScalePaddingLeft, this.scale.calculateY(0));
+            ctx.lineTo(this.chart.width, this.scale.calculateY(0));
+            ctx.stroke();
+            ctx.closePath();
+            ctx.restore();
+        }
+    });
+
+
+    var datal1 = $(".chart1").data("var");
 	var chartL1 = $(".chart1").get(0).getContext("2d");
-	var myLineChart = new Chart(chartL1).Line(datal1, {
+	var myLineChart = new Chart(chartL1).LineAlt(datal1, {
 		pointDot : false,
         tooltipFillColor: "rgba(0,0,0,0.8)",
         multiTooltipTemplate: "<%= datasetLabel %>: <%= value %>",
@@ -244,7 +267,7 @@ function AddLinearCharts() {
 
 	var datal2 = $(".chart3").data("var");
 	var chartL2 = $(".chart3").get(0).getContext("2d");
-	var myLineChart = new Chart(chartL2).Line(datal2, {
+	var myLineChart = new Chart(chartL2).LineAlt(datal2, {
 		pointDot : false,
         tooltipFillColor: "rgba(0,0,0,0.8)",
         multiTooltipTemplate: "<%= datasetLabel %>: <%= value %>",
@@ -253,7 +276,7 @@ function AddLinearCharts() {
 
 	var datal3 = $(".chart5").data("var");
 	var chartL3 = $(".chart5").get(0).getContext("2d");
-	var myLineChart = new Chart(chartL3).Line(datal3, {
+	var myLineChart = new Chart(chartL3).LineAlt(datal3, {
 		pointDot : false,
         tooltipFillColor: "rgba(0,0,0,0.8)",
         multiTooltipTemplate: "<%= datasetLabel %>: <%= value %>",
@@ -262,7 +285,7 @@ function AddLinearCharts() {
 
 	var datal4 = $(".chart7").data("var");
 	var chartL4 = $(".chart7").get(0).getContext("2d");
-	var myLineChart = new Chart(chartL4).Line(datal4, {
+	var myLineChart = new Chart(chartL4).LineAlt(datal4, {
 		pointDot : false,
         tooltipFillColor: "rgba(0,0,0,0.8)",
         multiTooltipTemplate: "<%= datasetLabel %>: <%= value %>",
@@ -271,7 +294,7 @@ function AddLinearCharts() {
 
 	var datal5 = $(".chart9").data("var");
 	var chartL5 = $(".chart9").get(0).getContext("2d");
-	var myLineChart = new Chart(chartL5).Line(datal5, {
+	var myLineChart = new Chart(chartL5).LineAlt(datal5, {
 		pointDot : false,
         tooltipFillColor: "rgba(0,0,0,0.8)",
         multiTooltipTemplate: "<%= datasetLabel %>: <%= value %>",
@@ -280,7 +303,7 @@ function AddLinearCharts() {
 
 	var datal6 = $(".chart11").data("var");
 	var chartL6 = $(".chart11").get(0).getContext("2d");
-	var myLineChart = new Chart(chartL6).Line(datal6, {
+	var myLineChart = new Chart(chartL6).LineAlt(datal6, {
 		pointDot : false,
         tooltipFillColor: "rgba(0,0,0,0.8)",
         multiTooltipTemplate: "<%= datasetLabel %>: <%= value %>",
@@ -289,7 +312,7 @@ function AddLinearCharts() {
 
 	var datal7 = $(".chart13").data("var");
 	var chartL7 = $(".chart13").get(0).getContext("2d");
-	var myLineChart = new Chart(chartL7).Line(datal7, {
+	var myLineChart = new Chart(chartL7).LineAlt(datal7, {
 		pointDot : false,
         tooltipFillColor: "rgba(0,0,0,0.8)",
         multiTooltipTemplate: "<%= datasetLabel %>: <%= value %>",
@@ -298,7 +321,7 @@ function AddLinearCharts() {
 
 	var datal8 = $(".chart15").data("var");
 	var chartL8 = $(".chart15").get(0).getContext("2d");
-	var myLineChart = new Chart(chartL8).Line(datal8, {
+	var myLineChart = new Chart(chartL8).LineAlt(datal8, {
 		pointDot : false,
         tooltipFillColor: "rgba(0,0,0,0.8)",
         multiTooltipTemplate: "<%= datasetLabel %>: <%= value %>",
@@ -393,7 +416,47 @@ function AddRadarAndPolarCharts() {
         var chart_a1 = $(this);
             var chartP1 = chart_a1.get(0).getContext("2d");
             var chartPolar1 = new Chart(chartP1).PolarArea(dataP1, {
-                segmentStrokeWidth: 4
+                segmentStrokeWidth: 4,
+                scaleOverride : true,
+                scaleSteps : 3,
+                scaleStepWidth : 1,
+                scaleStartValue : 0,
+                scaleLabel: function (value) {
+                    var res;
+                    switch (Number(value.value)) {
+                        case 0:
+                        case 1:
+                            res = 'bajo';
+                            break;
+                        case 2:
+                            res = 'aceptable';
+                            break;
+                        case 3:
+                            res = 'óptimo';
+                            break;
+                        default:
+                            res = '';
+                    }
+                    return res;
+                },
+                tooltipTemplate:function (value, label) {
+                    var res;
+                    switch (Number(value.value)) {
+                        case 0:
+                        case 1:
+                            res = 'bajo';
+                            break;
+                        case 2:
+                            res = 'aceptable';
+                            break;
+                        case 3:
+                            res = 'óptimo';
+                            break;
+                        default:
+                            res = '';
+                    }
+                    return value.label + ': ' + res;
+                }
             });
         chart_hash[this.id] = chartPolar1;
     });
