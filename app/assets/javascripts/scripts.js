@@ -367,7 +367,8 @@ function AddDonutCharts(){
         var myDoughnutChart = new Chart(chartOptimo).Doughnut(dataOptimo,{
             segmentShowStroke : false,
             animateRotate : false,
-            percentageInnerCutout : 80
+            percentageInnerCutout : 80,
+            showTooltips: false
         });
         chart_hash[this.id] = myDoughnutChart;
         $(this).prev('.down:first').text(dataOptimo[1].label);
