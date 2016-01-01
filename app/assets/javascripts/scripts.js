@@ -238,7 +238,8 @@ function AddLinearCharts() {
 	var myLineChart = new Chart(chartL1).Line(datal1, {
 		pointDot : false,
         tooltipFillColor: "rgba(0,0,0,0.8)",
-        multiTooltipTemplate: "<%= datasetLabel %>: <%= value %>"
+        multiTooltipTemplate: "<%= datasetLabel %>: <%= value %>",
+        scaleShowLabels: false
 	});
 
 	var datal2 = $(".chart3").data("var");
@@ -246,7 +247,8 @@ function AddLinearCharts() {
 	var myLineChart = new Chart(chartL2).Line(datal2, {
 		pointDot : false,
         tooltipFillColor: "rgba(0,0,0,0.8)",
-        multiTooltipTemplate: "<%= datasetLabel %>: <%= value %>"
+        multiTooltipTemplate: "<%= datasetLabel %>: <%= value %>",
+        scaleShowLabels: false
 	});
 
 	var datal3 = $(".chart5").data("var");
@@ -254,7 +256,8 @@ function AddLinearCharts() {
 	var myLineChart = new Chart(chartL3).Line(datal3, {
 		pointDot : false,
         tooltipFillColor: "rgba(0,0,0,0.8)",
-        multiTooltipTemplate: "<%= datasetLabel %>: <%= value %>"
+        multiTooltipTemplate: "<%= datasetLabel %>: <%= value %>",
+        scaleShowLabels: false
 	});
 
 	var datal4 = $(".chart7").data("var");
@@ -262,7 +265,8 @@ function AddLinearCharts() {
 	var myLineChart = new Chart(chartL4).Line(datal4, {
 		pointDot : false,
         tooltipFillColor: "rgba(0,0,0,0.8)",
-        multiTooltipTemplate: "<%= datasetLabel %>: <%= value %>"
+        multiTooltipTemplate: "<%= datasetLabel %>: <%= value %>",
+        scaleShowLabels: false
 	});
 
 	var datal5 = $(".chart9").data("var");
@@ -270,7 +274,8 @@ function AddLinearCharts() {
 	var myLineChart = new Chart(chartL5).Line(datal5, {
 		pointDot : false,
         tooltipFillColor: "rgba(0,0,0,0.8)",
-        multiTooltipTemplate: "<%= datasetLabel %>: <%= value %>"
+        multiTooltipTemplate: "<%= datasetLabel %>: <%= value %>",
+        scaleShowLabels: false
 	});
 
 	var datal6 = $(".chart11").data("var");
@@ -278,7 +283,8 @@ function AddLinearCharts() {
 	var myLineChart = new Chart(chartL6).Line(datal6, {
 		pointDot : false,
         tooltipFillColor: "rgba(0,0,0,0.8)",
-        multiTooltipTemplate: "<%= datasetLabel %>: <%= value %>"
+        multiTooltipTemplate: "<%= datasetLabel %>: <%= value %>",
+        scaleShowLabels: false
 	});
 
 	var datal7 = $(".chart13").data("var");
@@ -286,7 +292,8 @@ function AddLinearCharts() {
 	var myLineChart = new Chart(chartL7).Line(datal7, {
 		pointDot : false,
         tooltipFillColor: "rgba(0,0,0,0.8)",
-        multiTooltipTemplate: "<%= datasetLabel %>: <%= value %>"
+        multiTooltipTemplate: "<%= datasetLabel %>: <%= value %>",
+        scaleShowLabels: false
 	});
 
 	var datal8 = $(".chart15").data("var");
@@ -294,7 +301,8 @@ function AddLinearCharts() {
 	var myLineChart = new Chart(chartL8).Line(datal8, {
 		pointDot : false,
         tooltipFillColor: "rgba(0,0,0,0.8)",
-        multiTooltipTemplate: "<%= datasetLabel %>: <%= value %>"
+        multiTooltipTemplate: "<%= datasetLabel %>: <%= value %>",
+        scaleShowLabels: false
 	});
 
 }
