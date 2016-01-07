@@ -260,6 +260,7 @@ function AddLinearCharts() {
 	var chartL1 = $(".chart1").get(0).getContext("2d");
 	var myLineChart = new Chart(chartL1).LineAlt(datal1, {
 		pointDot : false,
+        pointHitDetectionRadius : 4,
         tooltipFillColor: "rgba(0,0,0,0.8)",
         multiTooltipTemplate: "<%= datasetLabel %>: <%= value %>",
         scaleShowLabels: false
@@ -269,6 +270,7 @@ function AddLinearCharts() {
 	var chartL2 = $(".chart3").get(0).getContext("2d");
 	var myLineChart = new Chart(chartL2).LineAlt(datal2, {
 		pointDot : false,
+        pointHitDetectionRadius : 4,
         tooltipFillColor: "rgba(0,0,0,0.8)",
         multiTooltipTemplate: "<%= datasetLabel %>: <%= value %>",
         scaleShowLabels: false
@@ -278,6 +280,7 @@ function AddLinearCharts() {
 	var chartL3 = $(".chart5").get(0).getContext("2d");
 	var myLineChart = new Chart(chartL3).LineAlt(datal3, {
 		pointDot : false,
+        pointHitDetectionRadius : 4,
         tooltipFillColor: "rgba(0,0,0,0.8)",
         multiTooltipTemplate: "<%= datasetLabel %>: <%= value %>",
         scaleShowLabels: false
@@ -287,6 +290,7 @@ function AddLinearCharts() {
 	var chartL4 = $(".chart7").get(0).getContext("2d");
 	var myLineChart = new Chart(chartL4).LineAlt(datal4, {
 		pointDot : false,
+        pointHitDetectionRadius : 4,
         tooltipFillColor: "rgba(0,0,0,0.8)",
         multiTooltipTemplate: "<%= datasetLabel %>: <%= value %>",
         scaleShowLabels: false
@@ -296,6 +300,7 @@ function AddLinearCharts() {
 	var chartL5 = $(".chart9").get(0).getContext("2d");
 	var myLineChart = new Chart(chartL5).LineAlt(datal5, {
 		pointDot : false,
+        pointHitDetectionRadius : 4,
         tooltipFillColor: "rgba(0,0,0,0.8)",
         multiTooltipTemplate: "<%= datasetLabel %>: <%= value %>",
         scaleShowLabels: false
@@ -305,6 +310,7 @@ function AddLinearCharts() {
 	var chartL6 = $(".chart11").get(0).getContext("2d");
 	var myLineChart = new Chart(chartL6).LineAlt(datal6, {
 		pointDot : false,
+        pointHitDetectionRadius : 4,
         tooltipFillColor: "rgba(0,0,0,0.8)",
         multiTooltipTemplate: "<%= datasetLabel %>: <%= value %>",
         scaleShowLabels: false
@@ -314,6 +320,7 @@ function AddLinearCharts() {
 	var chartL7 = $(".chart13").get(0).getContext("2d");
 	var myLineChart = new Chart(chartL7).LineAlt(datal7, {
 		pointDot : false,
+        pointHitDetectionRadius : 4,
         tooltipFillColor: "rgba(0,0,0,0.8)",
         multiTooltipTemplate: "<%= datasetLabel %>: <%= value %>",
         scaleShowLabels: false
@@ -323,6 +330,7 @@ function AddLinearCharts() {
 	var chartL8 = $(".chart15").get(0).getContext("2d");
 	var myLineChart = new Chart(chartL8).LineAlt(datal8, {
 		pointDot : false,
+        pointHitDetectionRadius : 4,
         tooltipFillColor: "rgba(0,0,0,0.8)",
         multiTooltipTemplate: "<%= datasetLabel %>: <%= value %>",
         scaleShowLabels: false
