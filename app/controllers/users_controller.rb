@@ -57,7 +57,7 @@ class UsersController < ApplicationController
   end
 
   def bulk_delete
-    User.delete_all(:id => params[:user_ids])
+    User.destroy_all(:id => params[:user_ids])
     redirect_to users_path
   end
 
