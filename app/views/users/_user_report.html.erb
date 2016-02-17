@@ -12,7 +12,7 @@
           contrario haces movimientos de los que no eras consciente.</p>
         <a class="btn"><span class="closed-section">Ver</span><span class="opened-section">Cerrar</span> los videos de
           la
-          sesion</a>
+          sesión</a>
       </div>
     </section>
     <section class="video-open accordion-open">
@@ -47,8 +47,8 @@
 
       <p class="performance-text">Un valor elevado indica que tu patrón de movimiento no sobrecarga en exceso las
         articulaciones alejándolas de la posibilidad de lesionarlas. El índice está fraccionado en articulaciones
-        pudiendo identificar cuál de ellas tiene una peor performance y mayor posibilidad de lesión. Un corredor medio
-        lesionado esta entorno al 42% mientras que uno no lesionado se sitúa en un 65%. Un corredor de elite se situaría
+        pudiendo identificar cuál de ellas tiene una peor rendimiento y mayor posibilidad de lesión. Un corredor medio
+        lesionado esta entorno al 42% mientras que uno no lesionado se sitúa en un 65%. Un corredor de élite se situaría
         en torno al 90%.</p>
       <% if @user.total.present? %>
           <div class="performance-chart">
@@ -78,10 +78,10 @@
 
     <p class="section-text">A continuación se muestran una serie de variables biomecánicas que describen tu patrón de
       movimiento. Para cada variable se eligen una serie de parámetros biomecánicos relacionados con el riesgo de lesión
-      que son evaluados en función de su valor en “escaso”, “óptimos” o “exceso”. Esta valoración se basa en la
+      que son evaluados en función de su valor en “escaso”, “óptimo” o “exceso”. Esta valoración se basa en la
       comparación de tus valores con una base de datos de más de 2.000 corredores divididos en sexo, edad y nivel de
       rendimiento.</p>
-    <a class="btn"><span class="closed-section">Ver</span><span class="opened-section">Cerrar</span> el analisis tecnico</a>
+    <a class="btn"><span class="closed-section">Ver</span><span class="opened-section">Cerrar</span> el análisis técnico</a>
   </div>
 </section>
 <section class="technical-analysis-open accordion-open">
@@ -204,7 +204,7 @@
             <% unless @user.ankles.empty? %>
                 <div class="chart-linear-wrapper">
                   <span class="chart-title-x">Tiempo de contacto [%]</span>
-                  <span class="chart-title-y">Angulo de pronación del tobillo[&#176;]</span>
+                  <span class="chart-title-y">Ángulo del pie[&#176;]</span>
                   <canvas class="chart1" width="560" height="310" data-var="<%= @user.ankle_data %>"></canvas>
                 </div>
             <% end %>
@@ -240,7 +240,7 @@
             <% unless @user.foot_and_knee_angels.empty? %>
                 <div class="chart-linear-wrapper">
                   <span class="chart-title-x">Tiempo de contacto [%]</span>
-                  <span class="chart-title-y">Angulo de pronación del tobillo[&#176;]</span>
+                  <span class="chart-title-y">Ángulo del pie y ángulo sagital de la rodilla[&#176;]</span>
                   <canvas class="chart3" width="560" height="310" data-var="<%= @user.foot_and_knee_data %>"></canvas>
                 </div>
             <% end %>
@@ -276,7 +276,7 @@
             <% unless @user.knee_frontal_angles.empty? %>
                 <div class="chart-linear-wrapper">
                   <span class="chart-title-x">Tiempo de contacto [%]</span>
-                  <span class="chart-title-y">Angulo de pronacion del tobillo[&#176;]</span>
+                  <span class="chart-title-y">Ángulo frontal de la rodilla[&#176;]</span>
                   <canvas class="chart5" width="560" height="310" data-var="<%= @user.knee_frontal_data %>"></canvas>
                 </div>
             <% end %>
@@ -311,7 +311,7 @@
             <% unless @user.knee_rotations.empty? %>
                 <div class="chart-linear-wrapper">
                   <span class="chart-title-x">Tiempo de contacto [%]</span>
-                  <span class="chart-title-y">Angulo de pronacion del tobillo[&#176;]</span>
+                  <span class="chart-title-y">Rotación de la rodilla[&#176;]</span>
                   <canvas class="chart7" width="560" height="310" data-var="<%= @user.knee_rotation_data %>"></canvas>
                 </div>
             <% end %>
@@ -347,7 +347,7 @@
             <% unless @user.knee_sagital_angles.empty? %>
                 <div class="chart-linear-wrapper">
                   <span class="chart-title-x">Tiempo de contacto [%]</span>
-                  <span class="chart-title-y">Angulo de pronacion del tobillo[&#176;]</span>
+                  <span class="chart-title-y">Ángulo sagital de la rodilla[&#176;]</span>
                   <canvas class="chart9" width="560" height="310" data-var="<%= @user.knee_sagital_data %>"></canvas>
                 </div>
             <% end %>
@@ -383,7 +383,7 @@
             <% unless @user.hip_frontal_angles.empty? %>
                 <div class="chart-linear-wrapper">
                   <span class="chart-title-x">Tiempo de contacto [%]</span>
-                  <span class="chart-title-y">Angulo de pronacion del tobillo[&#176;]</span>
+                  <span class="chart-title-y">Ángulo frontal de la cadera[&#176;]</span>
                   <canvas class="chart11" width="560" height="310" data-var="<%= @user.hip_frontal_data %>"></canvas>
                 </div>
             <% end %>
@@ -418,7 +418,7 @@
             <% unless @user.hip_rotations.empty? %>
                 <div class="chart-linear-wrapper">
                   <span class="chart-title-x">Tiempo de contacto [%]</span>
-                  <span class="chart-title-y">Angulo de pronacion del tobillo[&#176;]</span>
+                  <span class="chart-title-y">Rotación de la cadera[&#176;]</span>
                   <canvas class="chart13" width="560" height="310" data-var="<%= @user.hip_rotations_data %>"></canvas>
                 </div>
             <% end %>
@@ -452,7 +452,7 @@
             <% unless @user.hip_sagital_angles.empty? %>
                 <div class="chart-linear-wrapper">
                   <span class="chart-title-x">Tiempo de contacto [%]</span>
-                  <span class="chart-title-y">Angulo de pronacion del tobillo[&#176;]</span>
+                  <span class="chart-title-y">Ángulo sagital de la cadera[&#176;]</span>
                   <canvas class="chart15" width="560" height="310" data-var="<%= @user.hip_sagital_data %>"></canvas>
                 </div>
             <% end %>

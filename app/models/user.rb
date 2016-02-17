@@ -262,8 +262,8 @@ class User < ActiveRecord::Base
   def chart6_data
     if movimento_left.present?
       lbls = ['Frecuencia de zancada', 'Movimiento del talon', 'Direccion punta del pie', 'Anchura entre apoyo']
-      data_left = [left_stride_frequency_evaluation, movimento_left.to_i, tip_direction_of_left_foot_evaluation, width_between_left_stances_evaluation]
-      data_right = [right_stride_frequency_evaluation,  movimento_right.to_i, tip_direction_of_right_foot_evaluation, width_between_right_stances_evaluation]
+      data_left = [left_stride_frequency_evaluation, movimento_left.to_f, tip_direction_of_left_foot_evaluation, width_between_left_stances_evaluation]
+      data_right = [right_stride_frequency_evaluation,  movimento_right.to_f, tip_direction_of_right_foot_evaluation, width_between_right_stances_evaluation]
     else
       lbls = ['Frecuencia de zancada', 'Direccion punta del pie', 'Anchura entre apoyo']
       data_left = [left_stride_frequency_evaluation, tip_direction_of_left_foot_evaluation, width_between_left_stances_evaluation]
@@ -310,7 +310,7 @@ class User < ActiveRecord::Base
         labels: labels,
         datasets: [
             {
-                label: 'Izquierdo',
+                label: 'Ángulo del pie izquierdo',
                 fillColor: 'transparent',
                 strokeColor: '#a196a4',
                 pointColor: '#a196a4',
@@ -320,7 +320,7 @@ class User < ActiveRecord::Base
                 data: left_foot
             },
             {
-                label: 'Izquierdo',
+                label: 'Ángulo sagital izquierdo',
                 fillColor: 'transparent',
                 strokeColor: '#a196a4',
                 pointColor: '#a196a4',
@@ -330,7 +330,7 @@ class User < ActiveRecord::Base
                 data: left_knee
             },
             {
-                label: 'Derecho',
+                label: 'Ángulo del pie derecho',
                 fillColor: 'transparent',
                 strokeColor: '#fe8e64',
                 pointColor: '#fe8e64',
@@ -340,7 +340,7 @@ class User < ActiveRecord::Base
                 data: right_foot
             },
             {
-                label: 'Derecho',
+                label: 'Ángulo sagital derecho',
                 fillColor: 'transparent',
                 strokeColor: '#fe8e64',
                 pointColor: '#fe8e64',
@@ -402,7 +402,7 @@ class User < ActiveRecord::Base
                 strokeColor: '#958899',
                 highlightFill: '#958899',
                 highlightStroke: '#958899',
-                data: [left_knee_abduction, right_knee_abduction]
+                data: [left_knee_abduction, left_knee_abduction_speed]
             },
             {
                 label: 'derecho',
@@ -410,7 +410,7 @@ class User < ActiveRecord::Base
                 strokeColor: '#fe8e64',
                 highlightFill: '#fe8e64',
                 highlightStroke: '#fe8e64',
-                data: [left_knee_abduction_speed, right_knee_abduction_speed]
+                data: [right_knee_abduction, right_knee_abduction_speed]
             }
         ]
     }.to_json
@@ -487,7 +487,7 @@ class User < ActiveRecord::Base
                 strokeColor: '#958899',
                 highlightFill: '#958899',
                 highlightStroke: '#958899',
-                data: [left_hip_basculation, right_hip_basculation]
+                data: [left_hip_basculation, left_hip_abduction]
             },
             {
                 label: 'derecho',
@@ -495,7 +495,7 @@ class User < ActiveRecord::Base
                 strokeColor: '#fe8e64',
                 highlightFill: '#fe8e64',
                 highlightStroke: '#fe8e64',
-                data: [left_hip_abduction, right_hip_abduction]
+                data: [right_hip_basculation, right_hip_abduction]
             }
         ]
     }.to_json
@@ -665,19 +665,19 @@ class User < ActiveRecord::Base
   def a1_data_left
     [
         {
-            value: q_angle_left.to_i,
+            value: q_angle_left.to_f,
             color: '#fa874e',
             highlight: '#fa874e',
             label: 'Angulo Q'
         },
         {
-            value: legs_length_discrepancy_left.to_i,
+            value: legs_length_discrepancy_left.to_f,
             color: '#febc46',
             highlight: '#febc46',
             label: 'Discrepancia'
         },
         {
-            value: back_foot_angle_left.to_i,
+            value: back_foot_angle_left.to_f,
             color: '#ffcb8c',
             highlight: '#ffcb8c',
             label: 'Angulo del retro-pie'
@@ -689,7 +689,7 @@ class User < ActiveRecord::Base
   def a1_data_right
     [
         {
-            value: q_angle_right.to_i,
+            value: q_angle_right.to_f,
             color: '#fa874e',
             highlight: '#fa874e',
             label: 'Angulo Q'
@@ -713,37 +713,37 @@ class User < ActiveRecord::Base
   def a2_data_left
     [
         {
-            value: hip_rotatoes_left.to_i,
+            value: hip_rotatoes_left.to_f,
             color: '#fa874e',
             highlight: '#fa874e',
             label: 'Rotadores de cadero'
         },
         {
-            value: isquiotibiales_left.to_i,
+            value: isquiotibiales_left.to_f,
             color: '#febc46',
             highlight: '#febc46',
             label: 'Isquitibiles'
         },
         {
-            value: iliotibial_band_left.to_i,
+            value: iliotibial_band_left.to_f,
             color: '#ffcb8c',
             highlight: '#ffcb8c',
             label: 'Recto femoral'
         },
         {
-            value: psoas_iliaco_left.to_i,
+            value: psoas_iliaco_left.to_f,
             color: '#cbcad4',
             highlight: '#cbcad4',
             label: 'Psoas iliaco'
         },
         {
-            value: recto_femoral_left.to_i,
+            value: recto_femoral_left.to_f,
             color: '#88768b',
             highlight: '#88768b',
             label: 'Recto femoral'
         },
         {
-            value: gastrocnemius_y_soleo_left.to_i,
+            value: gastrocnemius_y_soleo_left.to_f,
             color: '#6483c3',
             highlight: '#6483c3',
             label: 'Gastrocnemius y soleo'
@@ -839,37 +839,37 @@ class User < ActiveRecord::Base
   def a3_data_right
     [
         {
-            value: mid_gluteus_strength_right.to_i,
+            value: mid_gluteus_strength_right.to_f,
             color: '#fa874e',
             highlight: '#fa874e',
             label: 'Gluteo medio'
         },
         {
-            value: isquiotibial_strength_right.to_i,
+            value: isquiotibial_strength_right.to_f,
             color: '#febc46',
             highlight: '#febc46',
             label: 'Isquiotibiles'
         },
         {
-            value: vasto_lateral_right.to_i,
+            value: vasto_lateral_right.to_f,
             color: '#ffcb8c',
             highlight: '#ffcb8c',
             label: 'Vasto lateral'
         },
         {
-            value: vasto_intermedio_right.to_i,
+            value: vasto_intermedio_right.to_f,
             color: '#cbcad4',
             highlight: '#cbcad4',
             label: 'Vasto intermedio'
         },
         {
-            value: vasto_medial_right.to_i,
+            value: vasto_medial_right.to_f,
             color: '#88768b',
             highlight: '#88768b',
             label: 'Vasto medial'
         },
         {
-            value: back_tibial_strength_right.to_i,
+            value: back_tibial_strength_right.to_f,
             color: '#6483c3',
             highlight: '#6483c3',
             label: 'Tibial posterior'
@@ -967,27 +967,27 @@ class User < ActiveRecord::Base
 
         self.injury = row[1] if row[0] == 'LESIÓN'
 
-        self.ankle = (row[1]*100).to_i if row[0] == 'PERFORMANCE INDEX TOBILLO'
-        self.knee = (row[1]*100).to_i if row[0] == 'PERFORMANCE INDEX RODILLA'
-        self.hip = (row[1]*100).to_i if row[0] == 'PERFORMANCE INDEX CADERA'
-        self.functionality = (row[1]*100).to_i if row[0] == 'PERFORMANCE INDEX FUNCIONALIDAD'
-        self.total = (row[1]*100).to_i if row[0] == 'PERFORMANCE INDEX TOTAL'
+        self.ankle = (row[1] * 100.0).round.to_i if row[0] == 'PERFORMANCE INDEX TOBILLO'
+        self.knee = (row[1] * 100.0).round.to_i if row[0] == 'PERFORMANCE INDEX RODILLA'
+        self.hip = (row[1] * 100.0).round.to_i if row[0] == 'PERFORMANCE INDEX CADERA'
+        self.functionality = (row[1] * 100.0).round.to_i if row[0] == 'PERFORMANCE INDEX FUNCIONALIDAD'
+        self.total = (row[1] * 100.0).round.to_i if row[0] == 'PERFORMANCE INDEX TOTAL'
 
         if row[0].to_s.start_with?('GRÁFICA ÁNGULO DEL PIE IZQUIERDO/DERECHO INSTANTE')
           self.ankles.build position: row[1].to_i, left: row[2], right: row[3]
         end
 
-        self.max_pronation_left = row[1].to_i if row[0] == 'MÁXIMA PRONACIÓN IZQUIERDO'
-        self.max_pronation_right = row[1].to_i if row[0] == 'MÁXIMA PRONACIÓN DERECHO'
+        self.max_pronation_left = row[1].to_f if row[0] == 'MÁXIMA PRONACIÓN IZQUIERDO'
+        self.max_pronation_right = row[1].to_f if row[0] == 'MÁXIMA PRONACIÓN DERECHO'
 
-        self.pronation_speed_left = row[1].to_i if row[0] == 'VELOCIDAD PRONACIÓN IZQUIERDO'
-        self.pronation_speed_right = row[1].to_i if row[0] == 'VELOCIDAD PRONACIÓN DERECHO'
+        self.pronation_speed_left = row[1].to_f if row[0] == 'VELOCIDAD PRONACIÓN IZQUIERDO'
+        self.pronation_speed_right = row[1].to_f if row[0] == 'VELOCIDAD PRONACIÓN DERECHO'
 
-        self.tibia_max_rotation_left = row[1].to_i if row[0] == 'MÁXIMA ROTACIÓN TIBIAL IZQUIERDO'
-        self.tibia_max_rotation_right = row[1].to_i if row[0] == 'MÁXIMA ROTACIÓN TIBIAL DERECHO'
+        self.tibia_max_rotation_left = row[1].to_f if row[0] == 'MÁXIMA ROTACIÓN TIBIAL IZQUIERDO'
+        self.tibia_max_rotation_right = row[1].to_f if row[0] == 'MÁXIMA ROTACIÓN TIBIAL DERECHO'
 
-        self.tibia_rotation_left = row[1].to_i if row[0] == 'VELOCIDAD ROTACIÓN TIBIAL IZQUIERDO'
-        self.tibia_rotation_right = row[1].to_i if row[0] == 'VELOCIDAD ROTACIÓN TIBIAL DERECHO'
+        self.tibia_rotation_left = row[1].to_f if row[0] == 'VELOCIDAD ROTACIÓN TIBIAL IZQUIERDO'
+        self.tibia_rotation_right = row[1].to_f if row[0] == 'VELOCIDAD ROTACIÓN TIBIAL DERECHO'
 
         self.left_stride_time = row[1] if row[0] == 'TIEMPO ZANCADA IZQUIERDA'
         self.left_stride_time_stance = row[1] if row[0] == 'TIEMPO APOYO IZQUIERDO'
@@ -1027,7 +1027,7 @@ class User < ActiveRecord::Base
         self.movimento_right = row[1] if (row[0] == 'MOVIMIENTO TALON DERECHO') || (row[0] == 'MOVIMIENTO TALÓN DERECHO')
 
         if row[0].to_s.start_with?('GRÁFICA ÁNGULO DEL PIE Y ÁNGULO SAGITAL DE LA RODILLA IZQUIERDO/DERECHO INSTANTE')
-          self.foot_and_knee_angels.build position: row[1].to_i, left_foot_angle: row[2], left_knee_angle: row[3], right_foot_angle: row[4], right_knee_angle: row[5]
+          self.foot_and_knee_angels.build position: row[1].to_i, left_foot_angle: row[2], right_foot_angle: row[3], left_knee_angle: row[4], right_knee_angle: row[5]
         end
 
         self.instant_of_left_max_pronation = row[1] if row[0] == 'INSTANTE MÁXIMA PRONACIÓN IZQUIERDA'
@@ -1042,7 +1042,8 @@ class User < ActiveRecord::Base
         self.left_knee_abduction_speed = row[1] if row[0] == 'VELOCIDAD ABDUCCIÓN RODILLA IZQUIERDA'
         self.right_knee_abduction_speed = row[1] if row[0] == 'VELOCIDAD ABDUCCIÓN RODILLA DERECHA'
 
-        if row[0].to_s.start_with?('GRÁFICA ROTACIÓNDE RODILLA IZQUIERDO/DERECHA INSTANTE')
+        if row[0].to_s.start_with?('GRÁFICA ROTACIÓNDE RODILLA IZQUIERDO/DERECHA INSTANTE') ||
+           row[0].to_s.start_with?('GRÁFICA ROTACIÓN DE RODILLA IZQUIERDO/DERECHA INSTANTE')
           self.knee_rotations.build position: row[1].to_i, left: row[2], right: row[3]
         end
 

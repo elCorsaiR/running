@@ -357,7 +357,8 @@ function AddDonutCharts(){
 	var myDoughnutChart = new Chart(chartD2).Doughnut(dataD2,{
 		segmentShowStroke : false,
 		animateRotate : false,
-		percentageInnerCutout : 70
+		percentageInnerCutout : 70,
+        tooltipTemplate: "<%if (label){%><%=label%>: <%}%><%= value %>%"
 	});
 
 	var dataD3 = $("#chart2").data("var");
@@ -365,7 +366,8 @@ function AddDonutCharts(){
 	var myDoughnutChart = new Chart(chartD3).Doughnut(dataD3,{
 		segmentShowStroke : false,
 		animateRotate : false,
-		percentageInnerCutout : 70
+		percentageInnerCutout : 70,
+        tooltipTemplate: "<%if (label){%><%=label%>: <%}%><%= value %>%"
 	});
 
 	var dataD4 = $("#chart3").data("var");
@@ -373,7 +375,8 @@ function AddDonutCharts(){
 	var myDoughnutChart = new Chart(chartD4).Doughnut(dataD4,{
 		segmentShowStroke : false,
 		animateRotate : false,
-		percentageInnerCutout : 70
+		percentageInnerCutout : 70,
+        tooltipTemplate: "<%if (label){%><%=label%>: <%}%><%= value %>%"
 	});
 
 	var dataD5 = $("#chart4").data("var");
@@ -381,7 +384,8 @@ function AddDonutCharts(){
 	var myDoughnutChart = new Chart(chartD5).Doughnut(dataD5,{
 		segmentShowStroke : false,
 		animateRotate : false,
-		percentageInnerCutout : 70
+		percentageInnerCutout : 70,
+        tooltipTemplate: "<%if (label){%><%=label%>: <%}%><%= value %>%"
 	});
 
 	var dataD6 = $("#chart5").data("var");
@@ -389,7 +393,8 @@ function AddDonutCharts(){
 	var myDoughnutChart = new Chart(chartD6).Doughnut(dataD6,{
 		segmentShowStroke : false,
 		animateRotate : false,
-		percentageInnerCutout : 70
+		percentageInnerCutout : 70,
+        tooltipTemplate: "<%if (label){%><%=label%>: <%}%><%= value %>%"
 	});
 
     $(".anatomy1").each(function() {
@@ -498,19 +503,21 @@ function AddBarCharts() {
         scaleSteps : 9,
         scaleStepWidth : 1,
         scaleStartValue : 0,
-        multiTooltipTemplate: "<%= datasetLabel %>: "+tooltip
+        multiTooltipTemplate: "<%= datasetLabel %>: "+tooltip,
+        scaleShowLabels: false
     });
 
 
 	var dataB2 = $(".chart2").data("var");
 	var chartB2 = $(".chart2").get(0).getContext("2d");
-	var chartBar2 = new Chart(chartB2).Bar(dataB2, {
+	var chartBar2 = new Chart(chartB2).BarAlt(dataB2, {
         tooltipFillColor: "rgba(0,0,0,0.8)",
         scaleOverride : true,
         scaleSteps : 9,
         scaleStepWidth : 1,
         scaleStartValue : 0,
-        multiTooltipTemplate: "<%= datasetLabel %>: "+tooltip
+        multiTooltipTemplate: "<%= datasetLabel %>: "+tooltip,
+        scaleShowLabels: false
     });
 
 	var dataB3 =$(".chart4").data("var");
@@ -521,8 +528,10 @@ function AddBarCharts() {
         scaleSteps : 9,
         scaleStepWidth : 1,
         scaleStartValue : 0,
-        multiTooltipTemplate: "<%= datasetLabel %>: "+tooltip
+        multiTooltipTemplate: "<%= datasetLabel %>: "+tooltip,
+        scaleShowLabels: false
     });
+
 
 	var dataB4 = $(".chart6").data("var");
 	var chartB4 = $(".chart6").get(0).getContext("2d");
@@ -532,7 +541,8 @@ function AddBarCharts() {
         scaleSteps : 9,
         scaleStepWidth : 1,
         scaleStartValue : 0,
-        multiTooltipTemplate: "<%= datasetLabel %>: "+tooltip
+        multiTooltipTemplate: "<%= datasetLabel %>: "+tooltip,
+        scaleShowLabels: false
     });
 
 
@@ -544,7 +554,8 @@ function AddBarCharts() {
         scaleSteps : 9,
         scaleStepWidth : 1,
         scaleStartValue : 0,
-        multiTooltipTemplate: "<%= datasetLabel %>: "+tooltip
+        multiTooltipTemplate: "<%= datasetLabel %>: "+tooltip,
+        scaleShowLabels: false
     });
 
 
@@ -556,7 +567,8 @@ function AddBarCharts() {
         scaleSteps : 9,
         scaleStepWidth : 1,
         scaleStartValue : 0,
-        multiTooltipTemplate: "<%= datasetLabel %>: "+tooltip
+        multiTooltipTemplate: "<%= datasetLabel %>: "+tooltip,
+        scaleShowLabels: false
     });
 
 
@@ -569,7 +581,8 @@ function AddBarCharts() {
         scaleSteps : 9,
         scaleStepWidth : 1,
         scaleStartValue : 0,
-        multiTooltipTemplate: "<%= datasetLabel %>: "+tooltip
+        multiTooltipTemplate: "<%= datasetLabel %>: "+tooltip,
+        scaleShowLabels: false
     });
 
 
@@ -582,7 +595,8 @@ function AddBarCharts() {
         scaleSteps : 9,
         scaleStepWidth : 1,
         scaleStartValue : 0,
-        multiTooltipTemplate: "<%= datasetLabel %>: "+tooltip
+        multiTooltipTemplate: "<%= datasetLabel %>: "+tooltip,
+        scaleShowLabels: false
     });
 
 
@@ -595,7 +609,8 @@ function AddBarCharts() {
         scaleSteps : 9,
         scaleStepWidth : 1,
         scaleStartValue : 0,
-        multiTooltipTemplate: "<%= datasetLabel %>: "+tooltip
+        multiTooltipTemplate: "<%= datasetLabel %>: "+tooltip,
+        scaleShowLabels: false
     });
 
 
@@ -604,8 +619,40 @@ function AddBarCharts() {
 function BarWidth() {
     Chart.types.Bar.extend({
         name: "BarAlt",
+        initialize:  function(data) {
+
+            //Expose options as a scope variable here so we can access it in the ScaleClass
+            Chart.types.Bar.prototype.initialize.apply(this, arguments);
+
+            var options = this.options;
+
+            this.ScaleClass = Chart.Scale.extend({
+                offsetGridLines : true,
+                calculateBarX : function(datasetCount, datasetIndex, barIndex){
+                    //Reusable method for calculating the xPosition of a given bar based on datasetIndex & width of the bar
+                    var xWidth = this.calculateBaseWidth(),
+                        xAbsolute = this.calculateX(barIndex) - (xWidth/2),
+                        barWidth = this.calculateBarWidth(datasetCount);
+
+                    var oldWidth = (this.calculateBaseWidth() - ((datasetCount - 1) * options.barDatasetSpacing)) / datasetCount;
+                    return xAbsolute + (oldWidth * datasetIndex) + (datasetIndex * options.barDatasetSpacing) + oldWidth/2
+                        ;
+                },
+                calculateBaseWidth : function(){
+                    return (this.calculateX(1) - this.calculateX(0)) - (2*options.barValueSpacing);
+                },
+                calculateBarWidth : function(datasetCount){
+                    //The padding between datasets is to the right of each bar, providing that there are more than 1 dataset
+                    //var baseWidth = this.calculateBaseWidth() - ((datasetCount - 1) * options.barDatasetSpacing);
+
+                    return 26;// (baseWidth / datasetCount);
+                }
+            });
+            this.buildScale(data.labels);
+        },
         draw: function(){
-            this.options.barValueSpacing = this.chart.width / 7;
+
+            this.options.barValueSpacing = 5;//this.chart.width / 7;
             Chart.types.Bar.prototype.draw.apply(this, arguments);
         }
     });
@@ -613,7 +660,7 @@ function BarWidth() {
     Chart.types.Bar.extend({
         name: "BarAlt2",
         draw: function(){
-            this.options.barValueSpacing = this.chart.width / 6;
+            this.options.barValueSpacing = this.chart.width / 3;
             Chart.types.Bar.prototype.draw.apply(this, arguments);
         }
     });
