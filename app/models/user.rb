@@ -394,7 +394,7 @@ class User < ActiveRecord::Base
   def abduction_data
 
     {
-        labels: ['Abducción', 'Velocidad abducción'],
+        labels: ['Abducción', 'Velocidad abducción rodilla'],
         datasets: [
             {
                 label: 'izquierdo',
@@ -479,7 +479,7 @@ class User < ActiveRecord::Base
 
   def hip_abduction_data
     {
-        labels: ["Ángulo frontal de la cadera", "Aducción"],
+        labels: ['Aducción rodilla', 'Basculación cadera'],
         datasets: [
             {
                 label: 'izquierdo',
@@ -668,7 +668,7 @@ class User < ActiveRecord::Base
             value: q_angle_left.to_f,
             color: '#fa874e',
             highlight: '#fa874e',
-            label: 'Angulo Q'
+            label: 'Ángulo Q'
         },
         {
             value: legs_length_discrepancy_left.to_f,
@@ -692,7 +692,7 @@ class User < ActiveRecord::Base
             value: q_angle_right.to_f,
             color: '#fa874e',
             highlight: '#fa874e',
-            label: 'Angulo Q'
+            label: 'Ángulo Q'
         },
         {
             value: legs_length_discrepancy_right.to_i,
@@ -716,19 +716,19 @@ class User < ActiveRecord::Base
             value: hip_rotatoes_left.to_f,
             color: '#fa874e',
             highlight: '#fa874e',
-            label: 'Rotadores de cadero'
+            label: 'Rotadores de cadera'
         },
         {
             value: isquiotibiales_left.to_f,
             color: '#febc46',
             highlight: '#febc46',
-            label: 'Isquitibiles'
+            label: 'Isquiotibiales'
         },
         {
             value: iliotibial_band_left.to_f,
             color: '#ffcb8c',
             highlight: '#ffcb8c',
-            label: 'Recto femoral'
+            label: 'Banda iliotibial'
         },
         {
             value: psoas_iliaco_left.to_f,
@@ -746,7 +746,7 @@ class User < ActiveRecord::Base
             value: gastrocnemius_y_soleo_left.to_f,
             color: '#6483c3',
             highlight: '#6483c3',
-            label: 'Gastrocnemius y soleo'
+            label: 'Gastrocnemius y sóleo'
         }
 
     ].to_json
@@ -758,19 +758,19 @@ class User < ActiveRecord::Base
             value: hip_rotatoes_right.to_i,
             color: '#fa874e',
             highlight: '#fa874e',
-            label: 'Rotadores de cadero'
+            label: 'Rotadores de cadera'
         },
         {
             value: isquiotibiales_right.to_i,
             color: '#febc46',
             highlight: '#febc46',
-            label: 'Isquitibiles'
+            label: 'Isquiotibiales'
         },
         {
             value: iliotibial_band_right.to_i,
             color: '#ffcb8c',
             highlight: '#ffcb8c',
-            label: 'Recto femoral'
+            label: 'Banda iliotibial'
         },
         {
             value: psoas_iliaco_right.to_i,
@@ -788,7 +788,7 @@ class User < ActiveRecord::Base
             value: gastrocnemius_y_soleo_right.to_i,
             color: '#6483c3',
             highlight: '#6483c3',
-            label: 'Gastrocnemius y soleo'
+            label: 'Gastrocnemius y sóleo'
         }
 
     ].to_json
@@ -800,13 +800,13 @@ class User < ActiveRecord::Base
             value: mid_gluteus_strength_left.to_i,
             color: '#fa874e',
             highlight: '#fa874e',
-            label: 'Gluteo medio'
+            label: 'Glúteo medio'
         },
         {
             value: isquiotibial_strength_left.to_i,
             color: '#febc46',
             highlight: '#febc46',
-            label: 'Isquiotibiles'
+            label: 'Isquiotibiales'
         },
         {
             value: vasto_lateral_left.to_i,
@@ -842,13 +842,13 @@ class User < ActiveRecord::Base
             value: mid_gluteus_strength_right.to_f,
             color: '#fa874e',
             highlight: '#fa874e',
-            label: 'Gluteo medio'
+            label: 'Glúteo medio'
         },
         {
             value: isquiotibial_strength_right.to_f,
             color: '#febc46',
             highlight: '#febc46',
-            label: 'Isquiotibiles'
+            label: 'Isquiotibiales'
         },
         {
             value: vasto_lateral_right.to_f,
@@ -1026,6 +1026,7 @@ class User < ActiveRecord::Base
         self.movimento_left = row[1] if (row[0] == 'MOVIMIENTO TALON IZQUIERDO') || (row[0] == 'MOVIMIENTO TALÓN IZQUIERDO')
         self.movimento_right = row[1] if (row[0] == 'MOVIMIENTO TALON DERECHO') || (row[0] == 'MOVIMIENTO TALÓN DERECHO')
 
+        # FootAndKneeAngel.update_all "left_knee_angle = right_foot_angle, right_foot_angle = left_knee_angle"
         if row[0].to_s.start_with?('GRÁFICA ÁNGULO DEL PIE Y ÁNGULO SAGITAL DE LA RODILLA IZQUIERDO/DERECHO INSTANTE')
           self.foot_and_knee_angels.build position: row[1].to_i, left_foot_angle: row[2], right_foot_angle: row[3], left_knee_angle: row[4], right_knee_angle: row[5]
         end

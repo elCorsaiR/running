@@ -194,7 +194,7 @@
             <p class="technical-text">¿Cuánto prona o supina tu pie cuando lo apoyas durante la carrera? La pronación es
               sinónimo de pie "desbloqueado", y es necesaria para acomodarse a las superficies irregulares y permitir
               que el
-              dedo gordo del pie llegue a tocas el suelo.</p>
+              dedo gordo del pie llegue a tocar el suelo.</p>
 
             <div class="foots-img">
               <%= image_tag '4-3.png', alt: 'foot', width: '472px', height: '122px' %>
@@ -264,8 +264,7 @@
             <h3 class="anatomy-headline">RODILLA I: Ángulo frontal de la rodilla</h3>
 
             <p class="technical-text">Movimiento de separación (abducción) y acercamiento (aducción) de la pierna hacia
-              el
-              plano medio del cuerpo. Una abducción elevada, aumenta la carga soportada por la rodilla, rótula y pierna.
+              la línea media del cuerpo. Una abducción elevada, aumenta la carga soportada por la rodilla, rótula y pierna.
             </p>
 
             <div class="foots-img">
@@ -368,10 +367,9 @@
       <div class="technical-section desktop-visible">
         <div class="container container-technical">
           <div class="wrapper-top">
-            <h3 class="anatomy-headline">CADERA I: Ángulo frontal de la cadera</h3>
+            <h3 class="anatomy-headline">CADERA I: Basculación de la cadera</h3>
 
-            <p class="technical-text">Movimiento de separación (abducción) y acercamiento (aducción) del muslo al plano
-              medio del cuerpo. Una mayor cantidad de aducción de cadera puede contribuir a aumentar la carga soportada
+            <p class="technical-text">Movimiento de separación (abducción) y acercamiento (aducción) del muslo la línea media del cuerpo. Una mayor cantidad de aducción de cadera puede contribuir a aumentar la carga soportada
               por
               la cadera y rodilla.</p>
 
@@ -383,7 +381,7 @@
             <% unless @user.hip_frontal_angles.empty? %>
                 <div class="chart-linear-wrapper">
                   <span class="chart-title-x">Tiempo de contacto [%]</span>
-                  <span class="chart-title-y">Ángulo frontal de la cadera[&#176;]</span>
+                  <span class="chart-title-y">Basculación cadera[&#176;]</span>
                   <canvas class="chart11" width="560" height="310" data-var="<%= @user.hip_frontal_data %>"></canvas>
                 </div>
             <% end %>
@@ -528,12 +526,12 @@
                   <div id="divq_angle_left" class="small-chart-wrapper chart-optimo chartleft">
                     <span class="down">Óptimo</span>
                     <canvas id="q_angle_left" class="anatomy1 " width="95" height="95" data-var="<%= @user.anatomica_data(:q_angle_left) %>"></canvas>
-                    <h6>Angulo Q</h6>
+                    <h6>Ángulo Q</h6>
                   </div>
                   <div id="divq_angle_right" class="small-chart-wrapper chart-optimo chartright">
                     <span class="down">Óptimo</span>
                     <canvas id="q_angle_right" class="anatomy1 " width="95" height="95" data-var="<%= @user.anatomica_data(:q_angle_right) %>"></canvas>
-                    <h6>Angulo Q</h6>
+                    <h6>Ángulo Q</h6>
                   </div>
 
 
@@ -595,34 +593,34 @@
                   <div id="hip_rotatoes_left" class="small-chart-wrapper chart-left-1 chartleft">
                     <span class="down">Óptimo</span>
                     <canvas class="anatomy1" width="95" height="95" data-var="<%= @user.anatomica_data(:hip_rotatoes_left) %>"></canvas>
-                    <h6>Rotadores de cadero</h6>
+                    <h6>Rotadores de cadera</h6>
                   </div>
                   <div id="hip_rotatoes_right" class="small-chart-wrapper chart-left-1 chartright">
                     <span class="down">Óptimo</span>
                     <canvas class="anatomy1" width="95" height="95" data-var="<%= @user.anatomica_data(:hip_rotatoes_right) %>"></canvas>
-                    <h6>Rotadores de cadero</h6>
+                    <h6>Rotadores de cadera</h6>
                   </div>
 
                   <div id="isquiotibiales_left" class="small-chart-wrapper chart-left-2 chartleft">
                     <span class="down">Óptimo</span>
                     <canvas class="anatomy1" width="95" height="95" data-var="<%= @user.anatomica_data(:isquiotibiales_left) %>"></canvas>
-                    <h6>Isquitibiles</h6>
+                    <h6>Isquiotibiales</h6>
                   </div>
                   <div id="isquiotibiales_right" class="small-chart-wrapper chart-left-2 chartright">
                     <span class="down">Óptimo</span>
                     <canvas class="anatomy1" width="95" height="95" data-var="<%= @user.anatomica_data(:isquiotibiales_right) %>"></canvas>
-                    <h6>Isquitibiles</h6>
+                    <h6>Isquiotibiales</h6>
                   </div>
 
                   <div id="iliotibial_band_left" class="small-chart-wrapper chart-bajo chartleft">
                     <span class="down">Óptimo</span>
                     <canvas class="anatomy1" width="95" height="95" data-var="<%= @user.anatomica_data(:iliotibial_band_left) %>"></canvas>
-                    <h6>Recto femoral</h6>
+                    <h6>Banda iliotibial</h6>
                   </div>
                   <div id="iliotibial_band_right" class="small-chart-wrapper chart-bajo chartright">
                     <span class="down">Óptimo</span>
                     <canvas class="anatomy1" width="95" height="95" data-var="<%= @user.anatomica_data(:iliotibial_band_right) %>"></canvas>
-                    <h6>Recto femoral</h6>
+                    <h6>Banda iliotibial</h6>
                   </div>
 
                   <div id="psoas_iliaco_left" class="small-chart-wrapper chart-right-1 chartleft">
@@ -650,12 +648,12 @@
                   <div id="gastrocnemius_y_soleo_left" class="small-chart-wrapper chart-right-3 chartleft">
                     <span class="down">Óptimo</span>
                     <canvas class="anatomy1" width="95" height="95" data-var="<%= @user.anatomica_data(:gastrocnemius_y_soleo_left) %>"></canvas>
-                    <h6>Gastrocnemius y soleo</h6>
+                    <h6>Gastrocnemius y sóleo</h6>
                   </div>
                   <div id="gastrocnemius_y_soleo_right" class="small-chart-wrapper chart-right-3 chartright">
                     <span class="down">Óptimo</span>
                     <canvas class="anatomy1" width="95" height="95" data-var="<%= @user.anatomica_data(:gastrocnemius_y_soleo_right) %>"></canvas>
-                    <h6>Gastrocnemius y soleo</h6>
+                    <h6>Gastrocnemius y sóleo</h6>
                   </div>
                 </div>
               </div>
@@ -692,23 +690,23 @@
                   <div id="mid_gluteus_strength_left" class="small-chart-wrapper chart-left-1 chartleft">
                     <span class="down">Óptimo</span>
                     <canvas class="anatomy1" width="95" height="95" data-var="<%= @user.anatomica_data(:mid_gluteus_strength_left) %>"></canvas>
-                    <h6>Gluteo medio</h6>
+                    <h6>Glúteo medio</h6>
                   </div>
                   <div id="mid_gluteus_strength_right" class="small-chart-wrapper chart-left-1 chartright">
                     <span class="down">Óptimo</span>
                     <canvas class="anatomy1" width="95" height="95" data-var="<%= @user.anatomica_data(:mid_gluteus_strength_right) %>"></canvas>
-                    <h6>Gluteo medio</h6>
+                    <h6>Glúteo medio</h6>
                   </div>
 
                   <div id="isquiotibial_strength_left" class="small-chart-wrapper chart-left-2 chartleft">
                     <span class="down">Óptimo</span>
                     <canvas class="anatomy1" width="95" height="95" data-var="<%= @user.anatomica_data(:isquiotibial_strength_left) %>"></canvas>
-                    <h6>Isquiotibiles</h6>
+                    <h6>Isquiotibiales</h6>
                   </div>
                   <div id="isquiotibial_strength_right" class="small-chart-wrapper chart-left-2 chartright">
                     <span class="down">Óptimo</span>
                     <canvas class="anatomy1" width="95" height="95" data-var="<%= @user.anatomica_data(:isquiotibial_strength_right) %>"></canvas>
-                    <h6>Isquiotibiles</h6>
+                    <h6>Isquiotibiales</h6>
                   </div>
 
                   <div id="vasto_lateral_left" class="small-chart-wrapper chart-bajo chartleft">
