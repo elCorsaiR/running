@@ -517,7 +517,19 @@ function AddBarCharts() {
         scaleStepWidth : 1,
         scaleStartValue : 0,
         multiTooltipTemplate: "<%= datasetLabel %>: "+tooltip,
-        scaleShowLabels: false
+        scaleShowLabels: false,
+        limitLines: [
+            {
+                label: 'max',
+                value: 3.5,
+                color: '#A8A9A9'
+            },
+            {
+                label: 'min',
+                value: 6.5,
+                color: '#A8A9A9'
+            }
+        ]
     });
 
 	var dataB3 =$(".chart4").data("var");
@@ -529,7 +541,19 @@ function AddBarCharts() {
         scaleStepWidth : 1,
         scaleStartValue : 0,
         multiTooltipTemplate: "<%= datasetLabel %>: "+tooltip,
-        scaleShowLabels: false
+        scaleShowLabels: false,
+        limitLines: [
+            {
+                label: 'max',
+                value: 3.5,
+                color: '#A8A9A9'
+            },
+            {
+                label: 'min',
+                value: 6.5,
+                color: '#A8A9A9'
+            }
+        ]
     });
 
 
@@ -542,7 +566,19 @@ function AddBarCharts() {
         scaleStepWidth : 1,
         scaleStartValue : 0,
         multiTooltipTemplate: "<%= datasetLabel %>: "+tooltip,
-        scaleShowLabels: false
+        scaleShowLabels: false,
+        limitLines: [
+            {
+                label: 'max',
+                value: 3.5,
+                color: '#A8A9A9'
+            },
+            {
+                label: 'min',
+                value: 6.5,
+                color: '#A8A9A9'
+            }
+        ]
     });
 
 
@@ -555,7 +591,19 @@ function AddBarCharts() {
         scaleStepWidth : 1,
         scaleStartValue : 0,
         multiTooltipTemplate: "<%= datasetLabel %>: "+tooltip,
-        scaleShowLabels: false
+        scaleShowLabels: false,
+        limitLines: [
+            {
+                label: 'max',
+                value: 3.5,
+                color: '#A8A9A9'
+            },
+            {
+                label: 'min',
+                value: 6.5,
+                color: '#A8A9A9'
+            }
+        ]
     });
 
 
@@ -568,7 +616,19 @@ function AddBarCharts() {
         scaleStepWidth : 1,
         scaleStartValue : 0,
         multiTooltipTemplate: "<%= datasetLabel %>: "+tooltip,
-        scaleShowLabels: false
+        scaleShowLabels: false,
+        limitLines: [
+            {
+                label: 'max',
+                value: 3.5,
+                color: '#A8A9A9'
+            },
+            {
+                label: 'min',
+                value: 6.5,
+                color: '#A8A9A9'
+            }
+        ]
     });
 
 
@@ -582,7 +642,19 @@ function AddBarCharts() {
         scaleStepWidth : 1,
         scaleStartValue : 0,
         multiTooltipTemplate: "<%= datasetLabel %>: "+tooltip,
-        scaleShowLabels: false
+        scaleShowLabels: false,
+        limitLines: [
+            {
+                label: 'max',
+                value: 3.5,
+                color: '#A8A9A9'
+            },
+            {
+                label: 'min',
+                value: 6.5,
+                color: '#A8A9A9'
+            }
+        ]
     });
 
 
@@ -596,7 +668,19 @@ function AddBarCharts() {
         scaleStepWidth : 1,
         scaleStartValue : 0,
         multiTooltipTemplate: "<%= datasetLabel %>: "+tooltip,
-        scaleShowLabels: false
+        scaleShowLabels: false,
+        limitLines: [
+            {
+                label: 'max',
+                value: 3.5,
+                color: '#A8A9A9'
+            },
+            {
+                label: 'min',
+                value: 6.5,
+                color: '#A8A9A9'
+            }
+        ]
     });
 
 
@@ -610,7 +694,19 @@ function AddBarCharts() {
         scaleStepWidth : 1,
         scaleStartValue : 0,
         multiTooltipTemplate: "<%= datasetLabel %>: "+tooltip,
-        scaleShowLabels: false
+        scaleShowLabels: false,
+        limitLines: [
+            {
+                label: 'max',
+                value: 3.5,
+                color: '#A8A9A9'
+            },
+            {
+                label: 'min',
+                value: 6.5,
+                color: '#A8A9A9'
+            }
+        ]
     });
 
 
@@ -654,6 +750,43 @@ function BarWidth() {
 
             this.options.barValueSpacing = 5;//this.chart.width / 7;
             Chart.types.Bar.prototype.draw.apply(this, arguments);
+
+            var lines = this.options.limitLines;
+
+            for (var i = lines.length; --i >= 0;) {
+
+                var xStart = Math.round(this.scale.xScalePaddingLeft);
+                var linePositionY = this.scale.calculateY(lines[i].value);
+
+                this.chart.ctx.fillStyle = lines[i].color ? lines[i].color : this.scale.textColor;
+                this.chart.ctx.font = this.scale.font;
+                this.chart.ctx.textAlign = "left";
+                this.chart.ctx.textBaseline = "top";
+
+                if (this.scale.showLabels && lines[i].label) {
+                    this.chart.ctx.fillText(lines[i].label, xStart + 5, linePositionY);
+                }
+
+                this.chart.ctx.lineWidth = this.scale.gridLineWidth;
+                this.chart.ctx.strokeStyle = lines[i].color ? lines[i].color : this.scale.gridLineColor;
+
+                this.chart.ctx.setLineDash([10, 10]);
+                if (this.scale.showHorizontalLines) {
+                    this.chart.ctx.beginPath();
+                    this.chart.ctx.moveTo(xStart, linePositionY);
+                    this.chart.ctx.lineTo(this.scale.width, linePositionY);
+                    this.chart.ctx.stroke();
+                    this.chart.ctx.closePath();
+                }
+                this.chart.ctx.lineWidth = this.lineWidth;
+                this.chart.ctx.strokeStyle = this.lineColor;
+                this.chart.ctx.beginPath();
+                this.chart.ctx.moveTo(xStart - 5, linePositionY);
+                this.chart.ctx.lineTo(xStart, linePositionY);
+                this.chart.ctx.stroke();
+                this.chart.ctx.closePath();
+                this.chart.ctx.setLineDash([]);
+            }
         }
     });
 

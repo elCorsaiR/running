@@ -1546,26 +1546,6 @@ iframe {
 .chart-custom {
   position: relative;
 }
-.chart-custom:after {
-  position: absolute;
-  content: '';
-  width: 95%;
-  height: 1px;
-  border-bottom: 2px dashed #a8a9a9;
-  top: 26%;
-  right: 0;
-  opacity: 0.6;
-}
-.chart-custom:before {
-  position: absolute;
-  content: '';
-  width: 95%;
-  height: 1px;
-  border-bottom: 2px dashed #a8a9a9;
-  top: 55%;
-  right: 0;
-  opacity: 0.6;
-}
 
 .chart-custom--small {
   display: inline-block;
