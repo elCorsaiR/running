@@ -496,7 +496,7 @@ function AddBarCharts() {
     tooltip = "<%if (value >= 6.5){%><%='exceso'%><%}else if(value >= 3.5){%><%='óptimo'%><%} else %><%='escaso'%>";
 
 	var chartB1 = document.getElementById("chart6").getContext("2d");
-	var chartBar1 = new Chart(chartB1).Bar(dataB1, {
+	var chartBar1 = new Chart(chartB1).BarAlt(dataB1, {
         showTooltips: true,
         tooltipFillColor: "rgba(0,0,0,0.8)",
         scaleOverride : true,
