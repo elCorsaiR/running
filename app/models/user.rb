@@ -94,7 +94,7 @@ class User < ActiveRecord::Base
 
   def bar_data
     json = {
-        labels: ['Max. pronación', 'Veloc. pronación', 'Max. rotación tibial', 'Veloc. rotación tibial'],
+        labels: ["Max. pronación", 'Veloc. pronación', 'Max. rotación tibial', 'Veloc. rotación tibial'],
         datasets: [
             {
                 label: 'izquierdo',

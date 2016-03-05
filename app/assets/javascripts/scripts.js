@@ -518,6 +518,7 @@ function AddBarCharts() {
         scaleStartValue : 0,
         multiTooltipTemplate: "<%= datasetLabel %>: "+tooltip,
         scaleShowLabels: false,
+        scaleFontSize: 11.5,
         limitLines: [
             {
                 label: 'max',
