@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160215205920) do
+ActiveRecord::Schema.define(version: 20160308200410) do
 
   create_table "ankles", force: true do |t|
     t.integer "user_id"
@@ -112,7 +112,6 @@ ActiveRecord::Schema.define(version: 20160215205920) do
     t.string   "email"
     t.integer  "level_id"
     t.integer  "sport_id"
-    t.integer  "distance_id"
     t.string   "password_digest"
     t.string   "remember_token"
     t.boolean  "admin",                                  default: false

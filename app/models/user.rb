@@ -963,7 +963,7 @@ class User < ActiveRecord::Base
         self.height = row[1] if row[0] == 'ALTURA'
         self.level_id = Level.find_or_create_by(name: row[1]).id if row[0] == 'NIVEL'
         self.sport_id = Sport.find_or_create_by(name: row[1]).id if row[0] == 'DEPORTE'
-
+        self.distance = row[1] if row[0] == 'DISTANCIA'
 
         self.injury = row[1] if row[0] == 'LESIÓN'
 
