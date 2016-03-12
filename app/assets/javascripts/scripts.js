@@ -504,7 +504,19 @@ function AddBarCharts() {
         scaleStepWidth : 1,
         scaleStartValue : 0,
         multiTooltipTemplate: "<%= datasetLabel %>: "+tooltip,
-        scaleShowLabels: false
+        scaleShowLabels: false,
+        limitLines: [
+            {
+                label: 'max',
+                value: 3.5,
+                color: '#A8A9A9'
+            },
+            {
+                label: 'min',
+                value: 6.5,
+                color: '#A8A9A9'
+            }
+        ]
     });
 
 
