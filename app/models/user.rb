@@ -317,7 +317,8 @@ class User < ActiveRecord::Base
                 pointStrokeColor: '#a196a4',
                 pointHighlightFill: '#a196a4',
                 pointHighlightStroke: '#a196a4',
-                data: left_foot
+                data: left_foot,
+                y2axis: true
             },
             {
                 label: 'Ángulo sagital izquierdo',
@@ -337,7 +338,8 @@ class User < ActiveRecord::Base
                 pointStrokeColor: '#fe8e64',
                 pointHighlightFill: '#fe8e64',
                 pointHighlightStroke: '#fe8e64',
-                data: right_foot
+                data: right_foot,
+                y2axis: true
             },
             {
                 label: 'Ángulo sagital derecho',

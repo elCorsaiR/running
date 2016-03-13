@@ -240,7 +240,8 @@
             <% unless @user.foot_and_knee_angels.empty? %>
                 <div class="chart-linear-wrapper">
                   <span class="chart-title-x">Tiempo de contacto [%]</span>
-                  <span class="chart-title-y">Ángulo del pie y ángulo sagital de la rodilla[&#176;]</span>
+                  <span class="chart-title-y">Ángulo sagital de la rodilla[&#176;]</span>
+                  <span class="chart-title-y2">Ángulo del pie[&#176;]</span>
                   <canvas class="chart3" width="560" height="310" data-var="<%= @user.foot_and_knee_data %>"></canvas>
                 </div>
             <% end %>
