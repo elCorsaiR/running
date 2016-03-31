@@ -808,9 +808,9 @@ header {
   font-size: 14px;
 }
 
-.technical-analysis:after {
-  background-image: image-url("bcg-technics.png");
-}
+//.technical-analysis:after {
+//  background-image: image-url("bcg-technics.png");
+//}
 
 .conclusion {
   background-image: image-url("runner-man");
@@ -818,13 +818,13 @@ header {
   background-position: center right 200px;
 }
 
-.isSlideDown.technical-analysis:after {
-  background-image: image-url("bcg-runner-active.png");
-}
-
-.isSlideDown.conclusion:after {
-  background-image: image-url("bcg-runner-active.png");
-}
+//.isSlideDown.technical-analysis:after {
+//  background-image: image-url("bcg-runner-active.png");
+//}
+//
+//.isSlideDown.conclusion:after {
+//  background-image: image-url("bcg-runner-active.png");
+//}
 
 
 
@@ -1908,7 +1908,7 @@ footer:after,
     background-image: none;
   }
   .accordion:after {
-    background-image: image-url("videos-man.png");
+
     position: absolute;
     top: 50%;
     margin-top: -165px;
@@ -1919,27 +1919,31 @@ footer:after,
     opacity: 0.3;
   }
 
-  .isSlideDown:after {
+  .video:after {
+    background-image: image-url("videos-man.png");
+  }
+
+  .isSlideDown.video:after {
     background-image: image-url("videos-man-active.png");
   }
 
-  .technical-analysis:after {
-    background-image: image-url("bcg-technics.png");
-    width: 264px;
-  }
+//  .technical-analysis:after {
+//    background-image: image-url("bcg-technics.png");
+//    width: 264px;
+//  }
+//
+//  .isSlideDown.technical-analysis:after {
+//    background-image: image-url("bcg-technics-active.png");
+//  }
 
-  .isSlideDown.technical-analysis:after {
-    background-image: image-url("bcg-technics-active.png");
-  }
-
-  .conclusion:after {
-    background-image: image-url("bcg-technics.png");
-    width: 264px;
-  }
-
-  .isSlideDown.conclusion:after {
-    background-image: image-url("bcg-technics-active.png");
-  }
+//  .conclusion:after {
+//    background-image: image-url("bcg-technics.png");
+//    width: 264px;
+//  }
+//
+//  .isSlideDown.conclusion:after {
+//    background-image: image-url("bcg-technics-active.png");
+//  }
 
   .left--anatomy {
     width: 100%;
@@ -2154,6 +2158,30 @@ footer:after,
   .home__option {
     font-size: 12px;
   }
+
+  .social-menu {
+    display: none;
+  }
+  .slogan {
+    display: block;
+  }
+  .sticky-nav {
+    visibility: hidden
+  }
+  .logo--footer {
+    display: none;
+  }
+
+//  hide slair in footer
+  footer a.orange{
+    display: none;
+  }
+  footer .social {
+    text-align: center;
+  }
+  footer .social a {
+    margin-top: 15px;
+  }
 }
 @media (max-width: 420px) {
   .container--video {
@@ -2289,6 +2317,9 @@ footer:after,
   }
 
   .chart-title-y {
+    right: -118px;
+  }
+  .chart-title-y-2 {
     left: -118px;
   }
 
