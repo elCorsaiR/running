@@ -1919,6 +1919,57 @@ footer:after,
     opacity: 0.3;
   }
 
+  .accordion.performance {
+    background-image: none;
+  }
+  .performance:after {
+    background-image: image-url("performance_index.png");
+  }
+  .isSlideDown.performance:after {
+    background-image: image-url("performance_index-active.png");
+  }
+
+  .accordion.technical-analysis {
+    background-image: none;
+  }
+  .technical-analysis:after {
+    background-image: image-url("technical_analysis.png");
+  }
+  .isSlideDown.technical-analysis:after {
+    background-image: image-url("technical_analysis-active.png");
+  }
+
+  .accordion.anatomy {
+    background-image: none;
+  }
+  .anatomy:after {
+    background-image: image-url("anatomical_evaluation-man.png");
+  }
+  .isSlideDown.anatomy:after {
+    background-image: image-url("anatomical_evaluation-man-active.png");
+  }
+
+  .accordion.conclusion {
+    background-image: none;
+  }
+  .conclusion:after {
+    background-image: image-url("conclusions.png");
+  }
+  .isSlideDown.conclusion:after {
+    background-image: image-url("conclusions-active.png");
+  }
+
+  .accordion.programme {
+    background-image: none;
+  }
+  .programme:after {
+    background-image: image-url("exercises-man.png");
+  }
+  .isSlideDown.programme:after {
+    background-image: image-url("exercises-man-active.png");
+  }
+
+
   .video:after {
     background-image: image-url("videos-man.png");
   }
@@ -2103,7 +2154,7 @@ footer:after,
     margin-top: auto;
     width: 200px;
     height: 250px;
-    opacity: 0.3;
+    opacity: 0.15;
   }
 
   .slider iframe {
