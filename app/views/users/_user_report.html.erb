@@ -10,7 +10,7 @@
           no
           se han visto correr nunca y te sorprenderá descubrir si la idea que tienes de como corres es correcta o al
           contrario haces movimientos de los que no eras consciente.</p>
-        <a class="btn"><span class="closed-section">Ver</span><span class="opened-section">Cerrar</span> los videos de
+        <a class="btn"><span class="closed-section">Ver</span><span class="opened-section">Cerrar</span> los vídeos de
           la
           sesión</a>
       </div>
@@ -47,14 +47,14 @@
 
       <p class="performance-text">Un valor elevado indica que tu patrón de movimiento no sobrecarga en exceso las
         articulaciones alejándolas de la posibilidad de lesionarlas. El índice está fraccionado en articulaciones
-        pudiendo identificar cuál de ellas tiene una peor rendimiento y mayor posibilidad de lesión. Un corredor medio
+        pudiendo identificar cuál de ellas tiene un peor rendimiento y mayor posibilidad de lesión. Un corredor medio
         lesionado esta entorno al 42% mientras que uno no lesionado se sitúa en un 65%. Un corredor de élite se situaría
         en torno al 90%.</p>
       <% if @user.total.present? %>
           <div class="performance-chart">
             <div class="performance-chart__text">
               <h4><%= @user.total %>%</h4>
-              <span>Performance Index</span>
+              <span>Índice de rendimiento</span>
             </div>
             <canvas id="performanceChart" width="260" height="260" data-var="<%= @user.perf_index_data %>"
                     data-color="<%= @user.perf_color(@user.total, false) %>"></canvas>
@@ -155,23 +155,23 @@
       <div class="charts-wrapper">
         <div class="chart-donut-wrapper">
           <span class="text-inside">Contacto/vuelo <br> pie izquierdo</span>
-          <canvas id="chart1" width="165" height="165" data-var="<%= @user.chart1_data %>"></canvas>
+          <canvas id="chart1" width="170" height="170" data-var="<%= @user.chart1_data %>"></canvas>
         </div>
         <div class="chart-donut-wrapper">
           <span class="text-inside">Contacto/vuelo <br> pie derecho</span>
-          <canvas id="chart2" width="165" height="165" data-var="<%= @user.chart2_data %>"></canvas>
+          <canvas id="chart2" width="170" height="170" data-var="<%= @user.chart2_data %>"></canvas>
         </div>
         <div class="chart-donut-wrapper">
           <span class="text-inside">Reparto de <br> tiempo zancada</span>
-          <canvas id="chart3" width="165" height="165" data-var="<%= @user.chart3_data %>"></canvas>
+          <canvas id="chart3" width="170" height="170" data-var="<%= @user.chart3_data %>"></canvas>
         </div>
         <div class="chart-donut-wrapper">
           <span class="text-inside">Longitud de <br> zancada</span>
-          <canvas id="chart4" width="165" height="165" data-var="<%= @user.chart4_data %>"></canvas>
+          <canvas id="chart4" width="170" height="170" data-var="<%= @user.chart4_data %>"></canvas>
         </div>
         <div class="chart-donut-wrapper">
           <span class="text-inside">Pasos por <br> minuto</span>
-          <canvas id="chart5" width="165" height="165" data-var="<%= @user.chart5_data %>"></canvas>
+          <canvas id="chart5" width="170" height="170" data-var="<%= @user.chart5_data %>"></canvas>
         </div>
       </div>
 
@@ -259,7 +259,7 @@
   <% end %>
 
   <% if !@user.knee_frontal_angles.empty? or @user.left_knee_abduction.present? or @user.right_knee_abduction.present? or @user.left_knee_abduction_speed.present? or @user.right_knee_abduction_speed.present? %>
-      <div class="technical-section desktop-visible">
+      <div class="technical-section">
         <div class="container container-technical">
           <div class="wrapper-top">
             <h3 class="anatomy-headline">RODILLA I: Ángulo frontal de la rodilla</h3>
@@ -294,7 +294,7 @@
   <% end %>
 
   <% if !@user.knee_rotations.empty? or @user.left_knee_rotation.present? or @user.right_knee_rotation.present? %>
-      <div class="technical-section desktop-visible">
+      <div class="technical-section ">
         <div class="container container-technical">
           <div class="wrapper-top">
             <h3 class="anatomy-headline">RODILLA II: Rotación de la rodilla</h3>
@@ -330,7 +330,7 @@
   <% end %>
 
   <% if !@user.knee_sagital_angles.empty? or @user.left_knee_flexion.present? or @user.right_knee_flexion.present? %>
-      <div class="technical-section desktop-visible">
+      <div class="technical-section ">
         <div class="container container-technical">
           <div class="wrapper-top">
             <h3 class="anatomy-headline">RODILLA III: Ángulo sagital de la rodilla</h3>
@@ -365,14 +365,12 @@
   <% end %>
 
   <% if !@user.hip_frontal_angles.empty? or @user.left_hip_basculation.present? or @user.right_hip_basculation.present? or @user.left_hip_abduction.present? or @user.right_hip_abduction.present? %>
-      <div class="technical-section desktop-visible">
+      <div class="technical-section ">
         <div class="container container-technical">
           <div class="wrapper-top">
             <h3 class="anatomy-headline">CADERA I: Basculación de la cadera</h3>
 
-            <p class="technical-text">Movimiento de separación (abducción) y acercamiento (aducción) del muslo a la línea media del cuerpo. Una mayor cantidad de aducción de cadera puede contribuir a aumentar la carga soportada
-              por
-              la cadera y rodilla.</p>
+            <p class="technical-text">El ciclo de carrera es una sucesión de apoyos sobre un único pie. Durante esos apoyos la pelvis contralateral a la de la pierna que está apoyada cae ligeramente. Una excesiva caída de la pelvis se relaciona con mayor tensión soportada por la pelvis, cadera o parta baja de la espalda.</p>
 
             <div class="foots-img">
               <%= image_tag '4-8.png', alt: 'foot', width: '100%', height: '100%' %>
@@ -400,7 +398,7 @@
   <% end %>
 
   <% if !@user.hip_rotations.empty? or @user.left_hip_rotation.present? or @user.right_hip_rotation.present? %>
-      <div class="technical-section desktop-visible">
+      <div class="technical-section ">
         <div class="container container-technical">
           <div class="wrapper-top">
             <h3 class="anatomy-headline">CADERA II: Rotación de la cadera</h3>
@@ -435,7 +433,7 @@
   <% end %>
 
   <% if !@user.hip_sagital_angles.empty? or @user.left_hip_max_extension.present? or @user.right_hip_max_extension.present? %>
-      <div class="technical-section desktop-visible">
+      <div class="technical-section ">
         <div class="container container-technical">
           <div class="wrapper-top">
             <h3 class="anatomy-headline">CADERA III: Ángulo sagital de la cadera</h3>
@@ -851,7 +849,9 @@
       <%= link_to 'SOBRE NOSOTROS', 'http://imasdrunning.com', class: 'footer-link white' %>
       <%= link_to 'FAQ', 'http://imasdrunning.com/estudio-biomecanico-3d/preguntas-frecuentes/', class: 'footer-link white' %>
       <%= link_to 'CONTACTO', 'http://imasdrunning.com/#contacto', class: 'footer-link white' %>
+      <div class="buttons_wrapper">
       <%= render 'shared/social_buttons' %>
+      </div>
     </div>
   </div>
 </footer>

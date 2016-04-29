@@ -481,7 +481,7 @@ class User < ActiveRecord::Base
 
   def hip_abduction_data
     {
-        labels: ['Aducción cadera', 'Basculación cadera'],
+        labels: ['Basculación cadera', 'Aducción cadera'],
         datasets: [
             {
                 label: 'izquierdo',

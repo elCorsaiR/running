@@ -10,3 +10,8 @@
 #error_explanation {
   color: #ff6026;
 }
+
+.slick-prev:before,
+.slick-next:before {
+  color: #474756;
+}

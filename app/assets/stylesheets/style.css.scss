@@ -738,6 +738,10 @@ header {
   margin-left: 15px;
 }
 
+.buttons_wrapper {
+  display: inline;
+}
+
 .inline {
   display: inline-block;
 }
@@ -1899,8 +1903,19 @@ footer:after,
     opacity: 0.3;
   }
 
+  //  hide slair in footer
+  footer a.orange{
+    display: none;
+  }
+
+
   .social {
     padding-right: 0;
+  }
+
+  .btn-admin {
+    display: inline-block;
+    margin-top: 0;
   }
 
   .accordion {
@@ -2089,7 +2104,7 @@ footer:after,
   }
 
   .chart-left-1 {
-    top: 50px;
+    top: 35px;
     left: -10px;
   }
 
@@ -2099,7 +2114,7 @@ footer:after,
   }
 
   .chart-right-1 {
-    top: 50px;
+    top: 35px;
   }
 
   .chart-right-2 {
@@ -2190,6 +2205,10 @@ footer:after,
     padding-right: 15px;
   }
 
+  .buttons_wrapper {
+    display: block;
+  }
+
   #performanceRadarChart {
     width: 100%;
   }
@@ -2223,15 +2242,15 @@ footer:after,
     display: none;
   }
 
-//  hide slair in footer
-  footer a.orange{
-    display: none;
-  }
   footer .social {
     text-align: center;
   }
   footer .social a {
     margin-top: 15px;
+  }
+
+  .btn-admin {
+    margin-top: 0;
   }
 }
 @media (max-width: 420px) {
