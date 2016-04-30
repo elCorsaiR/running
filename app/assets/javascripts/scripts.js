@@ -48,7 +48,7 @@ $(document).ready(function () {
                 breakpoint: 1024,
                 settings: {
                     variableWidth: false,
-                    arrows: false,
+                    arrows: true,
                     swipe: true
                 }
             }]
