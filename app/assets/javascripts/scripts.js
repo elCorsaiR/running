@@ -41,13 +41,15 @@ $(document).ready(function () {
 
     $('.slider').slick({
         arrows: true,
+        swipe: true,
         variableWidth: true,
         responsive: [
             {
                 breakpoint: 1024,
                 settings: {
                     variableWidth: false,
-                    arrows: true
+                    arrows: false,
+                    swipe: true
                 }
             }]
     });
@@ -513,9 +515,9 @@ function AddRadarAndPolarCharts() {
             scaleStartValue: 0,
             scaleLabel: function (value) {
                 var res;
-                if (Number(value.value) < 2.0) {
+                if (Number(value.value) <= 1.0) {
                     res = 'bajo';
-                } else if (Number(value.value) < 3.0) {
+                } else if (Number(value.value) <= 2.0) {
                     res = 'aceptable';
                 } else {
                     res = 'óptimo';
@@ -524,9 +526,9 @@ function AddRadarAndPolarCharts() {
             },
             tooltipTemplate: function (value, label) {
                 var res;
-                if (Number(value.value) < 2.0) {
+                if (Number(value.value) <= 1.0) {
                     res = 'bajo';
-                } else if (Number(value.value) < 3.0) {
+                } else if (Number(value.value) <= 2.0) {
                     res = 'aceptable';
                 } else {
                     res = 'óptimo';

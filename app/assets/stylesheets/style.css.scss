@@ -1818,7 +1818,10 @@ footer:after,
 
   .popup {
     width: 100%;
-    padding: 0 40px;
+    padding-bottom: 0;
+    padding-top: 0;
+    padding-left:  10px;
+    padding-right: 40px;
   }
 
   .container-popup {
@@ -1827,6 +1830,12 @@ footer:after,
 
   .logo-popup {
     left: 40px;
+  }
+
+  .popup-link {
+    font-size: 25px;
+    display: inline-block;
+    padding: 20px;
   }
 
   .table-wrapper img {
@@ -1883,7 +1892,7 @@ footer:after,
 }
 @media (max-width: 860px) {
   .popup-link {
-    font-size: 20px;
+    font-size: 17px;
   }
 
   header {
@@ -2362,7 +2371,7 @@ footer:after,
   }
 
   .chart-left-1 {
-    top: 50px;
+    top: 30px;
     left: -30px;
   }
 
@@ -2372,7 +2381,7 @@ footer:after,
   }
 
   .chart-right-1 {
-    top: 50px;
+    top: 30px;
     right: -50px;
   }
 
