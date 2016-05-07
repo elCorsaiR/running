@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160308200410) do
+ActiveRecord::Schema.define(version: 20160507194348) do
 
   create_table "ankles", force: true do |t|
     t.integer "user_id"
@@ -222,6 +222,7 @@ ActiveRecord::Schema.define(version: 20160308200410) do
     t.string   "minkm"
     t.float    "movimento_left"
     t.float    "movimento_right"
+    t.string   "gender"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true

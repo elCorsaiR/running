@@ -1,3 +1,4 @@
+<% provide :body_class, @user.gender.to_s.downcase == 'female' ? 'woman' : ''  %>
 <!-- Page content -->
 <% unless @user.session_videos.empty? %>
     <section class="accordion video">
@@ -520,7 +521,7 @@
               </div>
               <div class="right right-anatomy">
                 <div class="charts-and-image-wrapper">
-                  <%= image_tag 'anatomy-placeholder.jpg' %>
+                  <%= image_tag "anatomy-placeholder#{@user.gender.to_s.downcase == 'female' ? '-woman' : ''}.png" %>
 
                   <div id="divq_angle_left" class="small-chart-wrapper chart-optimo chartleft">
                     <span class="down">Óptimo</span>
@@ -587,7 +588,7 @@
               </div>
               <div class="right right-anatomy">
                 <div class="charts-and-image-wrapper">
-                  <%= image_tag 'flexibilidad.png' %>
+                  <%= image_tag "flexibilidad#{@user.gender.to_s.downcase == 'female' ? '-woman' : ''}.png" %>
 
                   <div id="hip_rotatoes_left" class="small-chart-wrapper chart-left-1 chartleft">
                     <span class="down">Óptimo</span>
@@ -684,7 +685,7 @@
               </div>
               <div class="right right-anatomy">
                 <div class="charts-and-image-wrapper">
-                  <%= image_tag 'fuerza.png' %>
+                  <%= image_tag "fuerza#{@user.gender.to_s.downcase == 'female' ? '-woman' : ''}.png" %>
 
                   <div id="mid_gluteus_strength_left" class="small-chart-wrapper chart-left-1 chartleft">
                     <span class="down">Óptimo</span>

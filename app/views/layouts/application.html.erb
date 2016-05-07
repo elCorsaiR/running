@@ -11,7 +11,7 @@
 <% if controller_name == 'sessions'
      class_name = 'dark'
    end %>
-<body class="<%= class_name %>">
+<body class="<%= class_name %> <%= yield :body_class %>">
 
 <%= render 'layouts/admin_toolbar' %>
 <%= yield %>

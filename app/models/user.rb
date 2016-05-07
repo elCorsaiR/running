@@ -960,7 +960,7 @@ class User < ActiveRecord::Base
         last_name = row[1] if row[0] == 'APELLIDOS'
         self.birthday = row[1] if row[0] == 'EDAD'
 
-        # self.birthday = row[1] if row[0] == 'SEXO'
+        self.gender = row[1] if row[0] == 'SEXO'
         self.weight = row[1] if row[0] == 'PESO'
         self.height = row[1] if row[0] == 'ALTURA'
         self.level_id = Level.find_or_create_by(name: row[1]).id if row[0] == 'NIVEL'

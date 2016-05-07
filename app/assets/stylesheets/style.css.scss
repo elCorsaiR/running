@@ -448,6 +448,10 @@ header {
   background-position: bottom -40px left 117px, bottom -24px right 124px;
 }
 
+.woman header {
+  background-image: image-url("bcg-logo.png"), image-url("runner-woman.png");
+}
+
 .accordion-open {
   max-height: 0;
   overflow: hidden;
@@ -761,6 +765,9 @@ header {
   background-position: center right 126px;
   background-repeat: no-repeat;
 }
+.woman .accordion {
+  background-image: image-url("videos-woman.png");
+}
 .accordion:hover {
   background-color: #50505d;
 }
@@ -773,6 +780,9 @@ header {
   background-color: #ececee;
   background-image: image-url("videos-man-active.png");
   border-color: #dedee1;
+}
+.woman .isSlideDown {
+  background-image: image-url("videos-woman-active.png");
 }
 .isSlideDown:hover {
   background-color: #ececee;
@@ -822,6 +832,10 @@ header {
   background-position: center right 200px;
 }
 
+  .woman .conclusion {
+  background-image: image-url("runner-woman");
+}
+
 //.isSlideDown.technical-analysis:after {
 //  background-image: image-url("bcg-runner-active.png");
 //}
@@ -852,8 +866,14 @@ header {
 .accordion.anatomy {
   background-image: image-url("anatomical_evaluation-man.png");
 }
+.woman .accordion.anatomy {
+  background-image: image-url("anatomical_evaluation-woman.png");
+}
 .isSlideDown.anatomy {
   background-image: image-url("anatomical_evaluation-man-active.png");
+}
+.woman .isSlideDown.anatomy {
+  background-image: image-url("anatomical_evaluation-woman-active.png");
 }
 
 
@@ -870,6 +890,12 @@ header {
 }
 .isSlideDown.programme {
   background-image: image-url("exercises-man-active.png");
+}
+.woman .accordion.programme {
+  background-image: image-url("exercises-woman.png");
+}
+.woman .isSlideDown.programme {
+  background-image: image-url("exercises-woman-active.png");
 }
 
 
@@ -1900,6 +1926,11 @@ footer:after,
     background-image: image-url("bcg-logo.png");
     position: relative;
   }
+  .woman header {
+    overflow: hidden;
+    background-image: image-url("bcg-logo.png");
+    position: relative;
+  }
 
   header:after {
     background-image: image-url("runner-man");
@@ -1910,6 +1941,9 @@ footer:after,
     width: 323px;
     height: 546px;
     opacity: 0.3;
+  }
+  .woman header:after {
+    background-image: image-url("runner-woman");
   }
 
   //  hide slair in footer
@@ -1931,6 +1965,10 @@ footer:after,
     position: relative;
     background-image: none;
   }
+  .woman .accordion {
+    position: relative;
+    background-image: none;
+  }
   .accordion:after {
 
     position: absolute;
@@ -1946,6 +1984,9 @@ footer:after,
   .accordion.performance {
     background-image: none;
   }
+  .woamn .accordion.performance {
+    background-image: none;
+  }
   .performance:after {
     background-image: image-url("performance_index.png");
   }
@@ -1954,6 +1995,9 @@ footer:after,
   }
 
   .accordion.technical-analysis {
+    background-image: none;
+  }
+  .woman .accordion.technical-analysis {
     background-image: none;
   }
   .technical-analysis:after {
@@ -1966,14 +2010,27 @@ footer:after,
   .accordion.anatomy {
     background-image: none;
   }
+
+  .woman .accordion.anatomy {
+    background-image: none;
+  }
   .anatomy:after {
     background-image: image-url("anatomical_evaluation-man.png");
+  }
+  .woman .anatomy:after {
+    background-image: image-url("anatomical_evaluation-woman.png");
   }
   .isSlideDown.anatomy:after {
     background-image: image-url("anatomical_evaluation-man-active.png");
   }
+  .woman .isSlideDown.anatomy:after {
+    background-image: image-url("anatomical_evaluation-woman-active.png");
+  }
 
   .accordion.conclusion {
+    background-image: none;
+  }
+  .woman .accordion.conclusion {
     background-image: none;
   }
   .conclusion:after {
@@ -1986,11 +2043,21 @@ footer:after,
   .accordion.programme {
     background-image: none;
   }
+  .woman .accordion.programme {
+    background-image: none;
+  }
   .programme:after {
     background-image: image-url("exercises-man.png");
   }
   .isSlideDown.programme:after {
     background-image: image-url("exercises-man-active.png");
+  }
+
+  .woman .programme:after {
+    background-image: image-url("exercises-woman.png");
+  }
+  .woman .isSlideDown.programme:after {
+    background-image: image-url("exercises-woman-active.png");
   }
 
 
@@ -2000,6 +2067,13 @@ footer:after,
 
   .isSlideDown.video:after {
     background-image: image-url("videos-man-active.png");
+  }
+  .woman .video:after {
+    background-image: image-url("videos-woman.png");
+  }
+
+  .woman .isSlideDown.video:after {
+    background-image: image-url("videos-woman-active.png");
   }
 
 //  .technical-analysis:after {
